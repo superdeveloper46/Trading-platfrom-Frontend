@@ -1,0 +1,15 @@
+@import "src/assets/styles/common/mixins";
+
+.card_header {
+	@include card-header();
+	padding: 24px;
+	border-bottom: none;
+}
+
+.content {
+	padding: 5px 28px 15px;
+	font-weight: normal;
+	font-size: 16px;
+	line-height: 23px;
+	color: var(--color-secondary);
+}

@@ -1,0 +1,58 @@
+@import "src/assets/styles/common/mixins";
+
+.dropdown_indicator_icon {
+	font-size: 12px !important;
+	color: var(--icon-primary);
+
+	&.mini {
+		font-size: 9px;
+	}
+
+	&.disabled {
+		color: var(--input-disabled);
+	}
+}
+
+.clear_indicator_icon {
+	font-size: 14px;
+	color: var(--icon-primary);
+
+	&.mini {
+		font-size: 13px;
+	}
+
+	&.disabled {
+		color: var(--input-disabled);
+	}
+}
+
+.labeled_container {
+	@include flexbox(flex-start, flex-start, column);
+	width: 100%;
+	position: relative;
+
+	> div {
+		width: 100%;
+	}
+}
+
+.label {
+	font-weight: normal;
+	text-align: left;
+	color: var(--color-secondary);
+	position: absolute;
+	top: -6px;
+	left: 10px;
+	font-size: 12px;
+	line-height: 14px;
+	padding: 0 4px;
+	width: max-content !important;
+	background: var(--card-background-color);
+	z-index: 2;
+
+	@include max-w(md) {
+		&.absolute {
+			top: -5px;
+		}
+	}
+}

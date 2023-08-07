@@ -1,0 +1,97 @@
+@import "src/assets/styles/common/mixins";
+
+.container {
+	@include flexbox(center, center);
+	@include transition();
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	background: var(--button-text-background);
+	border: none;
+	position: relative;
+	user-select: none;
+	transition: background 0.25s ease;
+	cursor: pointer;
+	outline: none;
+	padding: 0;
+
+	&:hover {
+		background: var(--button-text-background);
+	}
+
+	i {
+		font-size: 12px;
+		color: var(--icon-primary);
+	}
+
+	&.small {
+	}
+	&.medium {
+	}
+	&.large {
+		i {
+			font-size: 21px;
+		}
+	}
+
+	&.text {
+		background: var(--button-text-background);
+		&:hover {
+			background: var(--button-text-background-hover);
+		}
+
+		&.disabled {
+			background: var(--button-text-disabled-background) !important;
+			cursor: initial;
+
+			i {
+				color: var(--icon-primary);
+			}
+		}
+	}
+
+	&.filled {
+		i {
+			color: #fff;
+		}
+
+		&.disabled {
+			background: var(--button-filled-disabled-background) !important;
+
+			&:hover {
+				background: var(--button-filled-disabled-background) !important;
+				cursor: initial;
+			}
+		}
+		&.primary {
+			background: var(--button-filled-primary-background);
+			&:hover {
+				background: var(--button-filled-primary-background-hover);
+			}
+		}
+		&.secondary {
+			background: var(--button-filled-secondary-background);
+			&:hover {
+				background: var(--button-filled-secondary-background-hover);
+			}
+		}
+		&.tertiary {
+			background: var(--button-filled-tertiary-background);
+			&:hover {
+				background: var(--button-filled-tertiary-background-hover);
+			}
+		}
+		&.quaternary {
+			background: var(--button-filled-quaternary-background);
+			&:hover {
+				background: var(--button-filled-quaternary-background-hover);
+			}
+		}
+		&.quinary {
+			background: var(--button-filled-quinary-background);
+			&:hover {
+				background: var(--button-filled-quinary-background-hover);
+			}
+		}
+	}
+}

@@ -1,0 +1,164 @@
+@import "src/assets/styles/common/mixins";
+
+.wrapper {
+	cursor: pointer;
+	position: relative;
+	width: 100%;
+}
+
+.option_content {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	color: var(--color-secondary);
+
+	img {
+		height: 20px;
+		width: 25px;
+		margin-right: 15px;
+	}
+
+	&.value {
+		color: var(--color-primary);
+	}
+}
+
+.single_value_container {
+	@include flexbox(stretch, center);
+
+	width: 100%;
+}
+
+.single_value {
+	margin-left: 0 !important;
+	margin-right: 0 !important;
+}
+
+.placeholder {
+	left: 85px;
+	background: var(--card-background-color);
+	font-size: 14px;
+	top: 12px;
+	padding: 0;
+	z-index: 3;
+
+	&.active,
+	&.filled {
+		font-size: 12px;
+		top: -10px;
+		padding: 0 3px;
+		left: 80px !important;
+	}
+
+	@include max-w(md) {
+		&.active,
+		&.filled {
+			display: none;
+		}
+	}
+}
+
+.placeholder_comp_container {
+	height: 100% !important;
+	display: flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+	position: relative !important;
+	padding-right: 5px !important;
+
+	&.error {
+		i {
+			color: var(--input-error);
+		}
+
+		.img_block:before {
+			background-color: var(--input-error);
+		}
+	}
+}
+
+.placeholder_comp {
+	position: relative;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+
+	i {
+		margin-right: 8px;
+	}
+}
+
+.img_block {
+	height: 42px;
+	width: 48px;
+	min-width: 48px;
+	margin-right: 10px;
+	position: relative;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+
+	&:before {
+		content: "";
+		position: absolute;
+		right: 0;
+		height: 26px;
+		width: 1px;
+		background-color: var(--input-normal);
+	}
+
+	img {
+		height: auto;
+		width: 20px;
+		margin-right: 8px;
+	}
+
+	i[class~="ai-web_outlined"] {
+		margin-right: 8px;
+	}
+
+	i[class~="ai-arrow_down"],
+	i[class~="ai-arrow_up"] {
+		font-size: 8px;
+		line-height: 8px;
+	}
+
+	i[class~="ai-arrow_up"] {
+		color: #4a4a4a;
+	}
+}
+
+.empty_flag {
+	margin-right: 45px;
+}
+
+.value_container {
+	-webkit-box-align: center !important;
+	align-items: center !important;
+	display: flex !important;
+	flex: 1 1 0 !important;
+	flex-wrap: wrap !important;
+	padding: 0 14px !important;
+	position: relative !important;
+	overflow: hidden !important;
+	box-sizing: border-box !important;
+	height: 46px !important;
+	line-height: 46px !important;
+
+	i[class~="ai-web_outlined"] {
+		font-size: 20px;
+	}
+
+	@include max-w(md) {
+		height: 42px !important;
+		line-height: 42px !important;
+	}
+}
+
+.clear_indicator {
+	margin-left: auto;
+
+	i {
+		font-size: 14px;
+	}
+}

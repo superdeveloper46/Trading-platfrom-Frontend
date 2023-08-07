@@ -1,0 +1,48 @@
+@import "assets/styles/common/mixins";
+
+.phone_input_wrapper {
+	@include transition(border-color, color);
+
+	position: relative;
+	width: 100%;
+
+	input {
+		border: 1px solid var(--input-normal);
+		width: 100%;
+		font-size: 14px;
+		background: none;
+		box-sizing: border-box;
+		padding: 4px 38px 4px 80px;
+		overflow-y: hidden;
+		outline: none;
+		border-radius: 12px;
+		height: 47px;
+		transition: border-color 200ms ease-in-out;
+		color: var(--input-normal) !important;
+
+		&:hover {
+			border-color: var(--input-hover);
+			color: var(--input-hover) !important;
+		}
+	}
+
+	&.active {
+		input {
+			border-color: var(--input-focused);
+			color: var(--input-focused) !important;
+		}
+	}
+
+	&.disabled {
+		input {
+			border-color: var(--input-disabled);
+			color: var(--input-disabled);
+		}
+	}
+	&.error {
+		input {
+			border-color: var(--input-error);
+			color: var(--input-error);
+		}
+	}
+}

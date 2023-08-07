@@ -1,0 +1,19 @@
+$breakpoints: (
+	xxs: 320px,
+	xs: 548px,
+	md: 768px,
+	lg: 960px,
+	xl: 1140px,
+	xxl: 1366px,
+	xxxl: 1920px,
+);
+
+:export {
+	breakpointMobileMini: map-get($breakpoints, xxs);
+	breakpointMobile: map-get($breakpoints, xs);
+	breakpointMedium: map-get($breakpoints, md);
+	breakpointLaptop: map-get($breakpoints, lg);
+	breakpointLargeLaptop: map-get($breakpoints, xl);
+	breakpointHD: map-get($breakpoints, xxl);
+	breakpointFullHD: map-get($breakpoints, xxxl);
+}

@@ -1,0 +1,393 @@
+@import "src/assets/styles/common/mixins";
+
+.header {
+	@include flexbox(space-between, center);
+	margin-bottom: 30px;
+
+	@include max-w(xl) {
+		flex-wrap: wrap;
+	}
+}
+
+.info_block {
+	@include flexbox(flex-start, flex-start);
+
+	@include max-w(xl) {
+		flex-wrap: wrap;
+	}
+}
+
+.short_coin_info_container {
+	min-width: 260px;
+	margin-top: 17px;
+}
+
+.short_coin_info {
+	@include flexbox(stretch, center);
+	height: 42px;
+}
+
+.coin_logo {
+	width: 42px;
+	height: 42px;
+
+	@include max-w(xs) {
+		width: 28px;
+		height: 28px;
+	}
+}
+
+.coin_name {
+	margin-left: 24px;
+	margin-right: 7px;
+	font-size: 36px;
+	font-weight: bold;
+	text-align: left;
+	white-space: nowrap;
+	color: var(--color-primary);
+
+	@include max-w(xs) {
+		font-size: 28px;
+		margin-left: 10px;
+	}
+
+	@include max-w(xxs) {
+		font-size: 18px;
+	}
+}
+
+.coin_code {
+	margin-right: 7px;
+	font-size: 24px;
+	font-weight: bold;
+	text-align: left;
+	color: var(--color-secondary);
+}
+
+.favorite_icon {
+	@include flexbox(center, center);
+	width: 21px;
+	height: 21px;
+	left: 0;
+	cursor: pointer;
+	z-index: 9;
+
+	i {
+		font-size: 21px;
+		transition: 0.12s ease;
+		color: #c4c4c4;
+	}
+
+	&:hover {
+		i {
+			color: var(--icon-primary);
+		}
+	}
+
+	&.active {
+		i {
+			color: var(--color-yellow);
+		}
+
+		&:hover i {
+			color: var(--icon-active);
+		}
+	}
+
+	&.disabled {
+		&:hover {
+			cursor: pointer;
+		}
+		opacity: 0.6;
+		pointer-events: none;
+	}
+}
+
+.useful_links {
+	margin-top: 17px;
+	@include flexbox();
+	flex-wrap: wrap;
+	gap: 10px;
+
+	@include max-w(xs) {
+		div {
+			flex: 0 0 48%;
+		}
+	}
+
+	@include max-w(xxs) {
+		div {
+			flex: 0 0 45%;
+		}
+	}
+}
+
+.link {
+	color: var(--color-blue);
+
+	i {
+		font-size: 10px;
+		color: var(--color-blue) !important;
+	}
+	span {
+		padding-left: 10px;
+		padding-right: 10px;
+		font-size: 12px;
+		text-align: center;
+		text-decoration: underline;
+	}
+}
+
+.coin_characteristics {
+	@include flexbox(stretch, flex-start, column);
+	margin-left: 30px;
+
+	@include max-w(xl) {
+		margin: 30px 0;
+	}
+}
+
+.price_caption {
+	font-size: 12px;
+	font-weight: normal;
+	text-align: left;
+	color: var(--color-secondary);
+
+	@include max-w(xs) {
+		text-align: left;
+		width: 100%;
+		padding-left: 10px;
+		margin-bottom: 10px;
+	}
+}
+
+.price {
+	font-size: 36px;
+	font-weight: bold;
+	text-align: left;
+	color: var(--color-primary);
+}
+
+.last_diff {
+	font-size: 12px;
+	font-weight: bold;
+	line-height: 14px;
+}
+
+.price_container {
+	@include flexbox(stretch, center);
+	gap: 15px;
+
+	@include max-w(xs) {
+		@include flexbox(flex-start);
+		width: 100%;
+		padding-left: 10px;
+	}
+}
+
+.percent_badge {
+	i {
+		font-size: 10px;
+		margin-right: 5px;
+	}
+}
+
+.additional_info_container {
+	@include flexbox(stretch, center);
+
+	height: 88px;
+	max-width: 650px;
+
+	@include max-w(md) {
+		flex-wrap: wrap;
+		max-width: 100%;
+		width: 100%;
+		height: 100%;
+	}
+}
+
+.additional_info_cell {
+	@include flexbox(space-between, flex-end, column);
+
+	border-right: 1px solid var(--divider-border);
+	padding: 15px 30px 20px 10px;
+	height: 100%;
+
+	@include max-w(md) {
+		padding: 10px;
+		border-right: none;
+		border-bottom: 1px solid var(--divider-border);
+		align-items: flex-start;
+		width: 100%;
+
+		&:first-child {
+			margin-top: 20px;
+			border-top: 1px solid var(--divider-border);
+		}
+	}
+
+	&:last-child {
+		border-right: none;
+	}
+}
+
+.additional_info_cell_caption {
+	font-size: 12px;
+	font-weight: 400;
+	line-height: 14px;
+	text-align: right;
+	color: var(--color-secondary);
+
+	span {
+		position: relative;
+	}
+
+	@include max-w(xs) {
+		width: 100%;
+		text-align: left;
+		margin-bottom: 5px;
+	}
+}
+
+.additional_info_cell_value {
+	width: 100%;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 19px;
+	text-align: right;
+	white-space: nowrap;
+	color: var(--color-primary);
+
+	@include max-w(md) {
+		text-align: left;
+	}
+}
+
+.additional_info_cell_hint {
+	position: absolute;
+	top: 0;
+	right: -20px;
+}
+
+.twitter_widget_container {
+	@include tiny-scrollbar(0, true);
+	width: 427px;
+	height: 667px;
+	overflow-x: scroll;
+	border-radius: 10px;
+
+	@include max-w(xs) {
+		width: 100%;
+	}
+}
+
+.chart {
+	width: 100%;
+	height: 466px;
+	margin-bottom: 60px;
+
+	@include max-w(xs) {
+		margin-top: 20px;
+	}
+}
+
+.main_content {
+	@include flexbox(stretch, flex-start);
+	gap: 62px;
+
+	@include max-w(xxl) {
+		gap: 30px;
+	}
+
+	@include max-w(xl) {
+		flex-wrap: wrap;
+		margin-top: 20px;
+		gap: 20px;
+	}
+}
+
+.first_col {
+	@include flexbox(stretch, center, column);
+	max-width: 983px;
+
+	@include max-w(xxl) {
+		max-width: 68%;
+	}
+
+	@include max-w(xl) {
+		max-width: unset;
+		width: 100%;
+	}
+
+	&.no_twitter {
+		max-width: 100%;
+	}
+}
+
+.article_title {
+	font-size: 24px;
+	font-weight: bold;
+	text-align: left;
+	color: var(--color-primary);
+
+	.name {
+		color: var(--color-coral);
+	}
+}
+
+.article_body {
+	font-size: 16px;
+	font-weight: normal;
+	line-height: 23px;
+	text-align: justify;
+	color: var(--color-primary);
+}
+
+.buttons_section {
+	@include flexbox(flex-end);
+
+	align-self: flex-start;
+	flex-wrap: wrap;
+	gap: 14px;
+	max-width: 430px;
+
+	@include max-w(xl) {
+		max-width: unset;
+	}
+
+	@include max-w(xs) {
+		@include flexbox(center);
+	}
+}
+
+.custom_button {
+	height: 28px;
+	min-height: 28px;
+
+	&.dropdown_trade {
+		width: fit-content !important;
+		color: var(--color-white);
+
+		i {
+			color: var(--color-white);
+		}
+	}
+
+	> div > span {
+		font-size: 12px;
+	}
+
+	> div > i {
+		font-size: 1.5rem;
+		margin-right: 0;
+		margin-bottom: 0;
+	}
+
+	@include max-w(xs) {
+		flex: 1 1 45%;
+	}
+
+	@include max-w(xxs) {
+		flex: 100%;
+	}
+}

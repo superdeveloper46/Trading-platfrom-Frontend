@@ -1,0 +1,908 @@
+@import "./queries";
+
+@mixin font-size(
+	$values: (
+		xs: 14px,
+		xxl: 16px,
+		xxxl: 21px,
+	),
+	$default: 21px
+) {
+	@include make-responsive("font-size", $values, $default, px);
+	line-height: 1.15;
+}
+
+@mixin flexbox($justify: stretch, $align: stretch, $direction: row, $display: flex) {
+	display: $display;
+	justify-content: $justify;
+	align-items: $align;
+	flex-direction: $direction;
+}
+
+@mixin transition($param...) {
+	-webkit-transition: $param var(--transition-time) var(--transition-type);
+	-moz-transition: $param var(--transition-time) var(--transition-type);
+	-ms-transition: $param var(--transition-time) var(--transition-type);
+	-o-transition: $param var(--transition-time) var(--transition-type);
+	transition: $param var(--transition-time) var(--transition-type);
+}
+
+@mixin transition-long($param...) {
+	-webkit-transition: $param var(--transition-time-long) var(--transition-type);
+	-moz-transition: $param var(--transition-time-long) var(--transition-type);
+	-ms-transition: $param var(--transition-time-long) var(--transition-type);
+	-o-transition: $param var(--transition-time-long) var(--transition-type);
+	transition: $param var(--transition-time-long) var(--transition-type);
+}
+
+@mixin card($noMobileBorder: true) {
+	background-color: var(--card-background-color);
+	border-radius: 8px;
+	border: 1px solid var(--card-border-color);
+	overflow: hidden;
+	position: relative;
+
+	@if $noMobileBorder {
+		@include max-w(md) {
+			border-color: transparent;
+		}
+	}
+}
+
+@mixin badge() {
+	padding: 0 8px;
+	text-align: center;
+	font-size: 12px;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	line-height: 1.3;
+	height: 20px;
+	box-sizing: border-box;
+	border-radius: 5px;
+	vertical-align: bottom;
+	font-weight: 400;
+	overflow: hidden;
+	width: fit-content;
+	background-color: var(--color-blue);
+	color: var(--badge-color);
+	white-space: nowrap;
+	border: 1px solid var(--color-blue);
+	text-transform: lowercase;
+}
+
+@mixin card-body() {
+	padding: 18px 56px 18px 60px;
+	justify-content: space-between;
+	align-items: center;
+	display: grid;
+	grid-template: auto / 1fr minmax(auto, 210px);
+	grid-gap: 40px;
+	min-height: 70px;
+
+	> span {
+		color: var(--color-primary);
+	}
+
+	> span:first-of-type {
+		font-size: 16px;
+		line-height: 23px;
+		color: var(--color-secondary);
+		display: flex;
+		justify-content: flex-start;
+		align-items: flex-start;
+		word-break: break-word;
+
+		i {
+			margin: 2px 10px 0 0;
+			font-size: 20px;
+		}
+	}
+
+	@include max-w(md) {
+		grid-template: auto / 1fr;
+		grid-gap: 24px;
+		padding: 16px 24px 24px 16px;
+		justify-items: center;
+	}
+}
+
+@mixin header-component(
+	$hasBackground: false,
+	$headerMask: "../../images/page/header-mask.svg",
+	$mobileHeaderMask: "../../images/page/header-mask-mobile.png"
+) {
+	@include flexbox(center, center);
+
+	width: 100%;
+	min-height: 200px;
+	background-image: url($headerMask);
+	background-color: var(--stripped-normal);
+	background-position: left center;
+	background-size: contain;
+	background-repeat: no-repeat;
+	padding: 30px 40px;
+	position: relative;
+	overflow: hidden;
+
+	@if $hasBackground {
+		background-color: var(--card-background-color);
+	}
+
+	@include max-w(lg) {
+		padding: 5px;
+		background: url($mobileHeaderMask);
+		background-size: auto;
+		background-repeat: no-repeat;
+	}
+}
+
+@mixin section-container() {
+	@include flexbox(flex-start, center, column);
+
+	width: 100%;
+	max-width: 1240px;
+	padding: 20px 0;
+	margin: 0 auto;
+
+	@include max-w(xxl) {
+		padding: 20px;
+	}
+}
+
+@mixin header-content($small: false) {
+	@include flexbox(flex-start);
+
+	width: 100%;
+	max-width: 1540px;
+	padding: 0 120px;
+
+	@if $small {
+		max-width: 1200px;
+	}
+
+	@include max-w(lg) {
+		flex-direction: column;
+		padding: 30px 15px;
+	}
+
+	@include max-w(xs) {
+		padding: 30px 15px 40px;
+	}
+}
+
+@mixin header-title() {
+	font-weight: bold;
+	font-size: 36px;
+	line-height: 1.3;
+	margin: 0 0 5px 0;
+	color: var(--color-primary);
+
+	@include max-w(xxl) {
+		font-size: 24px;
+	}
+}
+
+@mixin header-subtitle($primary: false) {
+	width: 100%;
+	font-weight: normal;
+	font-size: 16px;
+	line-height: 1.3;
+	margin-bottom: 10px;
+	max-width: 558px;
+	color: var(--color-secondary);
+
+	@if $primary {
+		color: var(--color-primary);
+	}
+
+	a {
+		color: var(--color-coral);
+
+		&:hover,
+		&:focus,
+		&:active {
+			color: var(--color-coral);
+		}
+	}
+
+	@include max-w(xxl) {
+		font-size: 14px;
+	}
+}
+
+@mixin buttons-group() {
+	display: grid;
+	grid-template: auto / 1fr;
+}
+
+@mixin cardMobile($expanded: false, $noBorder: false) {
+	display: block;
+	border-radius: 5px;
+	border: 1px solid var(--card-border-color);
+	font-size: 16px;
+	line-height: 23px;
+	background: none;
+	margin-bottom: 10px;
+	width: 100%;
+
+	@if $noBorder {
+		border-color: transparent;
+	}
+
+	@if $expanded {
+		border-color: var(--color-blue);
+	}
+}
+
+@mixin cardMobileHeader($expanded: false) {
+	background-color: var(--card-header-background);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	border-radius: 5px 5px 0 0;
+	min-height: 38px;
+	padding: 10px 8px 10px 15px;
+	position: relative;
+}
+
+@mixin cardMobileContent() {
+	display: grid;
+	grid-template: auto / 1fr;
+	grid-gap: 16px;
+	align-items: self-start;
+	justify-items: self-start;
+	font-size: 14px;
+	width: 100%;
+	padding: 14px 15px;
+	position: relative;
+
+	> i.ai:first-child {
+		position: absolute;
+		left: 23px;
+		font-size: 24px;
+	}
+}
+
+@mixin cardMobileCurrency {
+	@include flexbox(center, center);
+	font-weight: normal;
+	font-size: 12px;
+	margin-right: 6px;
+	text-align: center;
+	color: var(--color-primary);
+
+	span {
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		width: 50px;
+		max-width: 50px;
+		display: block;
+		text-align: left;
+	}
+}
+
+@mixin cardMobileDateTime {
+	@include flexbox(center, center);
+	margin-right: auto;
+}
+
+@mixin cardMobileDateTimeItem {
+	@include flexbox();
+	margin-left: 3px;
+	font-size: 12px;
+	line-height: 14px;
+	color: var(--color-secondary);
+
+	&:first-child {
+		color: var(--color-primary);
+	}
+}
+
+@mixin cardMobileContentGroup() {
+	width: 100%;
+	display: grid;
+	grid-template: auto / 1fr 1fr;
+	grid-gap: 10px;
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+
+	span {
+		&:nth-child(1) {
+			text-align: left;
+			font-size: 12px;
+			color: var(--color-secondary);
+		}
+		&:nth-child(2) {
+			text-align: right;
+			font-size: 14px;
+			color: var(--color-primary);
+		}
+	}
+}
+
+@mixin cardMobileContentHidden() {
+	width: 100%;
+	display: grid;
+	grid-template: auto / 1fr;
+	grid-gap: 16px;
+	align-items: self-start;
+	justify-items: self-start;
+	border-top: 1px solid var(--input-normal);
+	padding: 16px 0 0 0;
+}
+
+@mixin cardMobileAction($active: false) {
+	margin: 0 0 0 auto;
+	cursor: pointer;
+
+	i {
+		@include transition(color, transform);
+		font-size: 12px;
+		color: var(--icon-primary);
+		transform: none;
+		@if $active {
+			font-size: 12px;
+			color: var(--icon-pressed);
+			transform: rotate(180deg);
+		}
+	}
+
+	&:last-child i.ai {
+		font-size: 10px;
+	}
+}
+
+@mixin card-header {
+	display: flex;
+	padding: 4px;
+	justify-content: space-between;
+	align-items: center;
+}
+
+@mixin card-title($noMargin: false) {
+	font-weight: bold;
+	width: 100%;
+	font-size: 22px;
+	line-height: 1.3;
+	color: var(--color-primary);
+	margin: 0 0 14px 0;
+	padding: 0;
+
+	@if $noMargin {
+		margin: 0;
+	}
+
+	@include max-w(xxl) {
+		font-size: 20px;
+	}
+}
+
+@mixin card-subtitle() {
+	font-style: normal;
+	font-weight: normal;
+	font-size: 14px;
+	line-height: 19px;
+	color: var(--color-secondary);
+}
+
+@mixin card_separator() {
+	width: 100%;
+	height: 1px;
+	background-color: var(--card-border-color);
+	margin: 20px 0;
+}
+
+@mixin hidden($w-max) {
+	@include max-w($w-max + 1) {
+		display: none;
+	}
+}
+
+@mixin header-component(
+	$hasBackground: false,
+	$headerMask: "../../images/page/header-mask.svg",
+	$mobileHeaderMask: "../../images/page/header-mask-mobile.png"
+) {
+	@include flexbox();
+
+	width: 100%;
+	min-height: 200px;
+	background-image: url($headerMask);
+	background-color: var(--stripped-normal);
+	background-position: left center;
+	background-size: contain;
+	background-repeat: no-repeat;
+	padding: 30px 40px;
+	position: relative;
+	overflow: hidden;
+
+	@if $hasBackground {
+		background-color: var(--card-background-color);
+	}
+
+	@include max-w(lg) {
+		padding: 5px;
+		background: url($mobileHeaderMask);
+		background-size: auto;
+		background-repeat: no-repeat;
+	}
+}
+
+@mixin section-container() {
+	@include flexbox(flex-start, center, column);
+
+	width: 100%;
+	max-width: 1240px;
+	padding: 20px 0;
+	margin: 0 auto;
+
+	@include max-w(xxl) {
+		padding: 20px;
+	}
+}
+
+@mixin header-content($small: false) {
+	@include flexbox(flex-start);
+
+	width: 100%;
+	max-width: 1540px;
+	padding: 0 120px;
+
+	@if $small {
+		max-width: 1200px;
+	}
+
+	@include max-w(lg) {
+		flex-direction: column;
+		padding: 30px 15px;
+	}
+
+	@include max-w(xs) {
+		padding: 30px 15px 40px;
+	}
+}
+
+@mixin header-title() {
+	font-weight: bold;
+	font-size: 36px;
+	line-height: 1.3;
+	margin: 0 0 5px 0;
+	color: var(--color-primary);
+
+	@include max-w(xxl) {
+		font-size: 24px;
+	}
+}
+
+@mixin header-subtitle($primary: false) {
+	width: 100%;
+	font-weight: normal;
+	font-size: 16px;
+	line-height: 1.3;
+	margin-bottom: 10px;
+	max-width: 558px;
+	color: var(--color-secondary);
+
+	@if $primary {
+		color: var(--color-primary);
+	}
+
+	a {
+		color: var(--color-coral);
+
+		&:hover,
+		&:focus,
+		&:active {
+			color: var(--color-coral);
+		}
+	}
+
+	@include max-w(xxl) {
+		font-size: 14px;
+	}
+}
+
+@mixin buttons-group() {
+	display: grid;
+	grid-template: auto / 1fr;
+	justify-content: center;
+	grid-gap: 10px;
+	align-items: center;
+	width: 100%;
+	margin: 20px auto 0;
+
+	> a {
+		width: 100%;
+	}
+}
+
+@mixin page-content-outer($size: "") {
+	background: transparent;
+	width: 100%;
+	display: flex;
+	justify-content: flex-start;
+	align-items: flex-start;
+	flex-direction: column;
+	padding: 10px 10px 5px 0;
+	max-width: get-breakpoint-value(xl);
+	margin: 0 auto;
+
+	@if $size == "xl" {
+		max-width: 1548px;
+		padding: 0;
+	}
+
+	@if $size == "md" {
+		max-width: 698px;
+	}
+
+	@include max-w(xl) {
+		padding: 10px;
+	}
+}
+
+@mixin page-content-inner($noPadding: false, $lowPadding: false, $transparentBG: false) {
+	width: 100%;
+	display: flex;
+	background: var(--card-background-color);
+	justify-content: flex-start;
+	align-items: center;
+	flex-direction: column;
+	padding: 35px 0;
+	min-height: calc(100vh - 700px);
+
+	@if $transparentBG {
+		background: transparent;
+	}
+
+	@if $noPadding {
+		padding: 0;
+	} @else {
+		@if $lowPadding {
+			padding: 10px 0;
+		}
+	}
+
+	@include max-w(lg) {
+		padding: 10px 0;
+	}
+}
+
+@mixin withSidebar() {
+	display: flex;
+	min-height: calc(100vh - 80px);
+	flex-direction: row;
+	position: relative;
+	background: transparent;
+
+	@include max-w(lg) {
+		padding-top: 0;
+	}
+}
+
+@mixin sidebar() {
+	position: fixed;
+	width: 200px;
+	left: 0;
+	top: 0;
+	margin: 0;
+	transform: translateX(-100%);
+	min-height: calc(100vh - 80px);
+	height: 100%;
+	height: -moz-calc(100%); //Temporary Firefox Fix
+	padding-bottom: 60px;
+	z-index: 999;
+	overflow-y: auto;
+	will-change: transform;
+	backface-visibility: hidden;
+}
+
+@mixin sidebarContainer() {
+	position: sticky;
+	transform: none;
+	overflow-x: hidden;
+	margin: 10px 10px 10px 0;
+	padding: 0 0 10px;
+	border-radius: 5px;
+	z-index: unset;
+	top: 65px;
+	box-shadow: none;
+	display: flex;
+	flex: 0 0 200px;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+@mixin listContainer() {
+	@include flexbox(flex-start, flex-start, column);
+	width: 100%;
+
+	& a {
+		width: 100%;
+
+		&:hover > div {
+			color: var(--color-primary);
+		}
+	}
+}
+
+@mixin currentListTitle() {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	height: 47px;
+	padding: 5px 20px 0;
+	width: calc(100% - 10px);
+	margin: 0 auto 8px;
+	color: var(--color-secondary);
+	border-bottom: 1px solid var(--divider-border);
+
+	i {
+		color: var(--icon-primary);
+		font-size: 18px;
+		margin-right: 16px;
+		transform: translateY(-3px);
+	}
+}
+
+@mixin sidebarListItem($active: false) {
+	@include transition(background-color, transform, border-radius, font-weight);
+	color: var(--color-secondary);
+	font-size: 14px;
+	height: 44px;
+	padding: 0 20px;
+	background-color: transparent;
+	line-height: 19px;
+	position: relative;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	width: 100%;
+	font-weight: normal;
+
+	@if $active {
+		color: var(--color-primary);
+		font-weight: bold;
+	}
+
+	&:before {
+		content: "";
+		position: absolute;
+		background: var(--color-blue);
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 6px;
+		transform: scaleY(0);
+
+		@if $active {
+			transform: scaleY(1);
+			border-radius: 0 20px 20px 0;
+		}
+
+		&:hover {
+			transform: scaleY(1);
+		}
+	}
+
+	&:hover {
+		background-color: var(--color-stripped-normal);
+	}
+}
+
+@mixin divider() {
+	height: 1px;
+	overflow: hidden;
+	background: var(--divider-border);
+	flex: 0 1 auto;
+}
+
+@mixin sidebarDivider() {
+	@include divider();
+	margin: 8px 0 0 0;
+	height: 1px;
+	min-height: 0;
+	width: 100%;
+}
+
+@mixin sidebarFooterContainer() {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+	width: 100%;
+}
+
+@mixin sidebarFooter {
+	display: flex;
+	flex-direction: column;
+	padding: 21px;
+	margin-top: auto;
+}
+
+@mixin sidebarFooterIconsContainer() {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+
+	& a {
+		margin: 10px 26px 10px 0;
+		padding: 0;
+
+		&:nth-of-type(4n) {
+			margin-right: 0;
+			@include max-w(xs) {
+				margin-right: 26px;
+			}
+		}
+	}
+
+	& i {
+		font-size: 20px;
+	}
+}
+
+@mixin mobileAppLinks() {
+	display: flex;
+	flex-direction: column;
+	text-align: left;
+	margin: 20px 0;
+}
+
+@mixin mobileAppImg() {
+	width: 140px;
+	margin: 0 15px 15px 0;
+}
+
+@mixin footerAddress() {
+	margin: 10px 0;
+	color: var(--color-secondary);
+}
+
+@mixin cardlist() {
+	@include flexbox(flex-start, flex-start, column);
+	width: 100%;
+}
+
+@mixin cardlist-item() {
+	width: 100%;
+	display: grid;
+	grid-template: auto / 1fr auto;
+	grid-gap: 10px;
+	align-items: center;
+	min-height: 64px;
+	padding: 12px 34px;
+	cursor: pointer;
+	@include transition(background);
+
+	&:hover {
+		background: var(--stripped-normal);
+	}
+
+	&:not(:last-child) {
+		border-bottom: 1px solid var(--divider-border);
+	}
+
+	> i {
+		font-size: 16px;
+		color: var(--icon-primary);
+	}
+
+	&.disabled > i {
+		color: var(--icon-disabled);
+	}
+
+	@include max-w(xs) {
+		padding: 12px 24px;
+	}
+}
+
+@mixin outline_card() {
+	display: block;
+	border-radius: 5px;
+	border: 1px solid var(--card-outlined-border-color);
+	font-size: 16px;
+	line-height: 23px;
+	background: none;
+}
+
+@mixin outline_card_content() {
+	padding: 20px;
+}
+
+@mixin outline_card_header() {
+	background-color: var(--card-header-background);
+	@include flexbox();
+	width: 100%;
+	border-radius: 5px 5px 0 0;
+	padding: 10px 15px;
+	min-height: 38px;
+}
+
+@mixin outline_card_panel_content() {
+	padding: 85px 89px 35px;
+
+	@include max-w(xs) {
+		padding: 55px 30px 30px;
+	}
+}
+
+@mixin outline_card_panel_header() {
+	font-size: 36px;
+	font-weight: bold;
+	text-align: center;
+	margin: 0 0 25px 0;
+	line-height: 130%;
+
+	@include max-w(xs) {
+		font-size: 24px;
+		margin-bottom: 15px;
+	}
+
+	h1 {
+		font-size: 36px;
+		font-weight: bold;
+		text-align: center;
+		margin: 0 0 25px 0;
+		line-height: 130%;
+
+		@include max-w(xs) {
+			font-size: 24px;
+			margin-bottom: 15px;
+		}
+	}
+}
+
+@mixin outline_card_panel_description() {
+	color: var(--color-secondary);
+	text-align: center;
+	margin-bottom: 30px;
+	font-size: 16px;
+
+	@include max-w(xs) {
+		margin-bottom: 40px;
+	}
+}
+
+@mixin outline_card_panel_img() {
+	margin: 0 auto 45px;
+	text-align: center;
+}
+
+@mixin outline_card_panel_formbody() {
+	margin-bottom: 45px;
+}
+
+@mixin outline_card_panel_btn_group() {
+	@include flexbox(flex-start, center, column);
+	margin-top: 47px;
+
+	> *:not(:last-child) {
+		margin-bottom: 15px;
+	}
+
+	&.preloader-wrapper {
+		vertical-align: middle;
+	}
+}
+
+@mixin button_group() {
+	@include flexbox();
+	margin-top: 20px;
+}
+
+@mixin outline_card_panel_secondary_btn_group {
+	@include outline_card_panel_btn_group();
+	margin: 85px auto 25px;
+}
+
+@mixin btn_link {
+	button {
+		width: 100%;
+	}
+}

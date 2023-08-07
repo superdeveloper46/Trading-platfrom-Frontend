@@ -1,0 +1,135 @@
+@import "src/assets/styles/common/mixins";
+
+.drowdown_container {
+	@include flexbox();
+	// position: relative;
+
+	&.bordered {
+		@include transition(transform);
+		padding: 0 10px;
+		width: 140px;
+
+		border-radius: 5px;
+		border: 1px solid var(--input-normal);
+
+		&:hover {
+			border-color: var(--input-hover);
+		}
+	}
+
+	&.filled {
+		padding: 0 10px;
+		width: 140px;
+
+		border-radius: 5px;
+		background-color: var(--color-blue);
+	}
+}
+
+.dropdown_toggle {
+	@include flexbox();
+	cursor: pointer;
+	position: relative;
+	margin: auto;
+	white-space: nowrap;
+
+	.icon {
+		@include transition(transform);
+		top: 0;
+		right: 0;
+
+		i {
+			line-height: 14px;
+			font-size: 8px;
+		}
+
+		&.open {
+			transform: rotate(180deg);
+		}
+	}
+
+	i {
+		padding: 0 10px;
+		color: var(--color-primary);
+		line-height: 14px;
+		font-size: 10px;
+	}
+}
+
+.dropdown_list {
+	@include flexbox(center, center, column);
+	@include tiny-scrollbar(0, true);
+
+	position: absolute;
+	overflow-x: scroll;
+	background-color: var(--card-background-color);
+	border-radius: 5px;
+	box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
+	transform: translateY(28px);
+
+	z-index: 1000;
+
+	&.open {
+		opacity: 1;
+	}
+
+	&.close {
+		opacity: 0;
+		transition: 0.3s ease;
+	}
+}
+
+.dropdown_list_item {
+	@include transition(background-color);
+
+	padding: 10px;
+	width: 100%;
+	min-width: 140px;
+	cursor: pointer;
+	position: relative;
+	text-align: left;
+
+	&:first-of-type {
+		border-radius: 5px 5px 0 0;
+	}
+
+	&:not(:last-of-type) {
+		border-bottom: 1px solid var(--header-border-color);
+	}
+
+	&:last-of-type {
+		border-radius: 0 0 5px 5px;
+	}
+
+	&:hover {
+		background-color: var(--dropdown-menu-item-background-hover);
+	}
+
+	i {
+		position: absolute;
+		margin: auto;
+		right: 8px;
+		color: var(--color-blue);
+	}
+}
+
+@keyframes appear {
+	0% {
+		opacity: 0;
+		transform: translateY(90%);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0%);
+	}
+}
+@keyframes disappear {
+	0% {
+		opacity: 1;
+		transform: translateY(0%);
+	}
+	100% {
+		opacity: 0;
+		transform: translateY(90%);
+	}
+}

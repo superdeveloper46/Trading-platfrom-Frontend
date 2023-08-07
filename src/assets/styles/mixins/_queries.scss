@@ -1,0 +1,47 @@
+@import "../../../variables";
+
+// Media Queries Min Width
+@mixin min-w($bp-value) {
+	@media screen and (min-width: prepareCorrectPixelValue($bp-value)) {
+		@content;
+	}
+}
+// Media Queries Max Width
+@mixin max-w($bp-value) {
+	@media screen and (max-width: prepareCorrectPixelValue($bp-value)) {
+		@content;
+	}
+}
+// Media Queries Range Width
+@mixin min-max-w($min-bp-value, $max-bp-value) {
+	@media screen and (min-width: prepareCorrectPixelValue($min-bp-value)) and (max-width: prepareCorrectPixelValue($max-bp-value)) {
+		@content;
+	}
+}
+// Media Queries Landscape orientation and max-width
+@mixin max-landscape($bp-value) {
+	@media screen and (max-width: prepareCorrectPixelValue($bp-value)) and (orientation: landscape) {
+		@content;
+	}
+}
+// Media Queries Portrait orientation and max-width
+@mixin max-portrait($bp-value) {
+	@media screen and (max-width: prepareCorrectPixelValue($bp-value)) and (orientation: portrait) {
+		@content;
+	}
+}
+@mixin max-h($bp-value) {
+	@media screen and (max-height: prepareCorrectPixelValue($bp-value)) {
+		@content;
+	}
+}
+@mixin min-h($bp-value) {
+	@media screen and (min-height: prepareCorrectPixelValue($bp-value)) {
+		@content;
+	}
+}
+@mixin max-landscape-h($bp-value) {
+	@media screen and (max-height: prepareCorrectPixelValue($bp-value)) and (orientation: landscape) {
+		@content;
+	}
+}

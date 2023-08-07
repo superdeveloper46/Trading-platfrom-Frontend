@@ -1,0 +1,54 @@
+{
+	"env": {
+		"browser": true,
+		"es6": true,
+		"node": true
+	},
+	"extends": ["airbnb", "prettier", "plugin:@typescript-eslint/recommended"],
+	"globals": {
+		"Atomics": "readonly",
+		"SharedArrayBuffer": "readonly"
+	},
+	"plugins": ["react", "prettier"],
+	"rules": {
+		"linebreak-style": "off",
+		"quotes": [2, "double", { "avoidEscape": true, "allowTemplateLiterals": true }],
+		"no-unused-vars": ["warn", { "args": "none" }],
+		"no-console": "off",
+		"prefer-destructuring": "off",
+		"no-restricted-syntax": "off",
+		"func-names": "off",
+		"no-process-exit": "off",
+		"object-shorthand": "off",
+		"class-methods-use-this": "off",
+		"no-use-before-define": "off",
+		"@typescript-eslint/no-empty-interface": "off",
+		"react/no-unstable-nested-components": "off",
+		"@typescript-eslint/ban-ts-ignore": "off",
+		"@typescript-eslint/ban-ts-comment": "off",
+		"react/function-component-definition": "off",
+		"jsx-a11y/no-static-element-interactions": "off",
+		"jsx-a11y/click-events-have-key-events": "off",
+		"import/prefer-default-export": "off",
+		"no-param-reassign": "off",
+		"default-param-last": "off",
+		"import/no-unresolved": "off",
+		"import/extensions": "off",
+		"react/require-default-props": "off",
+		"react/prop-types": "off",
+		"react/jsx-filename-extension": "off",
+		"no-nested-ternary": "off",
+		"no-plusplus": "off",
+		"no-shadow": "off",
+		"react/jsx-props-no-spreading": "off",
+		"react/no-array-index-key": "off",
+		"camelcase": "off",
+		"prettier/prettier": [
+			"error",
+			{
+				"entOfLine": "auto",
+				"singleQuote": false
+			}
+		]
+	}
+}

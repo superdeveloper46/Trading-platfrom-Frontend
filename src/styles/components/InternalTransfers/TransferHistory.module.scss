@@ -1,0 +1,32 @@
+@import "src/assets/styles/common/mixins";
+
+.header_container {
+	@include card();
+	@include flexbox(space-between);
+	width: 100%;
+	padding: 30px 24px;
+	min-height: 100px;
+	background-color: var(--card-background-color);
+	margin: 5px 0 0;
+
+	@include max-w(lg) {
+		@include flexbox(flex-start, flex-start, column);
+		padding: 24px;
+		height: auto;
+	}
+
+	@include max-w(xs) {
+		margin: 0;
+	}
+}
+
+.header_title {
+	@include header-title();
+}
+
+.page_container {
+	@include page-content-outer();
+	max-width: 100%;
+	width: 100%;
+	padding: 10px 10px 10px 0;
+}

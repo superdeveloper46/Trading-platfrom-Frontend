@@ -1,0 +1,19 @@
+@import "src/assets/styles/common/mixins";
+
+.container {
+  @include flexbox(center, flex-start);
+  position: relative;
+  min-height: calc(100vh - 63px);
+  width: 100%;
+  overflow: hidden;
+  background: var(--card-background-color);
+  box-shadow: var(--card-shadow);
+  padding: 68px;
+  z-index: 9;
+
+  @include max-w(xs) {
+    padding: 0;
+    border: none;
+    box-shadow: none;
+  }
+}

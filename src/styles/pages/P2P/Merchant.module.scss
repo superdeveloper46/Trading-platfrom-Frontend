@@ -1,0 +1,230 @@
+@import "assets/styles/common/mixins";
+
+.container {
+	@include flexbox(stretch, center, column);
+
+	max-width: 1240px;
+	width: 100%;
+	align-self: center;
+}
+
+.welcome_block {
+	@include flexbox(stretch, center, column);
+
+	margin: 80px 0;
+
+	@include max-w(lg) {
+		margin: 40px 0;
+	}
+
+	@include max-w(md) {
+		margin: 20px 0 40px;
+	}
+}
+
+.main_title {
+	font-weight: 500;
+	line-height: 1;
+	margin-bottom: 20px;
+	color: var(--color-blue); // Make gradient
+
+	@include make-responsive(
+		"font-size",
+		(
+			xs: 24px,
+			lg: 48px,
+		),
+		48px
+	);
+}
+
+.card_wrapper {
+	width: 100%;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-column-gap: 20px;
+	grid-row-gap: 40px;
+
+	@include max-w(lg) {
+		grid-template-columns: 1fr;
+		grid-gap: 20px;
+	}
+}
+
+.card_title {
+	@include flexbox(stretch, center);
+
+	gap: 7px;
+	font-weight: 500;
+	font-size: 24px;
+	line-height: 1;
+	color: var(--color-text-primary);
+}
+
+.card_separator {
+	@include card-separator();
+
+	width: calc(100% + 40px);
+	margin-left: -20px;
+}
+
+.card {
+	@include flexbox(stretch, stretch, column);
+	@include card();
+
+	border-radius: 12px;
+	padding: 20px;
+
+	&.promo {
+		align-items: center;
+		height: 420px;
+		padding: 45px;
+
+		@include max-w(lg) {
+			height: auto;
+			padding: 45px 38px;
+
+			&:nth-child(2) {
+				margin-bottom: 20px;
+			}
+		}
+
+		span {
+			max-width: 370px;
+			text-align: center;
+			margin-bottom: 12px;
+		}
+	}
+
+	.cards_image {
+		max-height: 210px;
+		margin-top: auto;
+
+		@include make-responsive(
+			"max-height",
+			(
+				xs: 135px,
+				lg: 210px,
+			),
+			210px
+		);
+
+		@include max-w(lg) {
+			margin-top: 30px;
+		}
+	}
+
+	.phone_image {
+		max-height: 255px;
+		margin: auto 0 -45px;
+
+		@include make-responsive(
+			"max-height",
+			(
+				xs: 180px,
+				lg: 255px,
+			),
+			255px
+		);
+
+		@include max-w(lg) {
+			margin-top: 30px;
+		}
+	}
+}
+
+.card_main {
+	@include flexbox(stretch, stretch, column);
+
+	gap: 10px;
+
+	&.requirements {
+		gap: 20px;
+		margin-bottom: 35px;
+	}
+}
+
+.information_item {
+	@include flexbox(stretch, stretch, column);
+}
+
+.requirement_item {
+	@include flexbox(space-between, center);
+}
+
+.link {
+	@include flexbox(stretch, center);
+
+	font-size: 16px;
+	line-height: 19px;
+
+	i {
+		margin-left: 13px;
+		color: var(--color-blue);
+		font-size: 24px;
+	}
+}
+
+.become_merchant_btn {
+	margin-top: auto;
+}
+
+.form_container {
+	@include flexbox(stretch, center, column);
+	@include card();
+
+	border-radius: 12px;
+	max-width: 615px;
+	width: 100%;
+	align-self: center;
+	padding: 20px;
+	gap: 20px;
+
+	> div {
+		width: 100%;
+	}
+
+	> span {
+		text-align: center;
+		margin-bottom: 10px;
+	}
+
+	.form_block {
+		@include flexbox(stretch, stretch, column);
+
+		.error {
+			color: var(--color-red);
+			font-size: 12px;
+		}
+
+		gap: 10px;
+	}
+
+	.switch_container {
+		@include flexbox();
+
+		gap: 20px;
+	}
+
+	.instruction_container {
+		@include card();
+
+		border-radius: 12px;
+		background-color: var(--color-background-primary);
+		padding: 20px;
+		font-size: 16px;
+		line-height: 24px;
+		color: var(--color-text-primary);
+	}
+
+	.video_container {
+		width: 100%;
+		height: 300px;
+		border-radius: 12px;
+		background-color: var(--color-black);
+	}
+
+	.submit_btn {
+		margin-top: 10px;
+	}
+}

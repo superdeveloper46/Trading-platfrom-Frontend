@@ -1,0 +1,97 @@
+@import "src/assets/styles/common/mixins";
+
+.container {
+	@include flexbox(flex-start, flex-start, column);
+	position: relative;
+	width: 100%;
+
+	&.md {
+		max-width: 700px;
+	}
+
+	@include min-w(xxl) {
+		width: calc(100% - 220px);
+	}
+
+	@include max-w(xxl) {
+		padding: 10px;
+	}
+
+	@include max-w(xs) {
+		padding: 0;
+	}
+}
+
+.header {
+	@include flexbox(space-between, flex-end);
+	padding: 30px 24px;
+	background-color: var(--card-background-color);
+	border-radius: 8px;
+	border: 1px solid var(--card-border-color);
+	position: relative;
+	width: 100%;
+	margin: 10px 0;
+
+	@include max-w(lg) {
+		@include flexbox(flex-start, flex-start, column);
+
+		padding: 24px;
+		height: auto;
+	}
+
+	h1 {
+		font-weight: bold;
+		font-size: 36px;
+		line-height: 1.3;
+		color: var(--color-primary);
+		margin: 0;
+	}
+
+	@include max-w(md) {
+		border-color: transparent;
+	}
+
+	@include max-w(xs) {
+		margin: 0;
+		border-radius: 0;
+		border: none;
+	}
+}
+
+.tabs {
+	height: 32px;
+	padding-top: 5px;
+	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
+}
+
+.table_row {
+	padding: 0 30px;
+}
+
+.closed_orders_row {
+	height: 39px;
+	max-height: 39px;
+	padding: 0 30px;
+}
+
+.orders_history_opened_orders_row_date {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.expand_icon {
+	cursor: pointer;
+	font-size: 10px;
+	transition: 0.15s ease-out;
+	transform: rotate(0);
+	color: var(--icon-primary);
+
+	&:hover {
+		color: var(--icon-pressed);
+	}
+
+	&.active {
+		color: var(--icon-pressed);
+	}
+}

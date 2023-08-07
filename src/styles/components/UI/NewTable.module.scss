@@ -1,0 +1,374 @@
+@import "src/assets/styles/common/mixins";
+
+.container {
+	box-sizing: border-box;
+	overflow: auto;
+	width: 100%;
+	height: auto;
+	max-height: 100%;
+	border-radius: 12px;
+	border: 1px solid var(--color-fill-tertiary);
+
+	&.spaceBetween {
+		.head {
+			justify-content: space-between;
+		}
+
+		.row {
+			justify-content: space-between;
+			border-bottom: none;
+		}
+
+		.data {
+			border-left: none;
+		}
+	}
+}
+
+.head {
+	@include flexbox(flex-start, center);
+
+	padding: 0 10px;
+	height: 34px;
+	min-height: 34px;
+	flex: 0 1 auto;
+	width: max-content;
+	overflow: hidden;
+	position: sticky;
+	top: 0;
+	z-index: 3;
+	min-width: 100%;
+	background-color: var(--color-fill-tertiary);
+
+	&.primary {
+		background-color: var(--card-background-color);
+	}
+
+	&.advanced {
+		justify-content: space-between;
+
+		@include min-max-w(xs, md) {
+			overflow: overlay;
+		}
+	}
+}
+
+.table {
+	display: flex;
+	flex-direction: column;
+	overflow: visible;
+	flex: 1;
+
+	&.fullWidth {
+		width: 100%;
+	}
+}
+
+.stripped_table {
+	display: flex;
+	flex-direction: column;
+	overflow: visible;
+	flex: 1;
+
+	> div:nth-child(odd) {
+		background-color: var(--table-stripped-row-background);
+
+		&:hover {
+			background-color: var(--table-hover-background);
+		}
+	}
+}
+
+.rows {
+	@include flexbox(flex-start, flex-start, column);
+	@include transition(background-color);
+
+	overflow: visible;
+	flex: 1 1;
+	flex-basis: 0;
+	width: max-content;
+	min-width: 100%;
+
+	&.stripped {
+		.row:nth-child(odd) {
+			background-color: var(--table-stripped-row-background);
+
+			&:hover {
+				background-color: var(--table-hover-background);
+			}
+		}
+	}
+}
+
+.row {
+	@include flexbox(flex-start, center);
+	padding: 0 10px;
+	position: relative;
+	background-color: unset;
+	width: fit-content;
+	min-width: 100%;
+	height: 44px;
+	border-bottom: 1px solid var(--color-fill-tertiary);
+
+	&:last-of-type {
+		border-bottom: none;
+	}
+
+	&:hover {
+		background-color: var(--table-hover-background);
+	}
+
+	&.clickable {
+		cursor: pointer;
+	}
+
+	&.common {
+		font-size: 14px;
+	}
+
+	&.active {
+		background-color: var(--table-active-row-background);
+
+		&:hover {
+			background-color: var(--table-active-row-background);
+		}
+	}
+
+	&.disable_hover {
+		&:hover {
+			background-color: unset;
+		}
+	}
+}
+
+.data {
+	@include flexbox(flex-start, center);
+
+	text-align: left;
+	padding: 10px 20px;
+	border: none;
+	font-size: 16px;
+	color: inherit;
+	min-width: 60px;
+	height: 100%;
+	flex: 1;
+	flex-basis: 0%;
+	word-break: normal;
+	white-space: pre-wrap;
+	line-height: 1.5;
+	border-left: 1px solid var(--color-fill-tertiary);
+
+	&:first-of-type {
+		border-left: none;
+	}
+
+	> span {
+		color: var(--color-secondary);
+	}
+
+	&.half {
+		flex: 0.5 !important;
+	}
+
+	&.disabled {
+		color: var(--color-disabled);
+	}
+
+	&.right {
+		text-align: right;
+		justify-content: flex-end;
+	}
+
+	&.center {
+		text-align: center;
+		justify-content: center;
+	}
+
+	&.currency {
+		i {
+			color: var(--icon-primary);
+			font-size: 17px;
+			margin-right: 12px;
+		}
+	}
+
+	&.date {
+		flex-wrap: wrap;
+
+		span {
+			color: var(--color-secondary);
+			max-width: fit-content;
+		}
+	}
+
+	@include min-max-w(lg, xl) {
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	&.filter {
+		cursor: pointer;
+		user-select: none;
+	}
+
+	&.icon {
+		@include flexbox(flex-end, center);
+		flex: 0 0 60px;
+		min-width: 60px;
+	}
+
+	&.column {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+
+		&.right {
+			align-items: flex-end;
+		}
+
+		&.center {
+			align-items: center;
+		}
+
+		> span:not(:first-child),
+		> div:not(:first-child),
+		> span:only-child,
+		> div:only-child {
+			margin-top: 4px;
+		}
+
+		> span:last-child:not([class~="primary"]) {
+			font-size: 12px;
+			line-height: 14px;
+			text-align: right;
+			color: var(--color-secondary);
+		}
+	}
+
+	&.crop {
+		text-overflow: ellipsis;
+		overflow: hidden;
+		white-space: nowrap;
+		display: block;
+	}
+}
+
+.header {
+	font-size: 14px;
+	color: var(--color-secondary);
+
+	border-left: none;
+}
+
+.header_sort_group {
+	@include flexbox(center, center, column, inline-flex);
+	margin-left: 5px;
+
+	> i {
+		font-size: 5px;
+		color: var(--hint-icon-dark);
+		transition: 0.15s ease-out;
+
+		&.active {
+			color: var(--color-blue);
+		}
+
+		&:first-child {
+			margin-bottom: 1px;
+		}
+	}
+}
+
+.row_expand_button {
+	background-color: transparent;
+	cursor: pointer;
+
+	&:hover,
+	&:focus {
+		background-color: transparent;
+	}
+
+	i {
+		font-size: 10px !important;
+		transition: 0.15s ease-out;
+		transform: rotate(0);
+	}
+
+	&:hover i {
+		color: var(--icon-pressed);
+	}
+
+	&.active i {
+		color: var(--icon-pressed);
+	}
+}
+
+.row_advanced_container {
+	position: relative;
+	font-size: 14px;
+	width: fit-content;
+	min-width: 100%;
+
+	.data {
+		word-break: normal;
+		position: relative;
+
+		> i {
+			font-size: 18px;
+		}
+	}
+
+	.head {
+		z-index: 1;
+	}
+
+	.head,
+	.row {
+		justify-content: space-between;
+	}
+
+	.row_expand_button {
+		@include transition(transform);
+	}
+
+	&.active {
+		border-radius: 5px;
+		margin-bottom: 3px;
+		border: 1px solid var(--color-blue);
+
+		.row {
+			border-radius: 5px 5px 0 0;
+		}
+
+		.row_expand_button {
+			transform: rotate(180deg);
+			color: var(--icon-pressed);
+		}
+	}
+
+	&.disabled {
+		.data,
+		a {
+			color: var(--color-disabled) !important;
+			pointer-events: none;
+		}
+	}
+
+	.row {
+		background-color: transparent !important;
+
+		&:hover {
+			background-color: var(--table-hover-background) !important;
+		}
+	}
+
+	&:nth-child(odd) {
+		.row {
+			background-color: var(--table-stripped-row-background) !important;
+
+			&:hover {
+				background-color: var(--table-hover-background) !important;
+			}
+		}
+	}
+}

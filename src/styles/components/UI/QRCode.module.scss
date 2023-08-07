@@ -1,0 +1,114 @@
+@import "src/assets/styles/common/mixins";
+
+.container {
+	@include flexbox(center, center, column);
+	width: 100%;
+	margin-bottom: 12px;
+}
+
+.label {
+	margin-bottom: 16px;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 14px;
+	line-height: 19px;
+	color: var(--color-secondary);
+	text-align: var(--qr-code-text-align);
+}
+
+.background {
+	background: var(--color-white);
+	border-radius: 5px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 15px;
+	position: relative;
+}
+
+.value {
+	@include flexbox(center, center);
+	margin-top: 14px;
+	color: var(--color-secondary);
+	word-break: break-word;
+	text-align: center;
+	position: relative;
+
+	button {
+		@include flexbox(center, center);
+		position: absolute;
+		right: -32px;
+		top: -1px;
+
+		i {
+			font-size: 21px;
+			color: var(--icon-active);
+		}
+	}
+}
+
+.expander {
+	@include flexbox(flex-start, flex-start, column);
+	width: 100%;
+	padding: 0 8px;
+	border: 1px solid var(--input-normal);
+	border-radius: 5px;
+	margin-bottom: 10px;
+	cursor: pointer;
+}
+
+.expander_header {
+	@include flexbox(space-between, flex-start);
+	width: 100%;
+	font-size: 14px;
+	min-height: 41px;
+	padding: 12px 0;
+	color: var(--color-primary);
+
+	span {
+		word-break: break-word;
+		margin-right: 5px;
+	}
+
+	i {
+		@include transition(transform);
+		color: var(--icon-primary);
+
+		&:nth-of-type(1) {
+			font-size: 16px;
+			margin-left: 4px;
+			margin-right: 10px;
+			transform: translateY(2px);
+		}
+
+		&:nth-of-type(2) {
+			color: var(--icon-primary);
+			transform: translateY(3px);
+			font-size: 12px;
+			margin-left: auto;
+		}
+	}
+
+	&.active i {
+		&:nth-of-type(2) {
+			transform: rotate(180deg) translateY(-3px);
+		}
+	}
+}
+
+.expand_content {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 14px 14px 28px;
+	border-top: 1px solid var(--input-normal);
+}
+
+.mobile_background {
+	@include flexbox(center, center);
+	background: #fff;
+	border-radius: 5px;
+	padding: 15px;
+	position: relative;
+}

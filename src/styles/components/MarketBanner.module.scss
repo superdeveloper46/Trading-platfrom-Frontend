@@ -1,0 +1,175 @@
+@import "assets/styles/common/mixins";
+
+.button_close {
+	position: absolute;
+	right: 14px;
+	top: 12px;
+	cursor: pointer;
+	z-index: 40;
+	width: 26px !important;
+	height: 26px !important;
+	border-radius: 50%;
+	background: rgba(158, 158, 158, 0.3);
+
+	@include max-w(600px) {
+		top: 4px;
+	}
+
+	&:hover,
+	&:focus {
+		background: rgba(158, 158, 158, 0.12);
+	}
+
+	i {
+		font-size: 10px;
+		line-height: 10px;
+		color: #fff;
+	}
+}
+
+.banner_wrapper {
+	width: 100%;
+	height: 100%;
+	position: relative;
+}
+
+.banner_link {
+	max-width: 1100px;
+	margin: 0 auto;
+	height: 81px;
+	display: flex;
+	outline: none;
+
+	@include max-w(1100px) {
+		max-width: 780px;
+	}
+
+	@include min-max-w(600px, 760px) {
+		height: auto;
+	}
+
+	@include max-w(600px) {
+		max-width: 320px;
+	}
+
+	img {
+		outline: none;
+		max-height: 100%;
+	}
+
+	iframe {
+		width: 100%;
+		max-height: 100%;
+		border: 0;
+	}
+}
+
+.banner {
+	position: relative;
+	text-align: center;
+	height: 80px;
+
+	@media (min-width: 600px) and (max-width: 760px) {
+		height: auto;
+	}
+
+	div[class~="slick-slider"],
+	div[class~="slick-list"],
+	div[class~="slick-track"] {
+		height: 100%;
+	}
+	div[class~="slick-slide"] {
+		height: 100%;
+
+		div {
+			height: 80px;
+
+			@media (min-width: 600px) and (max-width: 760px) {
+				height: auto;
+			}
+		}
+	}
+	div[class~="slick-dots"] {
+		top: 20px;
+		left: 20px;
+		bottom: unset;
+		text-align: left;
+		width: unset;
+
+		@include max-w(600px) {
+			top: 10px;
+			left: 10px;
+		}
+
+		ul[class~="custom-slick-dots"] {
+			margin: 0;
+			height: 6px;
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+
+			svg {
+				margin: 0 19px 0 0;
+				fill: none;
+			}
+			li {
+				width: 6px;
+				height: 6px;
+				margin: 0 19px 0 0;
+
+				button {
+					width: 6px;
+					height: 6px;
+					padding: 0;
+					background: rgba(158, 158, 158, 0.3);
+				}
+
+				@media (max-width: 600px) {
+					margin: 0 5px 0 0;
+				}
+			}
+			li:not([class~="slick-active"]):hover {
+				button {
+					transform: unset;
+					background: #6d7177;
+				}
+			}
+		}
+	}
+}
+
+.progress_dot {
+	&:before {
+		content: "";
+		position: absolute;
+		width: 14px;
+		height: 14px;
+		border-radius: 50%;
+		border: 2px solid var(--color-blue);
+		top: calc(-50% - 1px);
+		left: calc(-50% - 1px);
+		z-index: 1;
+	}
+
+	> div {
+		width: 14px;
+		height: 14px;
+		position: absolute;
+		top: calc(-50% - 1px);
+		left: calc(-50% - 1px);
+		clip: rect(0px, 14px, 14px, 7px);
+		background: transparent;
+		z-index: 2;
+
+		span {
+			display: block;
+			border: 2px solid #6d7177;
+			border-radius: 50%;
+			position: absolute;
+			clip: rect(0px, 7px, 14px, 0px);
+			width: 14px;
+			height: 14px;
+			z-index: 2;
+		}
+	}
+}

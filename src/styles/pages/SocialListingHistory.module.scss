@@ -1,0 +1,155 @@
+@import "src/assets/styles/common/mixins";
+
+.container {
+	@include flexbox(stretch, stretch, column);
+
+	max-width: 1500px;
+	margin: 0 auto;
+	padding: 0 20px;
+	width: 100%;
+
+	.block {
+		@include flexbox(stretch, stretch, column);
+
+		width: 100%;
+		background-color: var(--card-background-color);
+		box-shadow: none;
+		border-radius: 8px;
+		border: 1px solid var(--card-outlined-border-color);
+		padding: 24px;
+
+		&:not(:last-child) {
+			margin-bottom: 10px;
+		}
+	}
+
+	.back_button {
+		@include flexbox(stretch, center);
+
+		color: var(--color-coral);
+		height: 50px;
+		font-size: 12px;
+
+		i {
+			font-size: 10px;
+			line-height: 10px;
+			color: var(--color-coral);
+			margin-right: 10px;
+			padding: 0;
+		}
+
+		&:hover {
+			i {
+				color: var(--color-coral);
+			}
+		}
+	}
+
+	.header_primary {
+		color: var(--color-primary);
+		font-weight: bold;
+		display: flex;
+		align-items: center;
+		margin-bottom: 20px;
+		font-size: 36px;
+
+		a {
+			color: var(--color-primary);
+		}
+
+		i {
+			font-size: 20px;
+			margin-right: 10px;
+		}
+	}
+
+	.header_secondary {
+		color: var(--color-secondary);
+		font-size: 16px;
+	}
+
+	.content_wrapper {
+		@include flexbox(stretch, stretch, column);
+
+		align-self: center;
+		max-width: 780px;
+		margin: 0 auto;
+		width: 100%;
+	}
+
+	.table {
+		margin: 30px auto;
+		border: 1px solid var(--card-outlined-disabled);
+		border-radius: 5px;
+		width: 100%;
+		overflow: hidden;
+
+		&.mobile {
+			border: none;
+
+			.rows_list {
+				gap: 10px;
+			}
+		}
+	}
+
+	.table_head {
+		padding: 0 10px;
+		border-bottom: 1px solid var(--card-outlined-disabled);
+	}
+
+	.rows_list {
+		@include flexbox(stretch, stretch, column);
+	}
+
+	.donate_row {
+		padding: 0 10px;
+	}
+
+	.donate_card {
+		display: block;
+		border-radius: 5px;
+		border: 1px solid var(--card-outlined-border-color);
+		font-size: 16px;
+		line-height: 23px;
+		background: none;
+		width: 100%;
+		margin-bottom: 10px;
+
+		.header {
+			@include flexbox(space-between, center);
+
+			background-color: var(--card-header-background);
+			width: 100%;
+			border-radius: 5px 5px 0 0;
+			padding: 10px 15px;
+			min-height: 38px;
+		}
+
+		.direction {
+			margin: 0 0 0 10px;
+			min-width: 70px;
+		}
+
+		.amount {
+			margin-left: auto;
+		}
+
+		.content {
+			@include flexbox(stretch, stretch, column);
+
+			padding: 20px;
+		}
+
+		.data_row {
+			@include flexbox(space-between);
+
+			margin-bottom: 5px;
+			flex-wrap: wrap;
+
+			.title {
+				color: var(--color-secondary);
+			}
+		}
+	}
+}

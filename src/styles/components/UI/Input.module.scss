@@ -1,0 +1,384 @@
+@import "src/assets/styles/common/mixins";
+
+.container {
+	@include flexbox(center, flex-start, column);
+	position: relative;
+	width: 100%;
+
+	@include max-w(md) {
+		padding-top: 20px;
+	}
+}
+
+.search_input_container {
+	position: relative;
+	width: 100%;
+}
+
+.input_container {
+	position: relative;
+	width: 100%;
+	@include flexbox(flex-start, center);
+
+	&.search {
+		> i:first-child {
+			position: absolute;
+			left: 14px;
+			font-size: 16px;
+			color: var(--icon-primary);
+		}
+	}
+}
+
+.placeholder {
+	@include flexbox();
+
+	position: absolute;
+	top: 13px;
+	left: 12px;
+	z-index: 1;
+	font-size: 14px;
+	color: var(--input-label-normal);
+	transition: top 0.2s ease, left 0.2s ease;
+	pointer-events: none;
+	background-color: var(--card-background-color);
+
+	&.search {
+		margin-left: 30px;
+	}
+
+	.hint {
+		z-index: 10;
+	}
+
+	&.hint {
+		pointer-events: auto;
+	}
+
+	&.phone {
+		left: 80px;
+		top: -10px;
+		padding: 0 3px;
+		font-size: 12px;
+		z-index: 101;
+		background-color: var(--card-background-color);
+	}
+
+	&.error {
+		color: var(--input-error);
+	}
+
+	&.active {
+		top: -9px;
+		left: 10px;
+		font-size: 12px;
+		color: var(--color-blue);
+		padding: 0 4px;
+
+		&.error {
+			color: var(--input-error);
+		}
+	}
+
+	&.filled {
+		top: -9px;
+		left: 10px;
+		font-size: 12px;
+		padding: 0 4px;
+	}
+
+	&.disabled {
+		color: var(--color-text-tertiary) !important;
+	}
+
+	&.promo {
+		color: var(--color-promo-gold);
+	}
+
+	&.small {
+		top: 7px;
+		left: 7px;
+
+		&.filled,
+		&.active {
+			top: -7px;
+			font-size: 10px;
+		}
+	}
+
+	@include max-w(md) {
+		background-color: transparent;
+		top: -28px;
+		left: 0;
+		font-size: 13px;
+		padding: 0;
+		color: var(--input-label-normal);
+
+		&.active,
+		&.filled {
+			top: -28px;
+			left: 0;
+			font-size: 13px;
+			padding: 0;
+			color: var(--input-label-normal);
+		}
+	}
+}
+
+.input {
+	border: 1px solid;
+	border-color: var(--input-normal);
+	width: 100%;
+	font-size: 14px;
+	background: transparent;
+	box-sizing: border-box;
+	padding: 5px 10px 4px 10px;
+	overflow-y: hidden;
+	outline: none;
+	border-radius: 12px;
+	height: 47px;
+	transition: border-color 0.2s ease-in-out;
+	color: var(--color-primary);
+
+	&:-webkit-autofill,
+	&:-webkit-autofill:focus {
+		transition: background-color 600000s 0s, color 600000s 0s;
+	}
+
+	&::-webkit-outer-spin-button,
+	&::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
+
+	&:-webkit-autofill {
+		caret-color: var(--color-caret);
+	}
+
+	&:hover:not(&.disabled) {
+		border-color: var(--input-hover);
+	}
+
+	&::placeholder {
+		z-index: 1;
+		visibility: hidden;
+		opacity: 0;
+		font-size: 14px;
+		background-color: transparent;
+		color: var(--input-label-normal);
+		pointer-events: none;
+	}
+
+	&::-webkit-input-placeholder,
+	&:-moz-placeholder,
+	&::-moz-placeholder {
+		opacity: 0;
+	}
+
+	&.disabled {
+		color: var(--color-text-tertiary) !important;
+	}
+
+	&.promo.active {
+		color: var(--color-promo-gold);
+		border-color: var(--color-promo-gold);
+		&:hover {
+			border-color: var(--color-promo-gold);
+		}
+	}
+
+	&.active {
+		border-color: var(--color-blue);
+
+		&:hover {
+			border-color: var(--color-blue);
+		}
+	}
+
+	&.error {
+		color: var(--input-error);
+		border-color: var(--input-error);
+		&:hover {
+			border-color: var(--input-error);
+		}
+	}
+
+	&.small {
+		height: 36px;
+		border-radius: 8px;
+		padding: 4px 40px 4px 7px;
+	}
+
+	&.search {
+		background-color: var(--stripped-normal);
+		border-color: var(--stripped-normal);
+		padding: 5px 42px;
+
+		&::placeholder {
+			visibility: visible;
+			opacity: 1;
+		}
+
+		&::-webkit-input-placeholder,
+		&:-moz-placeholder,
+		&::-moz-placeholder {
+			visibility: visible;
+			opacity: 1;
+		}
+
+		&.active,
+		&.filled {
+			background-color: var(--card-background-color);
+			border-color: var(--color-blue);
+		}
+	}
+
+	&.password {
+		padding-right: 45px;
+	}
+
+	@include max-w(md) {
+		transition: none;
+
+		&::placeholder {
+			opacity: 1;
+			visibility: visible;
+		}
+
+		&::-webkit-input-placeholder,
+		&:-moz-placeholder,
+		&::-moz-placeholder {
+			opacity: 1;
+			visibility: visible;
+		}
+
+		&:not(.error) {
+			&.active,
+			&.active:hover,
+			&:hover {
+				box-shadow: 0 0 0 2px var(--color-blue);
+			}
+
+			&.promo.active,
+			&.promo.active:hover {
+				box-shadow: 0 0 0 2px var(--color-promo-gold);
+			}
+		}
+	}
+}
+
+.help_text {
+	padding: 2px 5px 0 2px;
+	font-size: 12px;
+	margin-top: 7px;
+	color: var(--color-disabled);
+	line-height: 14px;
+	margin-right: unset;
+
+	i {
+		font-size: 12px;
+		margin: 1px 5px 3px 0;
+	}
+
+	&.align_left {
+		margin-right: auto;
+	}
+
+	&.align_right {
+		margin-left: auto;
+	}
+
+	@include max-w(md) {
+		font-size: 11px;
+		padding: 2px 5px;
+	}
+
+	&.error {
+		color: var(--input-error);
+		margin-right: auto;
+		margin-left: unset;
+	}
+}
+
+.appender {
+	@include flexbox(center, center);
+	font-size: 14px;
+	position: absolute;
+	top: 0;
+	right: 13px;
+	height: 100%;
+	color: var(--input-label-normal);
+	text-align: center;
+
+	i {
+		font-size: 14px;
+	}
+}
+
+.appender_divider {
+	height: 18px;
+	width: 1px;
+	background: var(--divider-border);
+	margin: 0 10px;
+}
+
+.appender_button {
+	font-size: 14px;
+	line-height: 19px;
+	color: var(--color-blue);
+	background: transparent;
+	outline: none;
+	padding: 0;
+	margin: 0;
+}
+
+.password_appender {
+	@include flexbox(center, center, row, inline-flex);
+	cursor: pointer;
+	padding: 0 10px;
+	right: 5px;
+	height: 45px;
+	top: 1px;
+	font-size: 14px;
+	position: absolute;
+	color: var(--input-label-normal);
+	text-align: center;
+
+	i {
+		font-size: 18px;
+	}
+
+	&.error {
+		i {
+			color: var(--input-error);
+		}
+	}
+
+	@include max-w(md) {
+		height: 42px;
+	}
+}
+
+.search_appender {
+	@include flexbox(center, center);
+	font-size: 14px;
+	position: absolute;
+	top: 0;
+	height: 100%;
+	color: var(--input-label-normal);
+	text-align: center;
+	padding: 7px 10px;
+	right: 2px;
+	cursor: pointer;
+
+	i {
+		font-size: 14px;
+		line-height: 14px;
+	}
+
+	&:hover {
+		i {
+			color: var(--color-primary);
+		}
+	}
+}

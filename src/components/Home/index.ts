@@ -1,0 +1,9 @@
+export { default as Welcome } from "./Welcome";
+export { default as TopPairs } from "./TopPairs";
+export { default as MobileApp } from "./MobileApp";
+export { default as Payment } from "./Payment";
+export { default as Steps } from "./Steps";
+export { default as AlphaCode } from "./AlphaCode";
+export { default as Advantages } from "./Advantages";
+export { default as Stats } from "./Stats";
+export { default as MediaPartners } from "./MediaPartners";

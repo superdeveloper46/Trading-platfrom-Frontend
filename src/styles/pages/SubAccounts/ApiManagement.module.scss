@@ -1,0 +1,156 @@
+@import "assets/styles/common/mixins";
+
+.ip_container {
+	display: flex;
+}
+
+.more_ips {
+	cursor: pointer;
+	color: var(--color-blue);
+	margin-left: 5px;
+}
+
+.ip_list {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	background-color: var(--card-background-color);
+	padding: 10px;
+	color: var(--color-primary);
+	box-shadow: var(--navmenu-box-shadow);
+	max-height: 250px;
+	overflow-y: auto;
+	gap: 10px;
+	min-width: 165px;
+
+	@include tiny-scrollbar();
+}
+
+.ip_item {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	font-size: 14px;
+	line-height: 1.3;
+}
+
+.copy_btn {
+	margin-left: 5px;
+	cursor: pointer;
+	font-size: 14px !important;
+
+	&.modal {
+		font-size: 18px !important;
+	}
+
+	&:hover {
+		color: var(--color-blue) !important;
+	}
+}
+
+.header_main_info {
+	@include flexbox(stretch, stretch, column);
+}
+
+.header_api_info {
+	@include flexbox(stretch, flex-start);
+	gap: 60px;
+
+	@include max-w(md) {
+		margin: 20px 0;
+		gap: 20px;
+	}
+}
+
+.account_info {
+	@include flexbox(stretch, flex-end);
+
+	margin-bottom: 25px;
+
+	@include max-w(md) {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 10px;
+		margin: 0;
+	}
+}
+
+.api_key_info {
+	@include flexbox(stretch, stretch, column);
+}
+
+.api_key_info_title {
+	@include flexbox(stretch, center);
+
+	font-size: 12px;
+	line-height: 1.3;
+	color: var(--color-secondary);
+	margin-bottom: 10px;
+}
+
+.api_key_info_value {
+	@include flexbox(stretch, center);
+
+	font-size: 16px;
+	line-height: 1.3;
+	color: var(--color-primary);
+
+	span {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		max-width: 200px;
+	}
+}
+
+.last_action {
+	color: var(--color-secondary);
+	font-size: 14px;
+	line-height: 1.3;
+	margin-left: auto;
+	align-self: flex-start;
+	margin-bottom: 15px;
+}
+
+.account_title {
+	font-weight: 700;
+	color: var(--color-primary);
+	font-size: 36px;
+	line-height: 1;
+	margin-right: 20px;
+}
+
+.account_secondary_title {
+	display: flex;
+	color: var(--color-secondary);
+	font-size: 16px;
+	line-height: 1.3;
+	margin-right: 30px;
+}
+
+.account_meta {
+	@include flexbox(stretch, flex-end, column);
+}
+
+.add_api_btn {
+	margin-top: auto;
+	max-width: 130px;
+}
+
+.see_more_apis_btn {
+	margin-top: auto;
+}
+
+.balances_link {
+	color: var(--color-blue);
+	text-decoration: underline;
+	margin-top: 20px;
+
+	@include max-w(md) {
+		margin: 10px 0;
+	}
+}
+
+.tooltip {
+	background: transparent !important;
+}

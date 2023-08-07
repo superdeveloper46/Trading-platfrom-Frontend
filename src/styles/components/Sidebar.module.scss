@@ -1,0 +1,49 @@
+@import "assets/styles/common/mixins";
+
+.sidebar_container {
+	@include sidebar();
+	@include sidebarContainer();
+}
+
+.sidebar_list_container {
+	@include listContainer();
+}
+
+.sidebar_current_list_title {
+	@include currentListTitle();
+}
+
+.sidebar_list_item {
+	@include sidebarListItem();
+	&.active {
+		@include sidebarListItem(true);
+	}
+}
+
+.sidebar_footer_container {
+	@include sidebarFooterContainer();
+}
+
+.sidebar_footer {
+	@include sidebarFooter();
+}
+
+.sidebar_divider {
+	@include sidebarDivider();
+}
+
+.sidebar_footer_icons_container {
+	@include sidebarFooterIconsContainer();
+}
+
+.sidebar_mobile_links {
+	@include mobileAppLinks();
+}
+
+.sidebar_mobile_app_img {
+	@include mobileAppImg();
+}
+
+.sidebar_footer_address {
+	@include footerAddress();
+}

@@ -1,0 +1,5 @@
+@import "src/assets/styles/common/mixins";
+
+.profile_with_sidebar {
+	@include withSidebar();
+}

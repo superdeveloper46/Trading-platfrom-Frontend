@@ -1,0 +1,57 @@
+@import "src/assets/styles/common/mixins";
+
+.card {
+	@include cardMobile(false, true);
+
+	border: none;
+}
+
+.card_header {
+	@include cardMobileHeader();
+
+	border-radius: 0;
+	padding: 10px 56px 10px 10px;
+
+	@include max-w(xl) {
+		padding-right: 24px;
+	}
+}
+
+.card_body_tablet {
+	@include card-body();
+	@include flexbox(stretch, flex-end);
+
+	padding: unset;
+
+	@include max-w(md) {
+		padding: 0;
+	}
+}
+
+.table_header {
+	background: transparent !important;
+}
+
+.table_row {
+	padding: 0;
+}
+
+.card_body {
+	@include card-body();
+
+	@include max-w(xl) {
+		padding: 18px 24px 18px 24px;
+	}
+}
+
+.card_mobile_content_group {
+	@include cardMobileContentGroup();
+}
+
+.card_mobile_details_button {
+	width: 100%;
+
+	button {
+		margin: auto;
+	}
+}

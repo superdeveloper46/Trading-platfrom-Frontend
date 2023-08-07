@@ -1,0 +1,63 @@
+@import "assets/styles/common/mixins";
+
+.container {
+	@include flexbox(stretch, center);
+
+	flex-wrap: wrap;
+
+	@include max-w(xs) {
+		flex-direction: column;
+		align-items: baseline;
+	}
+
+	&.vertical {
+		flex-direction: column;
+		margin-bottom: 10px;
+
+		.title {
+			margin-right: 0;
+		}
+	}
+}
+
+.title {
+	@include flexbox(stretch, center);
+
+	margin: 0 70px 0 0;
+	align-items: center;
+	color: var(--color-secondary);
+
+	i {
+		color: var(--color-secondary);
+		margin-right: 5px;
+		font-size: 14px;
+	}
+
+	@include max-w(xs) {
+		margin: 0 30px 10px 15px;
+	}
+}
+
+.icons {
+	@include flexbox(stretch, center);
+
+	flex-wrap: wrap;
+
+	@include max-w(xs) {
+		margin: 0;
+	}
+}
+
+.icon {
+	color: #6d7177;
+	margin: 5px 15px;
+	font-size: 22px;
+
+	&:hover {
+		color: var(--color-blue);
+	}
+}
+
+.copy_link {
+	cursor: pointer;
+}

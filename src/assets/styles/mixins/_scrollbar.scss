@@ -1,0 +1,43 @@
+@import "../../../variables";
+@import "helpers";
+
+@mixin tiny-scrollbar($width: 4px, $hide: false) {
+	&::-webkit-scrollbar {
+		width: $width;
+		margin-left: 3px;
+		height: 3px;
+		@if $hide {
+			display: none;
+		}
+	}
+
+	&::-webkit-scrollbar-track {
+		background: transparent;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background-color: var(--thumb-color);
+		border-radius: 3px;
+
+		&:hover {
+			background-color: var(--thumb-color);
+		}
+
+		@if $hide {
+			display: none;
+		}
+	}
+
+	scrollbar-width: thin;
+
+	@include max-w(xs) {
+		&::-webkit-scrollbar {
+			width: 3px;
+			margin-left: 2px;
+			height: 3px;
+			@if $hide {
+				display: none;
+			}
+		}
+	}
+}

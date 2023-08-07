@@ -1,0 +1,494 @@
+services:
+  - docker:dind
+
+stages:
+  - build
+  - deploy
+  - purge_cache
+  - rollback
+
+build-master:
+  stage: build
+  image: docker:latest
+  before_script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+  script:
+    - docker build --build-arg CI_COMMIT_SHORT_SHA="$CI_COMMIT_SHORT_SHA" -t "$CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA" -f Dockerfile.alp .
+    - docker push "$CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA"
+    - docker tag "$CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA" "$CI_REGISTRY_IMAGE:latest"
+    - docker push "$CI_REGISTRY_IMAGE:latest"
+  only:
+    - master
+
+build-master-btc-alpha:
+  stage: build
+  image: docker:latest
+  before_script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+  script:
+    - docker build --build-arg CI_COMMIT_SHORT_SHA="$CI_COMMIT_SHORT_SHA" -t "$CI_REGISTRY_IMAGE:btc-alpha-$CI_COMMIT_SHORT_SHA" -f Dockerfile.btc-alpha .
+    - docker push "$CI_REGISTRY_IMAGE:btc-alpha-$CI_COMMIT_SHORT_SHA"
+    - docker tag "$CI_REGISTRY_IMAGE:btc-alpha-$CI_COMMIT_SHORT_SHA" "$CI_REGISTRY_IMAGE:latest-btc-alpha"
+    - docker push "$CI_REGISTRY_IMAGE:latest-btc-alpha"
+  only:
+    - master-btc-alpha
+
+build-master-alp-turk:
+  stage: build
+  image: docker:latest
+  before_script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+  script:
+    - docker build --build-arg CI_COMMIT_SHORT_SHA="$CI_COMMIT_SHORT_SHA" -t "$CI_REGISTRY_IMAGE:alp-turk-$CI_COMMIT_SHORT_SHA" -f Dockerfile.alp-turk .
+    - docker push "$CI_REGISTRY_IMAGE:alp-turk-$CI_COMMIT_SHORT_SHA"
+    - docker tag "$CI_REGISTRY_IMAGE:alp-turk-$CI_COMMIT_SHORT_SHA" "$CI_REGISTRY_IMAGE:latest-alp-turk"
+    - docker push "$CI_REGISTRY_IMAGE:latest-alp-turk"
+  only:
+    - master-alp-turk
+
+build-ant:
+  stage: build
+  image: docker:latest
+  before_script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+  script:
+    - docker build --build-arg CI_COMMIT_SHORT_SHA="$CI_COMMIT_SHORT_SHA" -t "$CI_REGISTRY_IMAGE:ant-$CI_COMMIT_SHORT_SHA" -f Dockerfile.ant .
+    - docker push "$CI_REGISTRY_IMAGE:ant-$CI_COMMIT_SHORT_SHA"
+    - docker tag "$CI_REGISTRY_IMAGE:ant-$CI_COMMIT_SHORT_SHA" "$CI_REGISTRY_IMAGE:ant"
+    - docker push "$CI_REGISTRY_IMAGE:ant"
+  only:
+    - master
+
+build-stage:
+  stage: build
+  image: docker:latest
+  before_script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+  script:
+    - docker build --build-arg CI_COMMIT_SHORT_SHA="$CI_COMMIT_SHORT_SHA" -t "$CI_REGISTRY_IMAGE:stage-$CI_COMMIT_SHORT_SHA" -f Dockerfile.stage .
+    - docker push "$CI_REGISTRY_IMAGE:stage-$CI_COMMIT_SHORT_SHA"
+    - docker tag "$CI_REGISTRY_IMAGE:stage-$CI_COMMIT_SHORT_SHA" "$CI_REGISTRY_IMAGE:stage"
+    - docker push "$CI_REGISTRY_IMAGE:stage"
+  only:
+    - master
+
+build-dev:
+  stage: build
+  image: docker:latest
+  before_script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+  script:
+    - docker build --build-arg CI_COMMIT_SHORT_SHA="$CI_COMMIT_SHORT_SHA" -t "$CI_REGISTRY_IMAGE:dev-$CI_COMMIT_SHORT_SHA" -f Dockerfile.dev .
+    - docker push "$CI_REGISTRY_IMAGE:dev-$CI_COMMIT_SHORT_SHA"
+    - docker tag "$CI_REGISTRY_IMAGE:dev-$CI_COMMIT_SHORT_SHA" "$CI_REGISTRY_IMAGE:dev"
+    - docker push "$CI_REGISTRY_IMAGE:dev"
+  except:
+    - master
+    - master-btc-alpha
+    - master-alp-turk
+
+build-dev-btc-alpha:
+  stage: build
+  image: docker:latest
+  before_script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+  script:
+    - docker build --build-arg CI_COMMIT_SHORT_SHA="$CI_COMMIT_SHORT_SHA" -t "$CI_REGISTRY_IMAGE:dev-btc-alpha-$CI_COMMIT_SHORT_SHA" -f Dockerfile.dev-btc-alpha .
+    - docker push "$CI_REGISTRY_IMAGE:dev-btc-alpha-$CI_COMMIT_SHORT_SHA"
+    - docker tag "$CI_REGISTRY_IMAGE:dev-btc-alpha-$CI_COMMIT_SHORT_SHA" "$CI_REGISTRY_IMAGE:dev-btc-alpha"
+    - docker push "$CI_REGISTRY_IMAGE:dev-btc-alpha"
+  only:
+    - master-btc-alpha
+
+build-dev-alp-turk:
+  stage: build
+  image: docker:latest
+  before_script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+  script:
+    - docker build --build-arg CI_COMMIT_SHORT_SHA="$CI_COMMIT_SHORT_SHA" -t "$CI_REGISTRY_IMAGE:dev-alp-turk-$CI_COMMIT_SHORT_SHA" -f Dockerfile.dev-alp-turk .
+    - docker push "$CI_REGISTRY_IMAGE:dev-alp-turk-$CI_COMMIT_SHORT_SHA"
+    - docker tag "$CI_REGISTRY_IMAGE:dev-alp-turk-$CI_COMMIT_SHORT_SHA" "$CI_REGISTRY_IMAGE:dev-alp-turk"
+    - docker push "$CI_REGISTRY_IMAGE:dev-alp-turk"
+  only:
+    - master-alp-turk
+
+deploy-to-k8s-prod-ALP: # --> alp.com
+  stage: deploy
+  image:
+    name: bitnami/kubectl:$K8S_PROD_CLUSTER_VERSION
+    entrypoint: [""]
+  script:
+    - export HOME=/tmp
+    - kubectl config set-cluster $K8S_PROD_CLUSTER_NAME --server="$K8S_PROD_CLUSTER_ADDRESS"
+    - kubectl config set clusters.$K8S_PROD_CLUSTER_NAME.certificate-authority-data $K8S_PROD_GITLAB_DEPLOY_CERT
+    - kubectl config set-credentials $K8S_PROD_GITLAB_DEPLOY_USER --token=$K8S_PROD_GITLAB_DEPLOY_TOKEN
+    - kubectl config set-context default --cluster=$K8S_PROD_CLUSTER_NAME --user=$K8S_PROD_GITLAB_DEPLOY_USER --namespace=$K8S_PROD_CLUSTER_NAMESPACE_ALP
+    - kubectl config use-context default
+    - kubectl -n $K8S_PROD_CLUSTER_NAMESPACE_ALP set image deployment/$K8S_PROD_DEPLOYMENT_NAME $K8S_PROD_CONTAINER_NAME=$CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA
+    - kubectl -n $K8S_PROD_CLUSTER_NAMESPACE_ALP describe deployment/$K8S_PROD_DEPLOYMENT_NAME
+  needs:
+    - build-master
+  only:
+    - master
+  when: manual
+
+rollback-to-k8s-prod-ALP: # --> alp.com
+  stage: rollback
+  image:
+    name: bitnami/kubectl:$K8S_PROD_CLUSTER_VERSION
+    entrypoint: [""]
+  script:
+    - export HOME=/tmp
+    - kubectl config set-cluster $K8S_PROD_CLUSTER_NAME --server="$K8S_PROD_CLUSTER_ADDRESS"
+    - kubectl config set clusters.$K8S_PROD_CLUSTER_NAME.certificate-authority-data $K8S_PROD_GITLAB_DEPLOY_CERT
+    - kubectl config set-credentials $K8S_PROD_GITLAB_DEPLOY_USER --token=$K8S_PROD_GITLAB_DEPLOY_TOKEN
+    - kubectl config set-context default --cluster=$K8S_PROD_CLUSTER_NAME --user=$K8S_PROD_GITLAB_DEPLOY_USER --namespace=$K8S_PROD_CLUSTER_NAMESPACE_ALP
+    - kubectl config use-context default
+    - kubectl -n $K8S_PROD_CLUSTER_NAMESPACE_ALP rollout undo deployment/$K8S_PROD_DEPLOYMENT_NAME
+    - kubectl -n $K8S_PROD_CLUSTER_NAMESPACE_ALP describe deployment/$K8S_PROD_DEPLOYMENT_NAME
+  needs:
+    - deploy-to-k8s-prod-ALP
+  only:
+    - master
+  when: manual
+
+purge-cache-prod-ALP:
+  stage: purge_cache
+  image: curlimages/curl:7.85.0
+  script:
+    - |
+        curl -X POST "https://api.cloudflare.com/client/v4/zones/$CF_ZONE_ID_ALP/purge_cache" \
+        -H "Authorization: Bearer $CF_API_TOKEN_ALP" -H "Content-Type: application/json" \
+        --data '{"purge_everything":true}'
+  needs:
+    - deploy-to-k8s-prod-ALP
+  only:
+    - master
+
+deploy-to-k8s-prod-BTC-ALPHA: # --> btc-alpha.com
+  stage: deploy
+  image:
+    name: bitnami/kubectl:$K8S_PROD_CLUSTER_VERSION
+    entrypoint: [""]
+  script:
+    - export HOME=/tmp
+    - kubectl config set-cluster $K8S_PROD_CLUSTER_NAME --server="$K8S_PROD_CLUSTER_ADDRESS"
+    - kubectl config set clusters.$K8S_PROD_CLUSTER_NAME.certificate-authority-data $K8S_PROD_GITLAB_DEPLOY_CERT
+    - kubectl config set-credentials $K8S_PROD_GITLAB_DEPLOY_USER --token=$K8S_PROD_GITLAB_DEPLOY_TOKEN
+    - kubectl config set-context default --cluster=$K8S_PROD_CLUSTER_NAME --user=$K8S_PROD_GITLAB_DEPLOY_USER --namespace=$K8S_PROD_CLUSTER_NAMESPACE_BTC_ALPHA
+    - kubectl config use-context default
+    - kubectl -n $K8S_PROD_CLUSTER_NAMESPACE_BTC_ALPHA set image deployment/$K8S_PROD_DEPLOYMENT_NAME $K8S_PROD_CONTAINER_NAME=$CI_REGISTRY_IMAGE:btc-alpha-$CI_COMMIT_SHORT_SHA
+    - kubectl -n $K8S_PROD_CLUSTER_NAMESPACE_BTC_ALPHA describe deployment/$K8S_PROD_DEPLOYMENT_NAME
+  needs:
+    - build-master-btc-alpha
+  only:
+    - master-btc-alpha
+  when: manual
+
+purge-cache-prod-BTC-ALPHA:
+  stage: purge_cache
+  image: curlimages/curl:7.85.0
+  script:
+    - |
+        curl -X POST "https://api.cloudflare.com/client/v4/zones/$CF_ZONE_ID_BTC_ALPHA/purge_cache" \
+        -H "Authorization: Bearer $CF_API_TOKEN_BTC_ALPHA" -H "Content-Type: application/json" \
+        --data '{"purge_everything":true}'
+  needs:
+    - deploy-to-k8s-prod-BTC-ALPHA
+  only:
+    - master-btc-alpha
+
+rollback-to-k8s-prod-BTC-ALPHA: # --> btc-alpha.com
+  stage: rollback
+  image:
+    name: bitnami/kubectl:$K8S_PROD_CLUSTER_VERSION
+    entrypoint: [""]
+  script:
+    - export HOME=/tmp
+    - kubectl config set-cluster $K8S_PROD_CLUSTER_NAME --server="$K8S_PROD_CLUSTER_ADDRESS"
+    - kubectl config set clusters.$K8S_PROD_CLUSTER_NAME.certificate-authority-data $K8S_PROD_GITLAB_DEPLOY_CERT
+    - kubectl config set-credentials $K8S_PROD_GITLAB_DEPLOY_USER --token=$K8S_PROD_GITLAB_DEPLOY_TOKEN
+    - kubectl config set-context default --cluster=$K8S_PROD_CLUSTER_NAME --user=$K8S_PROD_GITLAB_DEPLOY_USER --namespace=$K8S_PROD_CLUSTER_NAMESPACE_BTC_ALPHA
+    - kubectl config use-context default
+    - kubectl -n $K8S_PROD_CLUSTER_NAMESPACE_BTC_ALPHA rollout undo deployment/$K8S_PROD_DEPLOYMENT_NAME
+    - kubectl -n $K8S_PROD_CLUSTER_NAMESPACE_BTC_ALPHA describe deployment/$K8S_PROD_DEPLOYMENT_NAME
+  needs:
+    - deploy-to-k8s-prod-BTC-ALPHA
+  only:
+    - master-btc-alpha
+  when: manual
+
+deploy-to-k8s-prod-ALP-TURK: # --> alptr.com
+  stage: deploy
+  image:
+    name: bitnami/kubectl:$K8S_PROD_CLUSTER_VERSION
+    entrypoint: [""]
+  script:
+    - export HOME=/tmp
+    - kubectl config set-cluster $K8S_PROD_CLUSTER_NAME --server="$K8S_PROD_CLUSTER_ADDRESS"
+    - kubectl config set clusters.$K8S_PROD_CLUSTER_NAME.certificate-authority-data $K8S_PROD_GITLAB_DEPLOY_CERT
+    - kubectl config set-credentials $K8S_PROD_GITLAB_DEPLOY_USER --token=$K8S_PROD_GITLAB_DEPLOY_TOKEN
+    - kubectl config set-context default --cluster=$K8S_PROD_CLUSTER_NAME --user=$K8S_PROD_GITLAB_DEPLOY_USER --namespace=$K8S_PROD_CLUSTER_NAMESPACE_ALP_TURK
+    - kubectl config use-context default
+    - kubectl -n $K8S_PROD_CLUSTER_NAMESPACE_ALP_TURK set image deployment/$K8S_PROD_DEPLOYMENT_NAME $K8S_PROD_CONTAINER_NAME=$CI_REGISTRY_IMAGE:alp-turk-$CI_COMMIT_SHORT_SHA
+    - kubectl -n $K8S_PROD_CLUSTER_NAMESPACE_ALP_TURK describe deployment/$K8S_PROD_DEPLOYMENT_NAME
+  needs:
+    - build-master-alp-turk
+  only:
+    - master-alp-turk
+  when: manual
+
+purge-cache-prod-ALP-TURK:
+  stage: purge_cache
+  image: curlimages/curl:7.85.0
+  script:
+    - |
+        curl -X POST "https://api.cloudflare.com/client/v4/zones/$CF_ZONE_ID_ALP_TURK/purge_cache" \
+        -H "Authorization: Bearer $CF_API_TOKEN_ALP_TURK" \
+        -H "Content-Type: application/json" \
+        --data '{"purge_everything":true}'
+  needs:
+    - deploy-to-k8s-prod-ALP-TURK
+  only:
+    - master-alp-turk
+
+rollback-to-k8s-prod-ALP-TURK: # --> alptr.com
+  stage: rollback
+  image:
+    name: bitnami/kubectl:$K8S_PROD_CLUSTER_VERSION
+    entrypoint: [""]
+  script:
+    - export HOME=/tmp
+    - kubectl config set-cluster $K8S_PROD_CLUSTER_NAME --server="$K8S_PROD_CLUSTER_ADDRESS"
+    - kubectl config set clusters.$K8S_PROD_CLUSTER_NAME.certificate-authority-data $K8S_PROD_GITLAB_DEPLOY_CERT
+    - kubectl config set-credentials $K8S_PROD_GITLAB_DEPLOY_USER --token=$K8S_PROD_GITLAB_DEPLOY_TOKEN
+    - kubectl config set-context default --cluster=$K8S_PROD_CLUSTER_NAME --user=$K8S_PROD_GITLAB_DEPLOY_USER --namespace=$K8S_PROD_CLUSTER_NAMESPACE_ALP_TURK
+    - kubectl config use-context default
+    - kubectl -n $K8S_PROD_CLUSTER_NAMESPACE_ALP_TURK rollout undo deployment/$K8S_PROD_DEPLOYMENT_NAME
+    - kubectl -n $K8S_PROD_CLUSTER_NAMESPACE_ALP_TURK describe deployment/$K8S_PROD_DEPLOYMENT_NAME
+  needs:
+    - deploy-to-k8s-prod-ALP-TURK
+  only:
+    - master-alp-turk
+  when: manual
+
+deploy-to-k8s-prod-ANT: # --> ant.alp.com
+  stage: deploy
+  image:
+    name: bitnami/kubectl:$K8S_PROD_CLUSTER_VERSION
+    entrypoint: [""]
+  script:
+    - export HOME=/tmp
+    - kubectl config set-cluster $K8S_PROD_CLUSTER_NAME --server="$K8S_PROD_CLUSTER_ADDRESS"
+    - kubectl config set clusters.$K8S_PROD_CLUSTER_NAME.certificate-authority-data $K8S_PROD_GITLAB_DEPLOY_CERT
+    - kubectl config set-credentials $K8S_PROD_GITLAB_DEPLOY_USER --token=$K8S_PROD_GITLAB_DEPLOY_TOKEN
+    - kubectl config set-context default --cluster=$K8S_PROD_CLUSTER_NAME --user=$K8S_PROD_GITLAB_DEPLOY_USER --namespace=$K8S_PROD_CLUSTER_NAMESPACE_ANT
+    - kubectl config use-context default
+    - kubectl -n $K8S_PROD_CLUSTER_NAMESPACE_ANT set image deployment/$K8S_PROD_DEPLOYMENT_NAME $K8S_PROD_CONTAINER_NAME=$CI_REGISTRY_IMAGE:ant-$CI_COMMIT_SHORT_SHA
+    - kubectl -n $K8S_PROD_CLUSTER_NAMESPACE_ANT describe deployment/$K8S_PROD_DEPLOYMENT_NAME
+  needs:
+    - build-ant
+  only:
+    - master
+  when: manual
+
+rollback-to-k8s-prod-ANT: # --> ant.alp.com
+  stage: rollback
+  image:
+    name: bitnami/kubectl:$K8S_PROD_CLUSTER_VERSION
+    entrypoint: [""]
+  script:
+    - export HOME=/tmp
+    - kubectl config set-cluster $K8S_PROD_CLUSTER_NAME --server="$K8S_PROD_CLUSTER_ADDRESS"
+    - kubectl config set clusters.$K8S_PROD_CLUSTER_NAME.certificate-authority-data $K8S_PROD_GITLAB_DEPLOY_CERT
+    - kubectl config set-credentials $K8S_PROD_GITLAB_DEPLOY_USER --token=$K8S_PROD_GITLAB_DEPLOY_TOKEN
+    - kubectl config set-context default --cluster=$K8S_PROD_CLUSTER_NAME --user=$K8S_PROD_GITLAB_DEPLOY_USER --namespace=$K8S_PROD_CLUSTER_NAMESPACE_ANT
+    - kubectl config use-context default
+    - kubectl -n $K8S_PROD_CLUSTER_NAMESPACE_ANT rollout undo deployment/$K8S_PROD_DEPLOYMENT_NAME
+    - kubectl -n $K8S_PROD_CLUSTER_NAMESPACE_ANT describe deployment/$K8S_PROD_DEPLOYMENT_NAME
+  needs:
+    - deploy-to-k8s-prod-ANT
+  only:
+    - master
+  when: manual
+
+deploy-to-k8s-stage-HOT: # --> hot.alp.com
+  stage: deploy
+  image:
+    name: bitnami/kubectl:$K8S_STAGE_CLUSTER_VERSION
+    entrypoint: [""]
+  script:
+    - export HOME=/tmp
+    - kubectl config set-cluster $K8S_STAGE_CLUSTER_NAME --server="$K8S_STAGE_CLUSTER_ADDRESS"
+    - kubectl config set clusters.$K8S_STAGE_CLUSTER_NAME.certificate-authority-data $K8S_STAGE_GITLAB_DEPLOY_CERT
+    - kubectl config set-credentials $K8S_STAGE_GITLAB_DEPLOY_USER --token=$K8S_STAGE_GITLAB_DEPLOY_TOKEN
+    - kubectl config set-context default --cluster=$K8S_STAGE_CLUSTER_NAME --user=$K8S_STAGE_GITLAB_DEPLOY_USER --namespace=$K8S_STAGE_CLUSTER_NAMESPACE_HOT
+    - kubectl config use-context default
+    - kubectl -n $K8S_STAGE_CLUSTER_NAMESPACE_HOT set image deployment/$K8S_STAGE_DEPLOYMENT_NAME $K8S_STAGE_CONTAINER_NAME=$CI_REGISTRY_IMAGE:stage-$CI_COMMIT_SHORT_SHA
+    - kubectl -n $K8S_STAGE_CLUSTER_NAMESPACE_HOT describe deployment/$K8S_STAGE_DEPLOYMENT_NAME
+  needs:
+    - build-stage
+  only:
+    - master
+  when: manual
+
+rollback-to-k8s-stage-HOT: # --> hot.alp.com
+  stage: rollback
+  image:
+    name: bitnami/kubectl:$K8S_STAGE_CLUSTER_VERSION
+    entrypoint: [""]
+  script:
+    - export HOME=/tmp
+    - kubectl config set-cluster $K8S_STAGE_CLUSTER_NAME --server="$K8S_STAGE_CLUSTER_ADDRESS"
+    - kubectl config set clusters.$K8S_STAGE_CLUSTER_NAME.certificate-authority-data $K8S_STAGE_GITLAB_DEPLOY_CERT
+    - kubectl config set-credentials $K8S_STAGE_GITLAB_DEPLOY_USER --token=$K8S_STAGE_GITLAB_DEPLOY_TOKEN
+    - kubectl config set-context default --cluster=$K8S_STAGE_CLUSTER_NAME --user=$K8S_STAGE_GITLAB_DEPLOY_USER --namespace=$K8S_STAGE_CLUSTER_NAMESPACE_HOT
+    - kubectl config use-context default
+    - kubectl -n $K8S_STAGE_CLUSTER_NAMESPACE_HOT rollout undo deployment/$K8S_STAGE_DEPLOYMENT_NAME
+    - kubectl -n $K8S_STAGE_CLUSTER_NAMESPACE_HOT describe deployment/$K8S_STAGE_DEPLOYMENT_NAME
+  needs:
+    - deploy-to-k8s-stage-HOT
+  only:
+    - master
+  when: manual
+
+deploy-to-k8s-dev-ALP: # --> front.alpcom.dev
+  stage: deploy
+  image:
+    name: bitnami/kubectl:$K8S_DEV_CLUSTER_VERSION
+    entrypoint: [""]
+  script:
+    - export HOME=/tmp
+    - kubectl config set-cluster $K8S_DEV_CLUSTER_NAME --server="$K8S_DEV_CLUSTER_ADDRESS"
+    - kubectl config set clusters.$K8S_DEV_CLUSTER_NAME.certificate-authority-data $K8S_DEV_GITLAB_DEPLOY_CERT
+    - kubectl config set-credentials $K8S_DEV_GITLAB_DEPLOY_USER --token=$K8S_DEV_GITLAB_DEPLOY_TOKEN
+    - kubectl config set-context default --cluster=$K8S_DEV_CLUSTER_NAME --user=$K8S_DEV_GITLAB_DEPLOY_USER --namespace=$K8S_DEV_CLUSTER_NAMESPACE_FRONT
+    - kubectl config use-context default
+    - kubectl -n $K8S_DEV_CLUSTER_NAMESPACE_FRONT set image deployment/$K8S_DEV_DEPLOYMENT_NAME $K8S_DEV_CONTAINER_NAME=$CI_REGISTRY_IMAGE:dev-$CI_COMMIT_SHORT_SHA
+    - kubectl -n $K8S_DEV_CLUSTER_NAMESPACE_FRONT describe deployment/$K8S_DEV_DEPLOYMENT_NAME
+  needs:
+    - build-dev
+  except:
+    - master
+    - master-btc-alpha
+    - master-alp-turk
+  when: manual
+
+rollback-to-k8s-dev-ALP: # --> front.alpcom.dev
+  stage: rollback
+  image:
+    name: bitnami/kubectl:$K8S_DEV_CLUSTER_VERSION
+    entrypoint: [""]
+  script:
+    - export HOME=/tmp
+    - kubectl config set-cluster $K8S_DEV_CLUSTER_NAME --server="$K8S_DEV_CLUSTER_ADDRESS"
+    - kubectl config set clusters.$K8S_DEV_CLUSTER_NAME.certificate-authority-data $K8S_DEV_GITLAB_DEPLOY_CERT
+    - kubectl config set-credentials $K8S_DEV_GITLAB_DEPLOY_USER --token=$K8S_DEV_GITLAB_DEPLOY_TOKEN
+    - kubectl config set-context default --cluster=$K8S_DEV_CLUSTER_NAME --user=$K8S_DEV_GITLAB_DEPLOY_USER --namespace=$K8S_DEV_CLUSTER_NAMESPACE_FRONT
+    - kubectl config use-context default
+    - kubectl -n $K8S_DEV_CLUSTER_NAMESPACE_FRONT rollout undo deployment/$K8S_DEV_DEPLOYMENT_NAME
+    - kubectl -n $K8S_DEV_CLUSTER_NAMESPACE_FRONT describe deployment/$K8S_DEV_DEPLOYMENT_NAME
+  needs:
+    - deploy-to-k8s-dev-ALP
+  only:
+    - dev
+  when: manual
+
+deploy-to-k8s-dev-BTC-ALPHA: # --> main.alpcom.dev
+  stage: deploy
+  image:
+    name: bitnami/kubectl:$K8S_DEV_CLUSTER_VERSION
+    entrypoint: [""]
+  script:
+    - export HOME=/tmp
+    - kubectl config set-cluster $K8S_DEV_CLUSTER_NAME --server="$K8S_DEV_CLUSTER_ADDRESS"
+    - kubectl config set clusters.$K8S_DEV_CLUSTER_NAME.certificate-authority-data $K8S_DEV_GITLAB_DEPLOY_CERT
+    - kubectl config set-credentials $K8S_DEV_GITLAB_DEPLOY_USER --token=$K8S_DEV_GITLAB_DEPLOY_TOKEN
+    - kubectl config set-context default --cluster=$K8S_DEV_CLUSTER_NAME --user=$K8S_DEV_GITLAB_DEPLOY_USER --namespace=$K8S_DEV_CLUSTER_NAMESPACE_MAIN
+    - kubectl config use-context default
+    - kubectl -n $K8S_DEV_CLUSTER_NAMESPACE_MAIN set image deployment/$K8S_DEV_DEPLOYMENT_NAME $K8S_DEV_CONTAINER_NAME=$CI_REGISTRY_IMAGE:dev-btc-alpha-$CI_COMMIT_SHORT_SHA
+    - kubectl -n $K8S_DEV_CLUSTER_NAMESPACE_MAIN describe deployment/$K8S_DEV_DEPLOYMENT_NAME
+  needs:
+    - build-dev-btc-alpha
+  only:
+    - master-btc-alpha
+  when: manual
+
+rollback-to-k8s-dev-BTC-ALPHA: # --> main.alpcom.dev
+  stage: rollback
+  image:
+    name: bitnami/kubectl:$K8S_DEV_CLUSTER_VERSION
+    entrypoint: [""]
+  script:
+    - export HOME=/tmp
+    - kubectl config set-cluster $K8S_DEV_CLUSTER_NAME --server="$K8S_DEV_CLUSTER_ADDRESS"
+    - kubectl config set clusters.$K8S_DEV_CLUSTER_NAME.certificate-authority-data $K8S_DEV_GITLAB_DEPLOY_CERT
+    - kubectl config set-credentials $K8S_DEV_GITLAB_DEPLOY_USER --token=$K8S_DEV_GITLAB_DEPLOY_TOKEN
+    - kubectl config set-context default --cluster=$K8S_DEV_CLUSTER_NAME --user=$K8S_DEV_GITLAB_DEPLOY_USER --namespace=$K8S_DEV_CLUSTER_NAMESPACE_MAIN
+    - kubectl config use-context default
+    - kubectl -n $K8S_DEV_CLUSTER_NAMESPACE_MAIN rollout undo deployment/$K8S_DEV_DEPLOYMENT_NAME
+    - kubectl -n $K8S_DEV_CLUSTER_NAMESPACE_MAIN describe deployment/$K8S_DEV_DEPLOYMENT_NAME
+  needs:
+    - deploy-to-k8s-dev-BTC-ALPHA
+  only:
+    - master-btc-alpha
+  when: manual
+
+deploy-to-k8s-dev-ALP-TURK: # --> turk.alpcom.dev
+  stage: deploy
+  image:
+    name: bitnami/kubectl:$K8S_DEV_CLUSTER_VERSION
+    entrypoint: [""]
+  script:
+    - export HOME=/tmp
+    - kubectl config set-cluster $K8S_DEV_CLUSTER_NAME --server="$K8S_DEV_CLUSTER_ADDRESS"
+    - kubectl config set clusters.$K8S_DEV_CLUSTER_NAME.certificate-authority-data $K8S_DEV_GITLAB_DEPLOY_CERT
+    - kubectl config set-credentials $K8S_DEV_GITLAB_DEPLOY_USER --token=$K8S_DEV_GITLAB_DEPLOY_TOKEN
+    - kubectl config set-context default --cluster=$K8S_DEV_CLUSTER_NAME --user=$K8S_DEV_GITLAB_DEPLOY_USER --namespace=$K8S_DEV_CLUSTER_NAMESPACE_TURK
+    - kubectl config use-context default
+    - kubectl -n $K8S_DEV_CLUSTER_NAMESPACE_TURK set image deployment/$K8S_DEV_DEPLOYMENT_NAME $K8S_DEV_CONTAINER_NAME=$CI_REGISTRY_IMAGE:dev-alp-turk-$CI_COMMIT_SHORT_SHA
+    - kubectl -n $K8S_DEV_CLUSTER_NAMESPACE_TURK describe deployment/$K8S_DEV_DEPLOYMENT_NAME
+  needs:
+    - build-dev-alp-turk
+  only:
+    - master-alp-turk
+  when: manual
+
+rollback-to-k8s-dev-ALP-TURK: # --> turk.alpcom.dev
+  stage: rollback
+  image:
+    name: bitnami/kubectl:$K8S_DEV_CLUSTER_VERSION
+    entrypoint: [""]
+  script:
+    - export HOME=/tmp
+    - kubectl config set-cluster $K8S_DEV_CLUSTER_NAME --server="$K8S_DEV_CLUSTER_ADDRESS"
+    - kubectl config set clusters.$K8S_DEV_CLUSTER_NAME.certificate-authority-data $K8S_DEV_GITLAB_DEPLOY_CERT
+    - kubectl config set-credentials $K8S_DEV_GITLAB_DEPLOY_USER --token=$K8S_DEV_GITLAB_DEPLOY_TOKEN
+    - kubectl config set-context default --cluster=$K8S_DEV_CLUSTER_NAME --user=$K8S_DEV_GITLAB_DEPLOY_USER --namespace=$K8S_DEV_CLUSTER_NAMESPACE_TURK
+    - kubectl config use-context default
+    - kubectl -n $K8S_DEV_CLUSTER_NAMESPACE_TURK rollout undo deployment/$K8S_DEV_DEPLOYMENT_NAME
+    - kubectl -n $K8S_DEV_CLUSTER_NAMESPACE_TURK describe deployment/$K8S_DEV_DEPLOYMENT_NAME
+  needs:
+    - deploy-to-k8s-dev-ALP-TURK
+  only:
+    - master-alp-turk
+  when: manual
+
+purge-cache-DEV:
+  stage: purge_cache
+  image: curlimages/curl:7.85.0
+  script:
+    - |
+        curl -X POST "https://api.cloudflare.com/client/v4/zones/$CF_ZONE_ID_DEV/purge_cache" \
+        -H "Authorization: Bearer $CF_API_TOKEN_DEV" \
+        -H "Content-Type: application/json" \
+        --data '{"purge_everything":true}'
+  needs:
+    - job: deploy-to-k8s-dev-ALP
+      optional: true
+    - job: deploy-to-k8s-dev-BTC-ALPHA
+      optional: true
+    - job: deploy-to-k8s-dev-ALP-TURK
+      optional: true
+  when: manual

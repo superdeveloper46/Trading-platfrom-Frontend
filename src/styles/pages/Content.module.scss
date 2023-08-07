@@ -1,0 +1,54 @@
+@import "assets/styles/common/mixins";
+
+.container {
+	max-width: get-breakpoint-value(xl);
+	width: 100%;
+	margin: 0 auto;
+	padding: 20px;
+	padding-bottom: 80px;
+	color: var(--color-primary);
+
+	p,
+	a,
+	span,
+	ul,
+	li {
+		font-family: "Roboto", sans-serif !important;
+	}
+
+	a {
+		color: var(--color-blue);
+	}
+
+	h1 {
+		margin: 0;
+		margin-bottom: 10px;
+
+		@include font-size(
+			(
+				lg: 32px,
+				xl: 36px,
+				xxxl: 46px,
+			),
+			46px
+		);
+	}
+
+	img {
+		margin-top: -20px;
+		width: 100%;
+		height: auto;
+	}
+
+	@include max-w(lg) {
+		padding-bottom: 40px;
+
+		img {
+			margin-top: -10px;
+		}
+	}
+
+	@include max-w(md) {
+		padding: 10px 15px;
+	}
+}

@@ -1,0 +1,49 @@
+@import "src/assets/styles/common/mixins";
+
+.container {
+	@include flexbox(stretch, baseline);
+	font-weight: normal;
+	gap: 8px;
+
+	> span:nth-child(3n + 1) {
+		font-size: 12px;
+		color: var(--color-secondary);
+		white-space: nowrap;
+	}
+
+	> span:nth-child(3n + 2) {
+		font-size: 14px;
+		color: var(--color-primary);
+		white-space: nowrap;
+	}
+
+	@include max-w(xs) {
+		width: 100%;
+		@include flexbox(flex-start, baseline);
+		padding-left: 10px;
+	}
+}
+
+.scale_back {
+	position: relative;
+	width: 66px;
+	border: 2.5px solid var(--divider-border);
+	border-radius: 2.5px;
+}
+
+.arrow {
+	position: absolute;
+	top: -14px;
+	left: -7px;
+	width: 10px;
+	height: 10px;
+}
+
+.scale {
+	position: absolute;
+	background-color: #787878;
+	height: 5px;
+	top: -2.5px;
+	left: -2.5px;
+	border-radius: 2.5px;
+}

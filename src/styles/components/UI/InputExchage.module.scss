@@ -1,0 +1,251 @@
+@import "assets/styles/common/mixins";
+
+.appender {
+	position: absolute;
+	right: 10px;
+	top: 7px;
+	font-size: 14px;
+	color: var(--input-label-normal);
+}
+
+.placeholder {
+	position: absolute;
+	z-index: 1;
+	font-size: 14px;
+	background: transparent;
+	color: var(--input-label-normal);
+	transition: 0.12s ease;
+	padding: 0;
+	top: 7px;
+	left: 10px;
+	pointer-events: none;
+
+	&.active,
+	&.filled {
+		top: -7px;
+		font-size: 11px;
+		padding: 0 3px;
+		background: var(--card-background-color);
+	}
+
+	&.active {
+		color: var(--input-label-active);
+	}
+
+	&.error {
+		color: var(--input-error);
+	}
+}
+
+.wrapper {
+	position: relative;
+	width: 100%;
+
+	&.disabled {
+		.placeholder,
+		.appender {
+			color: var(--color-disabled);
+		}
+	}
+}
+
+.input {
+	border: 1px solid;
+	border-color: var(--input-normal);
+	width: 100%;
+	background: none;
+	box-sizing: border-box;
+	padding: 4px 45px 4px 10px;
+	overflow-y: hidden;
+	outline: none;
+	border-radius: 4px;
+	height: 36px;
+	font-size: 14px;
+	color: var(--color-primary);
+	transition: border-color 0.12s ease;
+	font-weight: 400;
+
+	&.disabled {
+		border-color: var(--input-label-disabled) !important;
+		color: var(--color-disabled);
+		pointer-events: none;
+		&.filled {
+			color: var(--color-secondary);
+		}
+	}
+
+	&:hover {
+		border-color: var(--input-hover);
+	}
+
+	&.active {
+		border-color: var(--input-focused);
+	}
+
+	&.error {
+		border-color: var(--input-error);
+	}
+
+	@include max-w(md) {
+		border-radius: 8px;
+	}
+}
+
+.error_text {
+	position: absolute;
+	bottom: calc(100% + 10px);
+	left: 50%;
+	transform: translateX(-50%);
+	padding: 6px 12px;
+	font-size: 14px;
+	line-height: 16px;
+	background: var(--tooltip-background);
+	color: var(--tooltip-color);
+	z-index: 10;
+	width: max-content;
+	max-width: 100%;
+	border-radius: 3px;
+	@include flexbox(center, flex-start);
+
+	&:before {
+		content: "";
+		position: absolute;
+		top: 100%;
+		border-right: 5px solid transparent;
+		border-left: 5px solid transparent;
+		border-top: 6px solid var(--tooltip-background);
+		left: calc(50% - 5px);
+	}
+
+	i {
+		font-size: 13px;
+		margin-right: 8px;
+		color: var(--tooltip-color);
+	}
+
+	@include max-w(xl) {
+		padding: 6px 20px;
+	}
+
+	@include max-w(md) {
+		padding: 4px 18px;
+		font-size: 13px;
+		bottom: calc(100% + 9px);
+
+		i {
+			display: none;
+		}
+
+		&:before {
+			border-right: 4px solid transparent;
+			border-left: 4px solid transparent;
+			border-top: 5px solid var(--tooltip-background);
+			left: calc(50% - 5px);
+		}
+	}
+}
+
+.help_text {
+	line-height: 135%;
+	position: absolute;
+	padding: 2px 5px;
+	font-size: 12px;
+	color: var(--color-secondary);
+
+	@include max-w(md) {
+		font-size: 11px;
+		padding: 2px 5px;
+	}
+}
+
+.grouped_selector {
+	cursor: pointer;
+	padding-right: 8px;
+	border-right: 1px solid var(--divider-border);
+	position: relative;
+}
+
+.grouped_selector_value {
+	@include flexbox(center, center);
+	font-size: 14px;
+	line-height: 16px;
+	color: var(--color-primary);
+
+	i {
+		font-size: 7px;
+		margin-left: 6px;
+	}
+}
+
+.grouped_selector_menu {
+	border-radius: 8px;
+	background: var(--navmenu-background);
+	box-shadow: var(--navmenu-box-shadow);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	top: 100%;
+	left: 0;
+	z-index: 99;
+	margin: 0;
+	padding: 0;
+	width: 120px;
+	overflow: hidden;
+}
+
+.grouped_selector_menu_item {
+	min-height: 36px;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	width: 100%;
+	cursor: pointer;
+	padding: 4px 10px;
+	font-size: 14px;
+
+	&:hover {
+		background-color: var(--navmenu-item-hover);
+	}
+}
+
+.grouped_input_container {
+	border: 1px solid;
+	border-color: var(--input-normal);
+	width: 100%;
+	background: none;
+	box-sizing: border-box;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	outline: none;
+	border-radius: 4px;
+	height: 36px;
+	position: relative;
+	padding-left: 10px;
+
+	&:hover {
+		border-color: var(--input-hover);
+	}
+
+	&.active {
+		border-color: var(--input-focused);
+	}
+
+	&.error {
+		border-color: var(--input-error);
+	}
+}
+
+.grouped_input {
+	width: 100%;
+	background: none;
+	box-sizing: border-box;
+	height: 100%;
+	outline: none;
+	border: none;
+	padding: 4px 45px 4px 10px;
+	color: var(--color-primary);
+	font-size: 14px;
+}

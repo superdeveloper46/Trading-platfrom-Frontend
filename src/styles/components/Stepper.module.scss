@@ -1,0 +1,74 @@
+@import "src/assets/styles/common/mixins";
+
+.container {
+	@include flexbox(space-between, center);
+
+	width: 100%;
+	margin-top: 24px;
+	position: relative;
+}
+
+.step {
+	z-index: 10;
+	position: relative;
+	display: flex;
+	cursor: pointer;
+
+	&.disabled {
+		cursor: default;
+	}
+}
+
+.progress_line {
+	z-index: 1;
+	position: absolute;
+	height: 2px;
+	background-color: var(--input-disabled);
+
+	div {
+		width: 0;
+		height: 100%;
+	}
+
+	&.active {
+		div {
+			width: 100%;
+		}
+	}
+}
+
+.stepNumber {
+	@include flexbox(center, center);
+
+	width: 24px;
+	height: 24px;
+	border: 2.5px solid var(--color-white);
+	border-radius: 50%;
+	background-color: var(--input-disabled);
+	color: var(--color-white);
+	user-select: none;
+}
+
+.label {
+	font-size: 14px;
+	display: flex;
+	line-height: 1;
+	color: #aaaaaa;
+	position: absolute;
+	transform: translate(calc(-50% + 12px), calc(-100% - 10px));
+	z-index: 10;
+
+	@include min-w(get-breakpoint-value(md) + 1) {
+		white-space: nowrap;
+	}
+
+	@include max-w(md) {
+		display: none;
+	}
+}
+
+.current {
+	.step {
+		cursor: default;
+	}
+}

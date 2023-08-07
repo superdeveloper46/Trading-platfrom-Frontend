@@ -1,0 +1,69 @@
+@import "src/assets/styles/common/mixins";
+
+.card_mobile {
+  @include cardMobile();
+}
+
+.card_mobile_header {
+  @include cardMobileHeader();
+}
+
+.card_mobile_footer {
+  @include cardMobileHeader();
+  border-radius: 0 0 5px 5px;
+  padding: 10px 15px;
+  min-height: 50px;
+
+  > span {
+    font-size: 12px;
+    line-height: 14px;
+    color: var(--color-secondary);
+  }
+
+  > button {
+    margin-left: 12px;
+
+    &:nth-child(1) {
+      margin-left: 0;
+    }
+
+    &:nth-child(2) {
+      margin-left: auto;
+    }
+  }
+}
+
+.card_mobile_action {
+  @include cardMobileAction(false);
+
+  &.active {
+    @include cardMobileAction(true);
+  }
+}
+
+.card_mobile_content {
+  @include cardMobileContent();
+}
+
+.card_mobile_content_group {
+  @include cardMobileContentGroup();
+}
+
+.card_mobile_content_hidden {
+  @include cardMobileContentHidden();
+}
+
+.card_mobile_uid {
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 120%;
+  color: var(--color-secondary);
+
+  span {
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 19px;
+    margin: 0 4px;
+    color: var(--color-primary);
+  }
+}

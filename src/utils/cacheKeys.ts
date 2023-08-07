@@ -1,0 +1,17 @@
+export const TERMINAL_LAYOUT_CACHE_KEY = "terminal-layout";
+export const FAVORITE_TICKERS_CACHE_KEY = "cached-favorites-tickers";
+export const TICKERS_LOW_LIQUIDITY_CACHE_KEY = "tickers-low-liq";
+export const DISPLAY_CHART_ORDERS_CACHE_KEY = "display-chart-orders";
+export const CHAT_WALLET_TRADES_CACHE_KEY = "cwt";
+export const LOCALE_CACHE_KEY = "locale";
+export const CONTENT_LOCALE_CACHE_KEY = "cl";
+export const THEME_CACHE_KEY = "theme";
+export const TERMINAL_CHART_INTERVAL_CACHE_KEY = "tradingview.chart.lastUsedTimeBasedResolution";
+export const TERMINAL_CHART_UC_CACHE_KEY = "uc5";
+export const TERMINAL_LATEST_PAIR_CACHE_KEY = "tlp";
+export const WALLET_BALANCE_VISIBILITY_CACHE_KEY = "wbv";
+export const FAVORITE_WALLETS_CACHE_KEY = "favw";
+export const FAVORITE_COIN_DETAILS_CACHE_KEY = "favc";
+export const AUTH_REQUEST_TRIES_LEFT_CACHE_KEY = "artl";
+export const MOBILE_APP_BANNER_CACHE_KEY = "mabck";
+export const TV_DEFAULT_STUDIES_CACHE_KEY = "tradingview.chart.defaultStudies";

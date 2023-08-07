@@ -1,0 +1,96 @@
+@import "assets/styles/common/mixins";
+
+.wrapper {
+	@include flexbox(space-between, center);
+	position: relative;
+	width: auto;
+
+	> span {
+		font-size: 14px;
+		line-height: 19px;
+		margin-right: 10px;
+		color: var(--color-primary);
+	}
+
+	&.secondary {
+		> span {
+			color: var(--color-secondary);
+		}
+	}
+
+	&.disabled {
+		pointer-events: none;
+
+		> span {
+			color: var(--color-disabled);
+		}
+	}
+}
+
+.button {
+	content: "";
+	position: absolute;
+	top: calc(50% - 8px);
+	left: 8px;
+	width: 16px;
+	height: 16px;
+	border-radius: 50%;
+	transition: 0.2s;
+	background-color: var(--switch-button-normal);
+	@include flexbox(center, center);
+
+	> i {
+		color: var(--color-primary);
+		font-size: 10px;
+		display: none;
+		margin: 1px 0 0 1px;
+	}
+
+	&.checked {
+		top: calc(50% - 12px);
+		width: 24px;
+		height: 24px;
+		transform: translateX(14px);
+		background-color: var(--switch-button-active);
+
+		> i {
+			display: block;
+		}
+	}
+
+	&.disabled {
+		background-color: var(--switch-button-disabled);
+	}
+}
+
+.label {
+	@include flexbox(space-between, center);
+	position: relative;
+	cursor: pointer;
+	width: 52px;
+	min-width: 52px;
+	height: 32px;
+	min-height: 32px;
+	border-radius: 35px;
+	background-color: var(--switch-label-normal);
+	transition: 0.2s;
+	border: 2px solid var(--switch-button-normal);
+
+	&.checked {
+		background-color: var(--switch-label-checked);
+		border-color: var(--switch-label-checked);
+	}
+
+	&.disabled {
+		background-color: var(--switch-label-disabled);
+		border-color: var(--switch-label-disabled);
+	}
+}
+
+.checkbox {
+	height: 0;
+	width: 0;
+	opacity: 0;
+	visibility: hidden;
+	position: absolute;
+}

@@ -1,0 +1,470 @@
+@import "assets/styles/common/mixins";
+
+.fee_card {
+	@include card();
+	@include flexbox(flex-start, flex-start, column);
+	width: 100%;
+	margin: 0 0 10px 0;
+	padding: 12px;
+}
+
+.fee_card_title {
+	@include card-title();
+	@include flexbox(flex-start, center);
+	font-size: 36px;
+	margin-bottom: 12px;
+
+	span {
+		@include flexbox(flex-start, center);
+		margin-left: 16px;
+		font-size: 36px;
+		color: var(--color-gold);
+		text-transform: uppercase;
+
+		i {
+			margin-right: 6px;
+			color: var(--color-gold);
+		}
+	}
+
+	@include max-w(xxl) {
+		span {
+			font-size: 24px;
+
+			i {
+				font-size: 16px;
+			}
+		}
+	}
+
+	@include max-w(md) {
+		@include flexbox(flex-start, flex-start, column);
+
+		span {
+			margin-left: 0;
+			margin-top: 5px;
+			font-size: 24px;
+
+			i {
+				font-size: 16px;
+			}
+		}
+	}
+}
+
+.fee_header_content {
+	@include flexbox(flex-start, flex-start, column);
+	width: 100%;
+	padding: 12px 26px;
+}
+
+.fee_login_stub {
+	width: 100%;
+	@include flexbox(flex-start, center, column);
+	padding: 16px;
+	background: var(--stripped-normal);
+
+	i {
+		font-size: 40px;
+		margin-bottom: 8px;
+	}
+
+	span {
+		max-width: 400px;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 14px;
+		line-height: 19px;
+		text-align: center;
+		color: var(--color-secondary);
+	}
+}
+
+.fee_description {
+	font-style: normal;
+	font-size: 16px;
+	line-height: 23px;
+	color: var(--color-secondary);
+	margin: 5px 0 16px;
+	max-width: 750px;
+}
+
+.fee_balances {
+	@include flexbox(flex-start, flex-start);
+	padding: 0 26px 26px;
+	max-width: 800px;
+
+	@include max-w(lg) {
+		@include flexbox(flex-start, flex-start, column);
+		flex-direction: column;
+		max-width: unset;
+		width: 100%;
+	}
+}
+
+.fee_balance {
+	@include flexbox(flex-start, flex-start, column);
+	width: 400px;
+
+	&:not(:last-child) {
+		margin-right: 34px;
+	}
+
+	@include max-w(lg) {
+		width: 100%;
+
+		div:not(:last-child) {
+			margin-right: 34px;
+		}
+	}
+}
+
+.fee_balance_title {
+	font-weight: normal;
+	font-size: 14px;
+	line-height: 19px;
+	color: var(--color-secondary);
+	margin-bottom: 16px;
+
+	@include max-w(lg) {
+		width: 100%;
+
+		div:not(:last-child) {
+			margin-right: 34px;
+		}
+	}
+}
+
+.fee_balance_value {
+	@include flexbox(flex-start, center, column);
+	font-style: normal;
+	font-weight: bold;
+	font-size: 18px;
+	line-height: 21px;
+	color: var(--color-primary);
+}
+
+.fee_balance_range {
+	width: 100%;
+	height: 5px;
+	border-radius: 5px;
+	background: var(--divider-border);
+	position: relative;
+	margin-top: 10px;
+
+	&.small-margin {
+		margin-bottom: 5px;
+	}
+
+	&:before {
+		max-width: 100%;
+		width: var(--fee-balance-range-percentage);
+		height: 5px;
+		position: absolute;
+		top: 0;
+		left: 0;
+		border-radius: 5px;
+	}
+
+	&.secondary::before {
+		content: "";
+		background: var(--color-blue);
+	}
+
+	&.primary::before {
+		content: "";
+		background: var(--color-yellow);
+	}
+}
+
+.fee_available {
+	@include flexbox(flex-start, center);
+	align-items: center;
+	margin: 10px 0;
+
+	> span {
+		&:nth-of-type(1) {
+			font-weight: normal;
+			font-size: 16px;
+			line-height: 23px;
+			color: var(--color-secondary);
+			margin-right: 8px;
+		}
+
+		&:nth-of-type(2) {
+			font-weight: bold;
+			font-size: 16px;
+			line-height: 23px;
+			color: var(--color-primary);
+
+			span {
+				font-weight: normal;
+			}
+		}
+	}
+
+	> a {
+		margin-left: 14px;
+	}
+
+	@include max-w(xs) {
+		@include flexbox(flex-start, flex-start);
+		flex-wrap: wrap;
+
+		> a {
+			margin-left: 0;
+			margin-top: 8px;
+			width: 100%;
+		}
+	}
+}
+
+.fee_maker_taker_container {
+	@include flexbox();
+
+	width: 100%;
+	padding: 12px 26px;
+
+	@include max-w(xs) {
+		display: grid;
+		grid-template:
+			"maker taker"
+			"switch switch"
+			auto / 1fr 1fr;
+	}
+}
+
+.fee_maker_taker_item {
+	@include flexbox(flex-start, flex-start, column);
+
+	&.centered {
+		@include flexbox(center, center, column);
+	}
+
+	padding: 0 34px;
+
+	&:first-child {
+		padding-left: 0;
+		border-right: 1px solid var(--divider-border);
+	}
+
+	&:nth-of-type(1) {
+		grid-area: maker;
+	}
+
+	&:nth-of-type(2) {
+		grid-area: taker;
+	}
+
+	span {
+		&:nth-of-type(1) {
+			font-weight: normal;
+			font-size: 16px;
+			line-height: 23px;
+			color: var(--color-secondary);
+			margin-bottom: 10px;
+		}
+
+		&:nth-of-type(2) {
+			font-weight: normal;
+			font-size: 36px;
+			line-height: 42px;
+			margin-bottom: 5px;
+			color: var(--color-primary);
+		}
+
+		&:nth-of-type(3) {
+			font-weight: normal;
+			font-size: 16px;
+			line-height: 23px;
+			text-decoration-line: line-through;
+			color: var(--color-secondary);
+		}
+	}
+
+	@include max-w(xs) {
+		padding: 0 14px;
+
+		span {
+			&:nth-of-type(1) {
+				font-size: 14px;
+				line-height: 19px;
+				margin-bottom: 4px;
+			}
+			&:nth-of-type(2) {
+				font-size: 24px;
+				line-height: 26px;
+			}
+			&:nth-of-type(3) {
+				font-size: 14px;
+				line-height: 19px;
+			}
+		}
+	}
+}
+
+.fee_rate {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+	margin-left: 20px;
+	grid-area: switch;
+
+	@include max-w(lg) {
+		margin-left: 0;
+		margin-top: 20px;
+	}
+
+	> span {
+		font-weight: normal;
+		font-size: 16px;
+		line-height: 23px;
+		margin-bottom: 10px;
+		color: var(--color-secondary);
+	}
+}
+
+.fee_rate_switch {
+	@include flexbox(flex-start, center);
+
+	span {
+		font-style: normal;
+		font-weight: normal;
+		font-size: 16px;
+		margin-right: 14px;
+		color: var(--color-primary);
+		line-height: 23px;
+	}
+}
+
+.fee_about_container {
+	@include flexbox(flex-start, flex-start, column);
+	width: 100%;
+	margin: 20px 0 20px;
+}
+
+.fee_about_info {
+	font-weight: normal;
+	font-size: 16px;
+	line-height: 23px;
+	margin-bottom: 10px;
+	padding-left: 26px;
+	position: relative;
+	color: var(--color-secondary);
+
+	> i {
+		position: absolute;
+		font-size: 16px;
+		left: 0;
+		top: 4px;
+	}
+}
+
+.fee_about_links {
+	@include flexbox(flex-start, center);
+
+	a {
+		padding: 0 26px;
+		&:nth-of-type(1) {
+			border-right: 2px solid var(--divider-border);
+		}
+	}
+
+	@include max-w(xs) {
+		@include flexbox(flex-start, flex-start, column);
+
+		a {
+			padding: 5px 26px;
+			&:nth-of-type(1) {
+				border-right: none;
+			}
+		}
+	}
+}
+
+.fee_table_container {
+	@include card();
+	margin: 0;
+	padding: 5px;
+	width: 100%;
+
+	@include max-w(xs) {
+		padding: 0;
+		background: transparent;
+	}
+}
+
+.fee_table {
+	padding-bottom: 0;
+}
+
+.fee_table_header {
+	background: var(--table-hover-background) !important;
+}
+
+.fee_active_tier {
+	width: 8px;
+	height: 8px;
+	background: var(--color-green);
+	border-radius: 50%;
+	position: absolute;
+	left: 8px;
+
+	&:after {
+		content: "";
+		position: absolute;
+		width: calc(100% + 8px);
+		height: calc(100% + 8px);
+		left: -4px;
+		top: -4px;
+		border-radius: 50%;
+		background-color: var(--color-green);
+		opacity: 0.4;
+	}
+}
+
+.fee_mobile_card {
+	@include cardMobile();
+	overflow: hidden !important;
+}
+
+.fee_mobile_card_header {
+	@include cardMobileHeader();
+}
+
+.fee_mobile_tier_name {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	padding-left: 5px;
+	position: relative;
+}
+
+.fee_active_tier.mobile {
+	position: relative;
+	margin-left: 6px;
+	left: 0;
+}
+
+.fee_card_mobile_action {
+	@include cardMobileAction();
+	&.active {
+		@include cardMobileAction(true);
+	}
+}
+
+.fee_card_mobile_content {
+	@include cardMobileContent();
+}
+
+.fee_card_mobile_content_group {
+	@include cardMobileContentGroup();
+}
+.fee_card_mobile_content_hidden {
+	@include cardMobileContentHidden();
+}
+
+.fee_table_row_active {
+	background-color: var(--color-green-hover);
+}

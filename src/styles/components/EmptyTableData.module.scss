@@ -1,0 +1,31 @@
+@import "src/assets/styles/common/mixins";
+// TODO: duplicated in pages/Table and NoResultsMessage
+.container {
+	@include flexbox(center, center, column);
+	padding: 25px 0;
+	width: 100%;
+	font-size: 14px;
+	line-height: 19px;
+	text-align: center;
+	font-weight: normal;
+	color: var(--color-secondary);
+
+	i {
+		font-size: 41px;
+		margin: 0 0 16px;
+		color: var(--table-no-data-icon-color);
+	}
+
+	span {
+		max-width: 220px;
+	}
+
+	@include max-w(md) {
+		padding: 20px 0;
+
+		i {
+			font-size: 32px;
+			margin: 0 0 10px;
+		}
+	}
+}

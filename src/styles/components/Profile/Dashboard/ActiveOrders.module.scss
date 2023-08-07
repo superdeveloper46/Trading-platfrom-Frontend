@@ -1,0 +1,143 @@
+@import "src/assets/styles/common/mixins";
+
+.card_header {
+	@include card-header();
+	width: 100%;
+	min-height: 60px;
+	padding: 24px;
+	border-bottom: 1px solid var(--table-header-border-color);
+	background-color: var(--card-background-color);
+	border-radius: 8px 8px 0 0;
+
+	> a,
+	> span {
+		&:last-child {
+			cursor: pointer;
+			margin-left: 25px;
+
+			i {
+				font-size: 16px;
+				margin-left: 15px;
+			}
+		}
+	}
+
+	@include max-w(xxl) {
+		min-height: 55px;
+	}
+
+	@include max-w(md) {
+		padding: 16px;
+		flex-wrap: wrap;
+
+		> a,
+		> span {
+			&:last-child {
+				margin-left: 0;
+			}
+		}
+	}
+}
+
+.table_data {
+	@include flexbox(flex-start, flex-start, column);
+
+	&.right {
+		@include flexbox(flex-start, flex-end, column);
+	}
+}
+
+.table_container {
+	@include tiny-scrollbar();
+	padding: 16px;
+	max-height: 465px;
+	overflow-y: auto;
+}
+
+.primary {
+	font-style: normal;
+	font-weight: normal;
+	font-size: 14px;
+	line-height: 19px;
+
+	color: var(--color-primary);
+
+	&.secondary {
+		color: var(--color-secondary);
+	}
+}
+
+.secondary {
+	font-weight: normal;
+	font-size: 12px;
+	line-height: 16px;
+	// color: var(--color-secondary);
+}
+
+.primary_small {
+	font-size: 12px;
+	line-height: 16px;
+	color: var(--color-primary);
+}
+
+.filled_direction_badge {
+	margin-left: 4px;
+}
+
+.list_mobile_container {
+	@include flexbox(flex-start, flex-start, column);
+	width: 100%;
+	padding: 16px;
+}
+
+.card_mobile {
+	@include cardMobile();
+
+	&.expanded {
+		@include cardMobile(true);
+	}
+}
+
+.card_mobile_header {
+	@include cardMobileHeader();
+
+	&.expanded {
+		@include cardMobileHeader(true);
+	}
+}
+
+.card_mobile_ccy {
+	@include cardMobileCurrency();
+}
+
+.card_mobile_date_time {
+	@include cardMobileDateTime();
+}
+
+.card_mobile_date_time_item {
+	@include cardMobileDateTimeItem();
+}
+
+.card_mobile_action {
+	@include cardMobileAction();
+
+	&.expanded {
+		@include cardMobileAction(true);
+	}
+}
+
+.card_mobile_content {
+	@include cardMobileContent();
+}
+
+.card_mobile_content_group {
+	@include cardMobileContentGroup();
+}
+
+.card_mobile_content_hidden {
+	@include cardMobileContentHidden();
+}
+
+.cancel_button_container {
+	margin: 0 auto;
+}

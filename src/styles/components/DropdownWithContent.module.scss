@@ -1,0 +1,32 @@
+@import "src/assets/styles/common/mixins";
+
+.dropdown {
+	@include flexbox(stretch, center);
+
+	position: relative;
+	width: max-content;
+	cursor: pointer;
+	user-select: none;
+	z-index: 10;
+
+	svg {
+		margin-left: 10px;
+	}
+}
+
+.dropdownLabel {
+	font-size: 14px;
+	width: max-content;
+	color: var(--color-secondary);
+}
+
+.dropdownContent {
+	z-index: 1;
+	position: absolute;
+	width: 100%;
+	top: 100%;
+}
+
+.closed {
+	display: none;
+}

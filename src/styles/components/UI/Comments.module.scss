@@ -1,0 +1,122 @@
+@import "src/assets/styles/common/mixins";
+
+.Comments {
+	width: 100%;
+}
+
+.Title {
+	font-weight: 700;
+	font-size: 24px;
+	line-height: 28.13px;
+}
+
+.Container {
+	@include flexbox();
+	@include transition(opacity);
+	padding-top: 20px;
+	width: 100%;
+	min-height: 81px;
+	opacity: 0.7;
+	padding-left: var(--level);
+
+	&:hover {
+		opacity: 1;
+	}
+
+	.Avatar {
+		padding: 5px 15px 0 0px;
+
+		i {
+			font-size: 37px;
+			color: var(--ui-profile-avatar-background);
+		}
+
+		&.small {
+			padding: 8px 8px 0 8px;
+			i {
+				font-size: 21px;
+			}
+		}
+	}
+}
+
+.Login {
+	@include flexbox(center, center);
+	width: 100%;
+	border-radius: 5px;
+	background-color: var(--background-gray);
+	border: 1px solid var(--info-snack-color-border-grey);
+
+	i {
+		font-size: 25px;
+		margin-right: 10px;
+	}
+
+	span {
+		color: var(--color-secondary);
+		font-weight: 400;
+		font-size: 14px;
+
+		a {
+			color: var(--color-blue);
+		}
+	}
+}
+
+.Comment {
+	font-size: 16px;
+	font-weight: 400;
+
+	.Header {
+		@include flexbox();
+		gap: 10px;
+		font-weight: 400;
+		padding-bottom: 5px;
+
+		.Name {
+			font-weight: 700;
+			line-height: 19px;
+		}
+
+		.Date {
+			color: var(--color-secondary);
+			font-size: 14px;
+		}
+	}
+
+	.Text {
+		padding-bottom: 5px;
+		line-height: 20px;
+	}
+
+	.Footer {
+		@include flexbox();
+		gap: 10px;
+
+		.Action {
+			@include transition(opacity);
+			cursor: pointer;
+
+			i {
+				font-size: 13px;
+				padding-right: 5px;
+			}
+
+			span {
+				color: var(--color-secondary);
+				font-size: 14px;
+				font-weight: 400;
+			}
+		}
+
+		.Reply {
+			opacity: 0;
+		}
+	}
+
+	&:hover {
+		.Reply {
+			opacity: 1;
+		}
+	}
+}

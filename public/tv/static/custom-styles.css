@@ -1,0 +1,44 @@
+html.theme-dark .common-tooltip-vertical svg {
+	color: #787878;
+}
+
+.control-bar__btn--dark {
+	background-color: #22242a;
+}
+
+.control-bar__btn--dark:hover {
+	background-color: #252525;
+}
+
+html.theme-dark .context-menu {
+	background-color: #22242a;
+}
+
+html.theme-dark .context-menu td span {
+	color: #b2b2b2;
+}
+
+body,
+.chart-controls-bar,
+#footer-chart-panel {
+	background-color: transparent !important;
+}
+
+html .group-2_so5thS,
+html .fill-2_so5thS {
+	background-color: transparent !important;
+}
+
+:root:not(.theme-dark) {
+	--tv-color-platform-background: #fff;
+	--tv-color-pane-background: #fff;
+}
+
+.theme-dark:root {
+	--tv-color-platform-background: #1c1e22;
+	--tv-color-pane-background: #1c1e22;
+}
+
+html.theme-dark div[data-outside-boundary-for="compare-dialog"] > div {
+	background-color: #27292f;
+}

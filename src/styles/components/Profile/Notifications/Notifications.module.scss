@@ -1,0 +1,114 @@
+@import "src/assets/styles/common/mixins";
+
+.card_title {
+	@include card-title();
+}
+
+.container {
+	display: grid;
+	grid-template: auto / 1fr;
+	grid-gap: 10px;
+	width: 100%;
+	margin: 0;
+}
+
+.filters {
+	@include flexbox(space-between, center);
+}
+
+.filters_section {
+	@include flexbox(flex-start, center);
+
+	&:first-child {
+		width: 250px;
+
+		> div {
+			width: 100%;
+		}
+	}
+}
+
+.list_container {
+	@include card(false);
+	margin: 0 0 20px 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+
+.list_item {
+	@include transition(background-color);
+	width: 100%;
+	display: grid;
+	align-items: self-start;
+	grid-gap: 10px 16px;
+	padding: 24px 34px;
+	grid-template: auto / 18px 1fr 100px;
+	grid-template-areas:
+		"n-icon n-title n-date"
+		". n-body .";
+	position: relative;
+
+	&:hover {
+		background-color: var(--stripped-normal);
+	}
+
+	> a {
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+	}
+
+	i {
+		color: var(--icon-primary);
+	}
+
+	&.read {
+		> span {
+			color: var(--color-secondary) !important;
+		}
+
+		> i {
+			color: var(--icon-disabled) !important;
+		}
+	}
+
+	@include max-w(xs) {
+		grid-template-areas:
+			"n-icon . n-date"
+			"n-title n-title n-title"
+			"n-body n-body n-body";
+	}
+}
+
+.list_item_icon {
+	font-size: 18px;
+	grid-area: n-icon;
+}
+
+.list_item_title {
+	font-weight: bold;
+	font-size: 16px;
+	line-height: 20px;
+	color: var(--color-primary);
+	grid-area: n-title;
+}
+
+.list_item_body {
+	font-weight: normal;
+	font-size: 14px;
+	line-height: 19px;
+	color: var(--color-primary);
+	grid-area: n-body;
+}
+
+.list_item_date {
+	font-size: 12px;
+	line-height: 14px;
+	text-align: right;
+	color: var(--color-secondary);
+	grid-area: n-date;
+}

@@ -1,0 +1,102 @@
+@import "src/assets/styles/common/mixins";
+
+.input {
+	position: absolute;
+	opacity: 0;
+}
+
+.label {
+	font-size: 14px;
+	color: var(--color-text-secondary);
+	padding-left: 24px;
+	position: relative;
+	cursor: pointer;
+	display: inline-block;
+	min-height: 24px;
+	line-height: 25px;
+	user-select: none;
+
+	// @include transition(background-color, border-color);
+	@include transition-long(all);
+
+	&.labeled {
+		padding-left: 32px;
+	}
+
+	&:before {
+		content: "";
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 25px;
+		height: 25px;
+		transition: border-color 0.12s ease-in-out;
+		border-radius: 50%;
+		background: transparent;
+		border: 1px solid;
+		border-color: var(--input-normal);
+		z-index: 1;
+	}
+
+	&:after {
+		content: "";
+		position: absolute;
+		width: 13px;
+		height: 13px;
+		background-color: var(--color-blue);
+		border-radius: 50%;
+		top: 6px;
+		left: 6px;
+		transform: scale(0);
+		transition: 0.08s ease;
+	}
+
+	&.error {
+		color: var(--color-red);
+
+		&:before {
+			border-color: var(--color-red);
+		}
+	}
+
+	&.checked {
+		&:before {
+			border-color: var(--color-blue);
+		}
+
+		&:after {
+			transform: scale(1);
+		}
+
+		i {
+			transform: scale(1);
+		}
+	}
+
+	&:hover:before {
+		border-color: var(--color-blue);
+	}
+
+	&.card {
+		@include flexbox(flex-start, center);
+		padding-left: 42px;
+		border-radius: 5px;
+		min-height: 46px;
+		border: 1px solid;
+		border-color: var(--finance-method-border-color);
+
+		&.checked {
+			border-color: var(--color-blue);
+		}
+
+		&:before {
+			left: 10px;
+			top: 9px;
+		}
+
+		i {
+			top: 16px;
+			left: 17px;
+		}
+	}
+}

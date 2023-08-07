@@ -1,0 +1,365 @@
+@import "assets/styles/common/mixins";
+
+.container {
+	@include flexbox(stretch, stretch, column);
+}
+
+.ad_overlay {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: rgba(0, 0, 0, 0.4);
+	z-index: 100;
+}
+
+.filters {
+	@include flexbox(stretch, center);
+	@include card();
+
+	border-radius: 12px;
+	padding: 20px;
+	overflow: visible;
+	gap: 20px;
+	margin-bottom: 20px;
+
+	@include max-w(1650px) {
+		flex-wrap: wrap;
+	}
+
+	@include max-w(md) {
+		padding: 15px 10px;
+	}
+
+	@include max-w(xs) {
+		gap: 10px;
+	}
+
+	.side_selector {
+		width: 260px;
+		flex-shrink: 0;
+
+		@include max-w(xxl) {
+			width: 128px;
+		}
+	}
+
+	.input_block {
+		width: 100%;
+		max-width: 200px;
+		min-width: 175px;
+
+		&.currency {
+			max-width: 120px;
+			min-width: 120px;
+		}
+
+		&.amount_input {
+			max-width: 240px;
+		}
+
+		@include max-w(xxl) {
+			max-width: 160px;
+			min-width: 160px;
+		}
+	}
+
+	.item_label {
+		font-size: 16px;
+		color: var(--color-text-primary);
+	}
+
+	.dropdown_container {
+		@include max-w(xxl) {
+			margin-left: auto;
+		}
+	}
+
+	.filter {
+		@include flexbox(stretch, center);
+
+		font-size: 14px;
+		line-height: 19px;
+		color: var(--color-text-primary);
+		gap: 6px;
+		border: none;
+		padding: 0;
+		margin: 0;
+
+		svg {
+			width: 24px;
+			height: 24px;
+			stroke: var(--color-fill-primary);
+			margin-left: 0;
+		}
+
+		i {
+			color: var(--color-grey-secondary);
+			font-size: 8px;
+			margin-left: 5px;
+		}
+
+		@include max-w(xxl) {
+			font-weight: 500;
+
+			i {
+				display: none;
+			}
+		}
+	}
+
+	.filter_content {
+		@include card();
+		@include flexbox(stretch, stretch, column);
+
+		overflow: unset;
+		padding: 20px;
+		border-radius: 12px;
+		width: max-content;
+		max-width: 240px;
+		transform: translate(-100px, 10px);
+		gap: 20px;
+		box-shadow: var(--navmenu-box-shadow);
+
+		> div {
+			width: 100%;
+			max-width: 100% !important;
+		}
+
+		@include max-w(xxl) {
+			width: 260px;
+			max-width: 260px;
+			transform: translateX(-155px);
+		}
+
+		@include max-w(xs) {
+			transform: translateX(-205px);
+		}
+	}
+
+	.refresh {
+		margin-left: auto;
+
+		@include max-w(xxl) {
+			display: none;
+		}
+	}
+}
+
+.orders_list {
+	@include flexbox(stretch, stretch, column);
+}
+
+.order {
+	@include flexbox(stretch, stretch, column);
+	@include card();
+
+	margin-bottom: 20px;
+	border-radius: 12px;
+
+	&.isActive {
+		z-index: 200;
+
+		.middle {
+			grid-template-areas:
+				"available limit payment-method payment-method"
+				"payment-time terms terms terms"
+				"trade-form trade-form trade-form trade-form";
+
+			@include max-w(md) {
+				grid-template-areas: "available" "limit" "payment-method" "payment-time" "terms";
+			}
+		}
+	}
+}
+
+.top {
+	@include flexbox(stretch, center);
+
+	padding: 20px;
+	border-bottom: 1px solid var(--card-border-color);
+
+	@include max-w(md) {
+		padding: 10px;
+	}
+}
+
+.middle {
+	display: grid;
+	grid-template-areas: "available limit payment-method payment-method";
+	grid-gap: 20px 10px;
+
+	padding: 10px 20px;
+	border-bottom: 1px solid var(--card-border-color);
+
+	@include max-w(md) {
+		padding: 10px;
+		grid-template-areas: "available" "limit" "payment-method";
+		grid-gap: 8px;
+
+		.info_block {
+			display: grid;
+			align-content: center;
+			grid-template-columns: 2fr 3fr;
+			width: 100% !important;
+
+			> span {
+				margin-bottom: 0;
+			}
+		}
+	}
+}
+
+.bottom {
+	@include flexbox(stretch, center);
+
+	padding: 10px 20px;
+
+	@include max-w(md) {
+		padding: 10px;
+	}
+}
+
+.buy_button {
+	margin-left: auto;
+}
+
+.info_block {
+	@include flexbox(stretch, stretch, column);
+
+	overflow: hidden;
+
+	&.available {
+		grid-area: available;
+		width: 185px;
+	}
+
+	&.limit {
+		grid-area: limit;
+		width: 315px;
+	}
+
+	&.payment_method {
+		grid-area: payment-method;
+		max-width: 750px;
+	}
+
+	&.payment_time {
+		grid-area: payment-time;
+	}
+
+	&.terms {
+		grid-area: terms;
+	}
+}
+
+.trade_form {
+	@include flexbox(center, flex-start);
+
+	grid-area: trade-form;
+	gap: 20px;
+	padding: 20px 20px 10px;
+	border-top: 1px solid var(--divider-border);
+	width: calc(100% + 40px);
+	margin-left: -20px;
+
+	div {
+		flex: 1;
+	}
+
+	.payment_method_btn {
+		flex: 1;
+	}
+
+	.confirm_btn {
+		width: 315px;
+	}
+
+	@include max-w(md) {
+		padding: 20px 10px 10px;
+		flex-direction: column;
+		width: 100%;
+		margin-left: 0;
+		gap: 10px;
+
+		.confirm_btn {
+			width: 100%;
+		}
+	}
+}
+
+.price {
+	font-weight: 500;
+	font-size: 20px;
+	line-height: 24px;
+	color: var(--color-text-primary);
+}
+
+.value {
+	font-size: 14px;
+	line-height: 22px;
+	color: var(--color-text-primary);
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.merchant {
+	@include flexbox(stretch, center);
+
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 24px;
+	color: var(--color-text-primary);
+	gap: 6px;
+
+	a {
+		color: var(--color-text-primary);
+		max-width: 350px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	img {
+		height: 24px;
+		width: 24px;
+	}
+
+	.icon {
+		margin-right: 6px;
+		color: var(--color-blue);
+		font-size: 14px;
+	}
+}
+
+.orders_stats {
+	@include flexbox();
+
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 24px;
+	color: var(--color-text-tertiary);
+	margin-left: auto;
+
+	> span {
+		&:first-child {
+			margin-right: 6px;
+		}
+	}
+}
+
+.close_btn {
+	@include flexbox(center, center);
+
+	width: 42px;
+	height: 42px;
+	background-color: var(--color-fill-secondary);
+	border-radius: 12px;
+	cursor: pointer;
+	margin-left: auto;
+
+	i {
+		color: var(--color-text-primary);
+		font-size: 24px;
+	}
+}

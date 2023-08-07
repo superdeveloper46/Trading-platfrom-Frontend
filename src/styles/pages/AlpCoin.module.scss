@@ -1,0 +1,198 @@
+@import "src/assets/styles/common/mixins";
+
+.row {
+	@include flexbox(center, center);
+
+	@include max-w(md) {
+		flex-direction: column;
+	}
+}
+
+.col {
+	@include flexbox(center, center, column);
+}
+
+.container {
+	margin: 0 auto;
+	max-width: get-breakpoint-value(xl);
+}
+
+.title {
+	font-size: 36px;
+	font-weight: 800;
+	text-align: center;
+	margin: 0 0 36px;
+}
+
+.wide_button {
+	height: 46px;
+	line-height: 46px;
+	width: 340px;
+
+	@include max-w(lg) {
+		width: 100%;
+	}
+}
+
+.alp_coin_card_content {
+	@include flexbox(center, center, column);
+	margin: 0 auto;
+	padding: 60px 20px;
+	width: 100%;
+}
+
+.alp_coin_panel_img {
+	width: 400px;
+	height: 240px;
+	text-align: center;
+	margin: 0 0 40px;
+
+	@include max-w(xs) {
+		width: 100%;
+	}
+
+	img {
+		width: 100%;
+		height: 100%;
+	}
+
+	&.with_top_margin {
+		margin-top: 120px;
+	}
+}
+
+.alp_coin_text_description {
+	font-size: 16px;
+	text-align: center;
+	margin: 0 0 36px;
+}
+
+.alp_coin_main_text {
+	font-size: 36px;
+	font-weight: 800;
+	text-align: center;
+	margin: 0 0 36px;
+}
+
+.road_map {
+	margin: 100px 0 40px;
+	width: 100%;
+
+	@include min-max-w(lg, xl) {
+		width: 800px;
+	}
+
+	@include min-max-w(xl, xxl) {
+		width: 900px;
+	}
+
+	@include min-w(xxl) {
+		width: 1000px;
+	}
+
+	&.road_map_img_wrapper {
+		width: 100%;
+		height: 300px;
+
+		@include max-w(xs) {
+			height: 600px;
+		}
+
+		@include max-w(xl) {
+			height: 1000px;
+		}
+	}
+}
+
+.support_block {
+	@include flexbox(center, center, column);
+	margin: 100px 0 40px;
+}
+
+.feature_set {
+	@include flexbox(center, center);
+	flex-wrap: wrap;
+
+	@include max-w(xs) {
+		@include flexbox(center, center, column);
+	}
+}
+
+.feature_set_item {
+	@include flexbox(center, center, column);
+	text-align: center;
+	margin: 20px 0;
+	width: 33%;
+	padding: 0 0.5rem;
+
+	@include max-w(xs) {
+		width: 100%;
+	}
+}
+
+.feature_img {
+	color: #747d88;
+	font-size: 80px;
+	margin-bottom: 20px;
+}
+
+.feature_name {
+	font-size: 24px;
+	width: 100%;
+	line-height: 24px;
+	word-break: break-word;
+	margin-bottom: 15px;
+	font-weight: 800;
+}
+
+.feature_description {
+	font-size: 16px;
+	width: 90%;
+	line-height: 20px;
+	word-break: break-word;
+	margin-bottom: 15px;
+}
+
+.alp_document_img {
+	font-size: 80px;
+	line-height: 80px;
+	color: var(--color-blue);
+	margin-bottom: 15px;
+
+	&.pdf_img {
+		margin-right: 10px;
+	}
+}
+
+.alp_document_text {
+	color: var(--color-blue);
+	font-size: 24px;
+}
+
+.alp_document {
+	@include flexbox(center, center, column);
+	padding: 20px;
+	border: 1px solid var(--color-blue);
+	border-radius: 10px;
+	text-align: center;
+	width: 185px;
+	font-weight: 500;
+	margin: 20px;
+	cursor: pointer;
+
+	&:hover {
+		background: #f4f9ff;
+		color: var(--color-blue);
+		font-size: 24px;
+		text-decoration: underline;
+	}
+
+	@include max-w(xs) {
+		margin: 20px auto;
+	}
+}
+
+.road_map_block {
+	width: 100%;
+	height: 100%;
+}

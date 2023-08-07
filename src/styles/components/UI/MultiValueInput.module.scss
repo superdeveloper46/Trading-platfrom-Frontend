@@ -1,0 +1,76 @@
+@import "assets/styles/common/mixins";
+
+.wrapper {
+	margin: 0 auto;
+	position: relative;
+	width: 100%;
+}
+
+.container {
+	position: relative;
+	border-radius: 12px;
+	padding: 5px 15px;
+	width: 100%;
+	border: 1px solid var(--input-normal);
+	color: var(--input-normal);
+
+	&.active,
+	&.active input,
+	&.active:hover {
+		color: var(--input-focused);
+		border-color: var(--input-focused);
+	}
+
+	&.error,
+	&.error input,
+	&.error:hover {
+		color: var(--input-error);
+		border-color: var(--input-error);
+	}
+
+	&:hover {
+		color: var(--input-hover);
+		border-color: var(--input-hover);
+	}
+
+	input {
+		padding: 9px 4px;
+		min-width: 30px;
+		width: 100%;
+		font-size: 14px;
+		background: none;
+		overflow-y: hidden;
+		outline: none;
+		height: 35px;
+		border: none;
+		caret-color: var(--color-caret);
+		color: var(--input-normal);
+	}
+}
+
+.placeholder {
+	position: absolute;
+	top: 12px;
+	left: 20px;
+	z-index: 1;
+	font-size: 14px;
+	background: transparent;
+	color: var(--input-label-normal);
+	transition: 200ms ease-in-out;
+
+	&.active {
+		color: var(--input-label-active);
+	}
+
+	&.error {
+		color: var(--input-error);
+	}
+
+	&.active,
+	&.filled {
+		top: -10px;
+		font-size: 12px;
+		background: var(--card-background-color);
+		padding: 0 3px;
+	}
+}

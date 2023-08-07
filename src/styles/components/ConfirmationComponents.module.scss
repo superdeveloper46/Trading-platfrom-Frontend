@@ -1,0 +1,274 @@
+@import "src/assets/styles/common/mixins";
+
+.container {
+	@include flexbox(center, flex-start);
+	position: relative;
+	min-height: calc(100vh - 63px);
+	width: 100%;
+	overflow: hidden;
+	background: var(--card-background-color);
+	box-shadow: var(--card-shadow);
+	padding: 68px;
+	z-index: 2;
+
+	@include max-w(xs) {
+		padding: 0;
+		border: none;
+		box-shadow: none;
+	}
+}
+
+.form_container {
+	@include flexbox(center, center, column);
+	max-width: 850px;
+	width: 100%;
+	border-radius: 5px;
+	border: 1px solid var(--card-border-color);
+	background: var(--card-background-color);
+	padding-top: 30px;
+
+	@include max-w(xs) {
+		border: none;
+		min-height: calc(100vh - 63px);
+		justify-content: flex-start;
+		padding-top: 70px;
+	}
+}
+
+.header {
+	@include flexbox(center, center, column);
+	text-align: center;
+	width: 100%;
+	margin-bottom: 25px;
+	padding: 20px 40px 0;
+
+	@include max-w(xs) {
+		padding: 20px;
+	}
+}
+
+.icon_container {
+	@include flexbox(center, center);
+	margin-bottom: 20px;
+
+	img {
+		width: 230px;
+	}
+}
+
+//h2
+.title {
+	font-size: 24px;
+	line-height: 28px;
+	text-align: center;
+	font-weight: bold;
+	margin: 0;
+	color: var(--color-primary);
+}
+
+//span
+.subtitle {
+	font-size: 16px;
+	line-height: 23px;
+	margin-top: 14px;
+	text-align: center;
+	color: var(--color-secondary);
+}
+
+.info_container {
+	@include flexbox(center, center, column);
+	background: var(--modal-info-group-background);
+	padding: 20px;
+	width: 100%;
+}
+
+.info_inner {
+	display: grid;
+	grid-template: auto / 4fr 6fr;
+	align-items: center;
+	justify-items: start;
+	width: 100%;
+	max-width: 380px;
+}
+
+//span
+.info_group_item {
+	padding: 10px 13px;
+	height: auto;
+	word-break: break-word;
+
+	&:nth-child(odd) {
+		font-size: 14px;
+		color: var(--color-secondary);
+	}
+
+	&:nth-child(even) {
+		font-size: 16px;
+		color: var(--color-primary);
+	}
+}
+
+.info_group {
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	width: 100%;
+
+	&:last-child {
+		> div[class="info_group_item"] {
+			font-size: 12px;
+			line-height: 14px;
+			color: var(--color-disabled);
+		}
+	}
+}
+
+//span
+.amount {
+	text-transform: uppercase;
+	font-weight: bold;
+	color: var(--color-primary);
+	font-size: 18px;
+}
+
+.actions_container {
+	@include flexbox(center, center, column);
+	width: 100%;
+	padding: 20px 20px 40px;
+
+	@include max-w(xs) {
+		padding: 20px;
+		max-width: 100%;
+	}
+}
+
+.button_group {
+	@include flexbox(center, center, column);
+	width: 100%;
+	margin-top: 30px;
+
+	> button {
+		width: 100%;
+		margin-bottom: 10px;
+	}
+}
+
+.footer_link_container {
+	@include flexbox(center, center);
+	margin-top: auto;
+	width: 100%;
+	background: var(--modal-info-group-background);
+	height: 56px;
+	border-top: 1px solid var(--divider-border);
+	font-size: 16px;
+	border-radius: 0 0 5px 5px;
+
+	@include max-w(xs) {
+		margin-top: 0;
+	}
+}
+
+//span
+.result_amount {
+	text-transform: uppercase;
+	font-weight: bold;
+	color: var(--color-primary);
+	font-size: 18px;
+	margin-bottom: 5px;
+
+	&.disabled {
+		color: var(--color-disbled);
+	}
+
+	@include max-w(xs) {
+		font-size: 24px;
+		line-height: 28px;
+		margin-bottom: 25px;
+	}
+}
+
+//span
+.result_subtitle {
+	font-size: 16px;
+	line-height: 23px;
+	text-align: center;
+	color: var(--color-secondary);
+	max-width: 470px;
+	margin-top: 0;
+	padding: 0 10px;
+}
+
+.result_link_group_container {
+	@include flexbox(center, center, column);
+	margin-bottom: 25px;
+	margin-top: 35px;
+
+	@include max-w(xs) {
+		margin-top: auto;
+	}
+}
+
+//link
+.result_link {
+	@include flexbox(center, center);
+	font-size: 16px;
+
+	&:first-child {
+		margin-bottom: 8px;
+	}
+
+	i[class~="ai"] {
+		font-size: 14px;
+		margin-right: 5px;
+		color: var(--color-blue);
+		transform: translateY(-1px);
+	}
+}
+
+.mobile_amount {
+	@include flexbox(center, center);
+	width: 100%;
+	margin-bottom: 15px;
+	font-weight: bold;
+	font-size: 24px;
+	line-height: 28px;
+	color: var(--color-primary);
+	text-align: center;
+}
+
+.mobile_currency_icon {
+	@include flexbox(center, center);
+
+	i[class~="ai"] {
+		font-size: 25px;
+	}
+}
+
+.payment_type {
+	@include flexbox(center, center);
+	font-size: 14px;
+	line-height: 16px;
+	color: var(--color-primary);
+	margin-top: 5px;
+
+	i[class~="ai"] {
+		color: var(--icon-primary);
+		font-size: 20px;
+		margin-right: 7px;
+	}
+}
+
+.new_withdraw_link_container {
+	@include flexbox(center, center);
+	margin-top: auto;
+	width: 100%;
+	background: var(--modal-info-group-background);
+	height: 56px;
+	border-top: 1px solid var(--divider-border);
+	font-size: 16px;
+	border-radius: 0 0 5px 5px;
+
+	@include max-w(xs) {
+		margin-top: 0;
+	}
+}

@@ -1,0 +1,52 @@
+@import "assets/styles/common/mixins";
+
+.form_date_group {
+	margin-top: 20px;
+
+	label {
+		font-weight: normal;
+		margin-top: 16px;
+		color: var(--color-secondary);
+	}
+}
+
+.form_date_input {
+	@include flexbox();
+	margin: 18px auto 8px;
+	gap: 20px;
+
+	> div {
+		flex: 1;
+	}
+
+	> div:nth-of-type(2) {
+		flex-grow: 2;
+	}
+
+	@include max-w(xl) {
+		> div:nth-of-type(2) {
+			flex-grow: 3;
+		}
+	}
+
+	@include max-w(md) {
+		flex-wrap: wrap;
+		> div:nth-of-type(2) {
+			flex-basis: 100%;
+			order: 1;
+		}
+
+		> div {
+			order: 2;
+		}
+	}
+}
+
+.error_text {
+	margin-bottom: 18px;
+}
+
+.month_label {
+	@include flexbox(space-between, center);
+	width: 100%;
+}

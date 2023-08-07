@@ -1,0 +1,16 @@
+{
+	"name": "ALP.COM Web",
+	"short_name": "ALP.COM",
+	"theme_color": "#ffffff",
+	"background_color": "#f8f9fb",
+	"display": "standalone",
+	"icons": [
+		{
+			"src": "/apple-touch-icon.png",
+			"sizes": "180x180",
+			"type": "image/png"
+		}
+	],
+	"scope": "/",
+	"start_url": "/"
+}

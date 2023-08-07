@@ -1,0 +1,77 @@
+@import "assets/styles/common/mixins";
+
+.assets_container {
+	@include flexbox(center, center);
+
+	cursor: pointer;
+}
+
+.switch_container {
+	@include flexbox(center, center);
+}
+
+.settings_button {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	margin: 0 0 0 auto;
+	cursor: pointer;
+
+	i {
+		font-size: 12px;
+		margin-right: 8px;
+		color: var(--color-blue) !important;
+	}
+
+	span {
+		color: var(--color-blue);
+	}
+}
+
+.settings_menu {
+	@include tiny-scrollbar();
+
+	display: block;
+	position: relative;
+	border-radius: 5px;
+	background: var(--dropdown-menu-item-background-color);
+	box-shadow: var(--navmenu-box-shadow);
+	width: 215px;
+	z-index: 99;
+	overflow-y: auto;
+
+	.item {
+		border: none;
+		line-height: unset;
+		cursor: pointer;
+		min-height: 48px;
+		width: 100%;
+		padding: 15px;
+		color: var(--color-primary);
+		display: grid;
+		grid-template: auto / 1fr 10px;
+		grid-gap: 10px;
+		align-items: center;
+		justify-items: flex-start;
+		transition: ease 0s;
+
+		a {
+			color: var(--color-blue);
+		}
+
+		i {
+			color: var(--color-blue);
+			font-size: 10px !important;
+			margin-right: 0;
+		}
+
+		&:hover {
+			background-color: var(--navmenu-item-hover);
+		}
+	}
+}
+
+.tooltip {
+	background: transparent !important;
+	z-index: 900 !important;
+}

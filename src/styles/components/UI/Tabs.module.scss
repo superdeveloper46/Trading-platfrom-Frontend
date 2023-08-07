@@ -1,0 +1,126 @@
+@import "src/assets/styles/common/mixins";
+
+.tab {
+	@include flexbox(center, center, row, inline-flex);
+	@include transition(color, border-color);
+	text-align: center;
+	line-height: 30px;
+	min-height: 30px;
+	cursor: pointer;
+	margin: 0;
+	text-transform: uppercase;
+	font-weight: bold;
+	height: 100%;
+	padding: 0 5px;
+	flex: 1;
+	font-size: 12px;
+	user-select: none;
+	z-index: 2;
+	max-width: 180px;
+	border-bottom: 2px solid;
+	border-color: transparent;
+	color: var(--color-secondary);
+	width: max-content;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	line-height: 1;
+	letter-spacing: 0.2px;
+
+	&.disabled {
+		cursor: not-allowed;
+		color: var(--color-disabled);
+
+		&:hover {
+			border-color: var(--color-disabled);
+		}
+	}
+
+	i[class~="ai-hint"] {
+		font-size: 12px;
+		margin-left: 4px;
+	}
+
+	&:hover {
+		border-color: var(--color-secondary);
+	}
+
+	&.active {
+		color: var(--color-blue);
+		border-color: var(--color-blue);
+	}
+
+	@include max-w(lg) {
+		flex: 1;
+	}
+
+	&.responsive {
+		word-break: normal;
+		white-space: unset;
+	}
+
+	&.chip {
+		border-radius: 30px !important;
+		background-color: transparent;
+		border: 1px solid var(--color-blue);
+		color: var(--color-blue);
+		flex: unset;
+		padding: 0 12px;
+
+		&:hover {
+			background-color: var(--color-blue);
+			color: #fff;
+		}
+
+		&.active {
+			background-color: var(--color-blue) !important;
+			border-color: var(--color-blue) !important;
+			color: #fff !important;
+		}
+
+		&.disabled {
+			background-color: var(--chip-disabled) !important;
+			border-color: var(--chip-disabled) !important;
+			color: var(--color-disabled);
+			pointer-events: none;
+		}
+	}
+}
+
+.tabs {
+	@include flexbox(flex-start, center);
+	@include tiny-scrollbar();
+	height: 30px;
+	min-height: 30px;
+	width: 100%;
+	margin: 0 auto;
+	border-bottom: 1px solid var(--divider-border);
+	white-space: nowrap;
+	z-index: 8;
+
+	&:first-child a {
+		border-top-left-radius: 5px;
+	}
+
+	&:last-child a {
+		border-top-right-radius: 5px;
+	}
+
+	a {
+		z-index: 2;
+	}
+
+	@include max-w(lg) {
+		a {
+			flex: 1;
+		}
+	}
+
+	@include max-w(xs) {
+		margin-bottom: 5px;
+	}
+
+	&.chip {
+		gap: 10px;
+		border-bottom: none;
+	}
+}

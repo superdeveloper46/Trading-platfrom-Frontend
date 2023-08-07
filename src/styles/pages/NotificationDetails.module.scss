@@ -1,0 +1,33 @@
+@import "src/assets/styles/common/mixins";
+
+.fake_link {
+	@include flexbox(center, center);
+	padding-right: 10px;
+	margin-right: 10px;
+	color: var(--color-primary);
+	border-right: 1px solid var(--color-disabled);
+	cursor: pointer;
+
+	&:hover {
+		color: var(--color-blue);
+	}
+
+	> i {
+		font-size: 10px;
+		margin-right: 16px;
+	}
+}
+
+.page_content_container {
+	@include flexbox(flex-start, flex-start, column);
+	background: transparent;
+	width: 100%;
+	padding: 24px;
+	max-width: 1008px;
+	margin: 0 auto;
+	gap: 15px;
+
+	@include max-w(xl) {
+		padding: 16px;
+	}
+}

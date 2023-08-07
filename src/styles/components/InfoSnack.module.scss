@@ -1,0 +1,50 @@
+.container {
+	width: 100%;
+	border-radius: 5px;
+	padding: 13px 15px;
+	border: 1px solid;
+	display: flex;
+	position: relative;
+	justify-content: flex-start;
+	align-items: center;
+
+	&.no_border_radius {
+		border-radius: unset;
+	}
+
+	> a {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		left: 0;
+		top: 0;
+	}
+
+	span {
+		font-size: 12px;
+		line-height: 14px;
+	}
+
+	&.big {
+		span {
+			font-size: 14px;
+			line-height: 18px;
+		}
+	}
+
+	&.plain {
+		border-radius: 0;
+	}
+
+	> i {
+		&:nth-of-type(1) {
+			font-size: 16px;
+			margin: 0 8px 2px 0;
+		}
+		&:nth-of-type(2) {
+			font-size: 12px;
+			color: var(--color-blue);
+			margin-left: 13px;
+		}
+	}
+}

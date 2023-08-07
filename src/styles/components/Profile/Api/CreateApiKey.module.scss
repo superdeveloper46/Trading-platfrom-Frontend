@@ -1,0 +1,190 @@
+@import "src/assets/styles/common/mixins";
+
+.create_apikey_container {
+	@include card(false);
+	width: 100%;
+	display: grid;
+	grid-template: auto / 1fr 1fr;
+	grid-gap: 46px 120px;
+	padding: 24px 34px;
+	overflow: visible;
+
+	@include max-w(xl) {
+		grid-template: auto / 1fr;
+		padding: 24px;
+	}
+}
+
+.create_apikey_title {
+	@include card-title();
+	margin-bottom: 15px;
+}
+
+.create_apikey_column {
+	@include flexbox(flex-start, flex-start, column);
+}
+
+.permitted_actions {
+	@include flexbox(flex-start, flex-start, column);
+	gap: 24px;
+	width: 100%;
+	margin-top: 40px;
+
+	> span {
+		font-style: normal;
+		font-weight: normal;
+		font-size: 16px;
+		line-height: 23px;
+		color: var(--color-secondary);
+	}
+}
+
+.permitted_actions_list {
+	display: grid;
+	grid-gap: 30px 60px;
+	grid-template: auto / repeat(auto-fill, 150px);
+	width: 100%;
+
+	@include max-w(xs) {
+		grid-template: auto / 1fr;
+		grid-gap: 30px;
+	}
+}
+
+.permitted_ips {
+	@include flexbox(flex-start, flex-start, column);
+	gap: 24px;
+	width: 100%;
+	margin-top: 40px;
+
+	> span {
+		font-style: normal;
+		font-weight: normal;
+		font-size: 16px;
+		line-height: 23px;
+		color: var(--color-secondary);
+	}
+}
+
+.permitted_ips_radio_list {
+	@include flexbox(flex-start, flex-start, column);
+	width: 100%;
+	gap: 12px;
+}
+
+.permitted_ips_radio_list_item {
+	@include flexbox(flex-start, center);
+	width: 100%;
+}
+
+.permitted_ips_input {
+	width: 100%;
+	margin-top: 4px;
+	position: relative;
+	display: grid;
+	grid-template: auto / 1fr auto;
+	grid-gap: 10px;
+	align-items: baseline;
+	justify-items: self-start;
+
+	> button {
+		margin-top: 8px;
+	}
+}
+
+.selected_list {
+	@include flexbox(flex-start, center);
+	flex-wrap: wrap;
+	width: 100%;
+	gap: 12px;
+	margin-top: 10px;
+}
+
+.selected_list_item {
+	@include flexbox(space-between, center);
+	background: var(--color-blue-hover);
+	border-radius: 5px;
+	padding: 5px 10px 5px 16px;
+	color: var(--color-primary);
+	gap: 8px;
+
+	button {
+		i {
+			color: var(--color-blue);
+			font-size: 12px;
+		}
+	}
+
+	&.disabled {
+		pointer-events: none;
+		filter: grayscale(100%);
+		user-select: none;
+	}
+}
+
+.submit {
+	display: grid;
+	grid-template: auto / 1fr;
+	width: 100%;
+	grid-gap: 16px;
+}
+
+.submit_info {
+	font-size: 14px;
+	line-height: 19px;
+	color: var(--color-yellow-dark);
+
+	i {
+		font-size: 14px;
+		margin-right: 6px;
+		color: var(--color-yellow-dark);
+	}
+}
+
+.available_pairs {
+	@include flexbox(flex-start, flex-start, column);
+	gap: 24px;
+	width: 100%;
+	margin-bottom: 15px;
+
+	> span {
+		font-style: normal;
+		font-weight: normal;
+		font-size: 16px;
+		line-height: 23px;
+		color: var(--color-secondary);
+	}
+}
+
+.available_pairs_radio_list {
+	@include flexbox(flex-start, flex-start, column);
+	width: 100%;
+	gap: 12px;
+}
+
+.available_pairs_radio_list_item {
+	@include flexbox(flex-start, center);
+	width: 100%;
+}
+
+.available_pairs_select_container {
+	display: grid;
+	align-items: center;
+	width: 100%;
+	grid-template: auto / 1fr 10px 1fr 30px;
+	grid-gap: 10px;
+	color: var(--color-primary);
+
+	&.disabled {
+		color: var(--input-label-disabled);
+	}
+
+	> span {
+		text-align: center;
+	}
+
+	@include max-w(xs) {
+		grid-template: auto / 1fr;
+		justify-items: center;
+	}
+}

@@ -1,0 +1,77 @@
+@import "src/assets/styles/common/mixins";
+
+.light {
+  font-weight: 300;
+}
+
+.error_container {
+  @include flexbox(center, center);
+  min-height: 100vh;
+}
+
+.error_message {
+  font-size: 36px;
+  font-weight: 700;
+}
+
+.center {
+  text-align: center;
+}
+
+.secure_content {
+  width: 100%;
+}
+
+.errors_page_btn {
+  width: 80%;
+}
+
+.container {
+  @include flexbox(center, center);
+  min-height: calc(100vh - 800px);
+  padding: 40px;
+
+  @include max-w(xs) {
+    padding: 20px;
+  }
+}
+
+.content {
+  @include flexbox(flex-start, center, column);
+  max-width: 840px;
+
+  > a,
+  > button,
+  > a button {
+    width: 100%;
+    max-width: 340px;
+  }
+}
+
+.title {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 6px;
+  color: var(--color-primary);
+}
+
+.description {
+  font-size: 18px;
+  font-weight: normal;
+  color: var(--color-secondary);
+  margin-bottom: 16px;
+}
+
+.image {
+  width: 100%;
+  display: block;
+  margin: 40px auto;
+  min-height: 250px;
+}
+
+.tickers_container {
+  height: 450px;
+  border: 1px solid var(--card-outlined-border-color);
+  border-radius: 8px;
+  width: 100%;
+}

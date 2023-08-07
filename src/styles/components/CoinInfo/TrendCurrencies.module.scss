@@ -1,0 +1,210 @@
+@import "src/assets/styles/common/mixins";
+
+.tile {
+	@include flexbox(stretch, stretch, column);
+	@include transition(box-shadow);
+
+	width: 100%;
+	height: auto;
+	border-radius: 12px;
+	padding: 20px;
+	color: var(--color-primary);
+}
+
+.header {
+	@include flexbox(flex-start, center);
+}
+
+.title {
+	font-size: 24px;
+	font-weight: bold;
+	line-height: 28px;
+	text-align: left;
+	width: 100%;
+	margin-top: 28px;
+	margin-bottom: 16px;
+}
+
+.tile_title {
+	@include flexbox(center, flex-start, column);
+
+	margin-left: 12px;
+
+	> span {
+		font-size: 16px;
+		font-weight: bold;
+		line-height: 28px;
+	}
+}
+
+.coin_logo {
+	@include transition-long(transform);
+	width: 45px;
+	height: 45px;
+}
+
+.percents_badge {
+	font-size: 12px;
+	font-weight: bold;
+	line-height: 14px;
+}
+
+.arrows_container {
+	@include flexbox();
+	width: 100%;
+	position: relative;
+
+	@include max-w(xs) {
+		display: none;
+	}
+}
+
+.shadow_before {
+	position: absolute;
+	left: 0;
+	width: 105px;
+	height: 161px;
+	pointer-events: none;
+	z-index: 1;
+
+	background: linear-gradient(
+		to right,
+		var(--background-color) 0%,
+		var(--background-color-transparent) 100%
+	);
+}
+
+.shadow_after {
+	position: absolute;
+	right: 0;
+	width: 105px;
+	height: 161px;
+	pointer-events: none;
+	z-index: 1;
+
+	background: linear-gradient(
+		to right,
+		var(--background-color-transparent) 0%,
+		var(--background-color) 100%
+	);
+}
+
+@keyframes moveLeftRight {
+	0% {
+		transform: translateX(0);
+	}
+	50% {
+		transform: translateX(-5px);
+	}
+	100% {
+		transform: translateX(0);
+	}
+}
+
+@keyframes moveRightLeft {
+	0% {
+		transform: translateX(0);
+	}
+	50% {
+		transform: translateX(5px);
+	}
+	100% {
+		transform: translateX(0);
+	}
+}
+
+.slider_container {
+	width: 100%;
+
+	div[class~="slick-list"] {
+		margin: 0 -10px;
+	}
+
+	div[class~="slick-slide"] {
+		padding: 0 10px;
+	}
+
+	&:hover {
+		.slick_arrow {
+			opacity: 1;
+		}
+	}
+
+	.slick_arrow {
+		@include flexbox(center, center);
+
+		transition: 0.3s ease;
+		opacity: 0;
+		position: absolute;
+		width: 36px;
+		height: 36px;
+		z-index: 9;
+		cursor: pointer;
+		top: calc(50% - 18px);
+
+		i {
+			font-size: 35px;
+			color: var(--color-blue);
+		}
+	}
+
+	.slick_arrow_next {
+		animation: moveLeftRight 1.7s infinite ease-in-out;
+		right: -15px;
+	}
+
+	.slick_arrow_prev {
+		animation: moveRightLeft 1.7s infinite ease-in-out;
+		left: -15px;
+	}
+}
+
+.slider_content_wrapper {
+	width: 100%;
+	overflow: hidden;
+}
+
+.slider_content {
+	@include flexbox(center, center);
+	gap: 16px;
+
+	@include max-w(xs) {
+		flex-wrap: wrap;
+	}
+}
+
+.button {
+	@include flexbox(center, center);
+	position: absolute;
+	top: 65px;
+	cursor: pointer;
+	width: 36px;
+	height: 36px;
+	border-radius: 50%;
+	background-color: rgba(0, 0, 0, 0.45);
+	z-index: 5;
+
+	i {
+		font-size: 12px;
+		color: white;
+	}
+}
+
+.top_pairs {
+	@include flexbox(center, center);
+	width: 100%;
+	border: 1px solid var(--card-border-color);
+
+	@include max-w(lg) {
+		display: unset;
+		width: 100%;
+	}
+}
+
+.chart {
+	margin-top: 5px;
+}
+
+.mini_chart {
+	width: 100%;
+}

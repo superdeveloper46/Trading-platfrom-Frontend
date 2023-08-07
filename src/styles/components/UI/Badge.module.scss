@@ -1,0 +1,33 @@
+.container {
+	padding: 0 8px;
+	text-align: center;
+	font-size: 12px;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	line-height: 14px;
+	height: 20px;
+	box-sizing: border-box;
+	border-radius: 5px;
+	vertical-align: bottom;
+	font-weight: 400;
+	overflow: hidden;
+	width: fit-content;
+	white-space: nowrap;
+	color: var(--badge-color);
+
+	i {
+		color: var(--badge-color) !important;
+	}
+}
+
+.direction {
+	width: unset;
+	border: none;
+	border-radius: 5px;
+}
+
+.outlined_badge {
+	background-color: transparent;
+	text-transform: lowercase;
+}

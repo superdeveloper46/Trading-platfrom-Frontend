@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html translate="no" lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0, shrink-to-fit=no, maximum-scale=1.0, user-scalable=0"
+		/>
+		<meta name="mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-title" content="%REACT_APP_DEPARTMENT_NAME% Web" />
+		<meta
+			name="description"
+			data-react-helmet="true"
+			content="%REACT_APP_DEPARTMENT_NAME% is the European cryptocurrency exchange platform. Here you can buy and sell cryptocurrency on the best cryptocurrency exchange. Enjoy trading and learn how to trade cryptocurrency. Read cryptocurrency news today."
+		/>
+		<meta
+			name="twitter:description"
+			data-react-helmet="true"
+			content="%REACT_APP_DEPARTMENT_NAME% is the European cryptocurrency exchange platform. Here you can buy and sell cryptocurrency on the best cryptocurrency exchange. Enjoy trading and learn how to trade cryptocurrency. Read cryptocurrency news today."
+		/>
+		<meta
+			property="og:description"
+			data-react-helmet="true"
+			content="%REACT_APP_DEPARTMENT_NAME% is the European cryptocurrency exchange platform. Here you can buy and sell cryptocurrency on the best cryptocurrency exchange. Enjoy trading and learn how to trade cryptocurrency. Read cryptocurrency news today."
+		/>
+		<link rel="canonical" href="%REACT_APP_SERVER_STATIC_PREFIX%" />
+		<meta
+			name="keywords"
+			content="%REACT_APP_DEPARTMENT_NAME%: Bitcoin Exchange | Cryptocurrency Exchange"
+		/>
+		<meta name="theme-color" content="#fafafa" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta property="twitter:image" content="/alpha_en.png" />
+		<meta property="og:image" content="/alpha_en.png" />
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content="%REACT_APP_DEPARTMENT_NAME%" />
+		<base href="/" />
+		<link rel="manifest" href="/manifest.webmanifest" />
+		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+		<link rel="icon" href="/favicon.ico" type="image/x-icon" />
+		<link rel="icon" sizes="16x16" href="%PUBLIC_URL%/favicon-16x16.png" type="image/png" />
+		<link rel="icon" sizes="32x32" href="%PUBLIC_URL%/favicon-32x32.png" type="image/png" />
+		<link rel="stylesheet" href="%PUBLIC_URL%/fonts/alpha_icons/alphaicons.css" />
+		<link rel="stylesheet" href="%PUBLIC_URL%/fonts/roboto/roboto.css" />
+		<link
+			rel="apple-touch-icon"
+			sizes="180x180"
+			href="%PUBLIC_URL%/apple-touch-icon.png"
+			type="image/png"
+		/>
+		<link
+			rel="apple-touch-icon-precomposed"
+			href="%PUBLIC_URL%/apple-touch-icon.png"
+			type="image/png"
+		/>
+		<link
+			rel="apple-touch-icon-precomposed"
+			sizes="180x180"
+			href="%PUBLIC_URL%/apple-touch-icon.png"
+			type="image/png"
+		/>
+		<link rel="alternate" href="%REACT_APP_HOST%/en" hreflang="en" key="en" />
+		<link rel="alternate" href="%REACT_APP_HOST%/ru" hreflang="ru" key="ru" />
+		<link rel="alternate" href="%REACT_APP_HOST%/de" hreflang="de" key="de" />
+		<link rel="alternate" href="%REACT_APP_HOST%/es" hreflang="es" key="es" />
+		<link rel="alternate" href="%REACT_APP_HOST%/fr" hreflang="fr" key="fr" />
+		<link rel="alternate" href="%REACT_APP_HOST%/hi" hreflang="hi" key="hi" />
+		<link rel="alternate" href="%REACT_APP_HOST%/pt" hreflang="pt" key="pt" />
+		<link rel="alternate" href="%REACT_APP_HOST%/tr" hreflang="tr" key="tr" />
+		<link rel="alternate" href="%REACT_APP_HOST%/zh" hreflang="zh" key="zh" />
+		<link rel="alternate" href="%REACT_APP_HOST%/uk" hreflang="uk" key="uk" />
+		<link rel="preconnect" href="https://google.com" />
+		<link rel="preconnect" href="https://stats.g.doubleclick.net" />
+		<link rel="preconnect" href="https://www.google-analytics.com" />
+		<title>%REACT_APP_DEPARTMENT_NAME%: Bitcoin Exchange | Cryptocurrency Exchange</title>
+	</head>
+	<body>
+		<noscript>You need to enable JavaScript to run this app.</noscript>
+		<div id="root"></div>
+	</body>
+	<script>
+		let theme = localStorage.getItem("theme");
+		theme = theme
+			? JSON.parse(theme)
+			: window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches
+			? "dark"
+			: "light";
+		document.documentElement.style.backgroundColor = theme === "dark" ? "#1a1c1f" : "#f9f9f9";
+		document.body.style.backgroundColor = theme === "dark" ? "#1a1c1f" : "#f9f9f9";
+		document.body.setAttribute("data-theme", theme);
+		document
+			.querySelector('meta[name="theme-color"]')
+			?.setAttribute("content", theme === "dark" ? "#1a1c1f" : "#f9f9f9");
+	</script>
+</html>

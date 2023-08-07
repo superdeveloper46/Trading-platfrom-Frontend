@@ -1,0 +1,11 @@
+@import "src/assets/styles/common/mixins";
+
+.profile_card_panel {
+	@include card();
+	margin: 10px 0;
+	padding: 24px;
+
+	@include max-w(xl) {
+		margin: 5px 0 0 0;
+	}
+}

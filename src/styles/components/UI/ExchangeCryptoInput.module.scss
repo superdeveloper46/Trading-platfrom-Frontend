@@ -1,0 +1,148 @@
+@import "src/assets/styles/common/mixins";
+
+.container {
+	display: flex;
+	align-items: flex-start;
+	flex-direction: column;
+	position: relative;
+	width: 100%;
+}
+
+.input_container {
+	position: relative;
+	width: 100%;
+}
+
+.appender {
+	font-size: 14px;
+	position: absolute;
+	top: 0;
+	right: 13px;
+	height: 100%;
+	color: var(--input-label-normal);
+	@include flexbox(center, center);
+	text-align: center;
+
+	i {
+		font-size: 14px;
+	}
+}
+
+.placeholder {
+	position: absolute;
+	top: 13px;
+	left: 17px;
+	z-index: 1;
+	font-weight: bold;
+	font-size: 24px;
+	line-height: 28px;
+	color: var(--color-secondary);
+	background: transparent;
+	transition: 0.2s ease;
+	pointer-events: none;
+
+	&.active_or_filled {
+		top: -10px;
+		background: var(--card-background-color);
+		padding: 0 7px;
+	}
+}
+
+.small_placeholder {
+	top: 7px;
+	left: 7px;
+
+	&.active_or_filled {
+		top: -7px;
+		font-size: 10px;
+	}
+}
+
+.input {
+	width: 100%;
+	background: none;
+	box-sizing: border-box;
+	padding: 4px 4px 4px 40px;
+	overflow-y: hidden;
+	outline: none;
+	border-radius: 0;
+	height: 47px;
+	border: none;
+	transition: border-color 200ms ease-in-out;
+	border-bottom: 1px solid var(--icon-primary);
+	font-weight: bold;
+	font-size: 24px;
+	line-height: 28px;
+	color: var(--color-primary);
+	caret-color: var(--color-caret);
+
+	&:-webkit-autofill {
+		caret-color: var(--color-caret);
+	}
+
+	&.disabled {
+		border-bottom: 1px solid var(--input-label-disabled);
+	}
+}
+
+.small_input {
+	height: 36px;
+	padding: 4px 7px;
+
+	&.appear {
+		padding: 4px 40px 4px 7px;
+	}
+}
+
+.indicator {
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	height: 2px;
+	background: var(--input-focused);
+	transform: scale(0, 1);
+	z-index: 3;
+	transition: 0.2s ease;
+
+	&.error {
+		background: var(--input-error);
+		transform: scale(1);
+	}
+
+	&.active {
+		transform: scale(1);
+	}
+}
+
+.help_text {
+	padding: 2px 5px 0 2px;
+	font-size: 12px;
+	margin-top: 7px;
+	color: var(--color-disabled);
+	line-height: 14px;
+	margin-right: auto;
+
+	@include max-w(xs) {
+		font-size: 11px;
+		padding: 2px 5px;
+	}
+
+	&.error_text {
+		color: var(--input-error);
+	}
+}
+
+.icon {
+	position: absolute;
+	left: 12px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+
+	i {
+		font-size: 18px;
+		color: var(--icon-primary);
+	}
+}

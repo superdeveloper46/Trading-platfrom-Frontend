@@ -1,0 +1,97 @@
+@import "../../../assets/styles/common/mixins";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-end;
+  width: 100%;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--color-secondary);
+  user-select: none;
+  font-weight: normal;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 19px;
+  position: relative;
+  transition: 0.12s ease;
+
+  i[class~="ai"] {
+    color: var(--icon-primary);
+    margin-right: 5px;
+    font-size: 12px;
+    transition: color 0.12s ease;
+    text-decoration: none;
+    transform: translateY(-1px);
+  }
+
+  &:hover {
+    color: var(--color-blue);
+    border-color: var(--color-blue);
+
+    i[class~="ai"] {
+      color: var(--color-blue);
+    }
+  }
+
+  &.active {
+    color: var(--color-blue);
+
+    i[class~="ai"] {
+      color: var(--color-blue);
+      font-size: 16px;
+    }
+  }
+}
+
+.textarea_container {
+  @include flexbox(flex-start, flex-end, column);
+  position: relative;
+  width: 100%;
+  margin-top: 6px;
+  text-align: right;
+  max-height: 0;
+  overflow: hidden;
+  transition: 0.12s ease-out;
+
+  &.active {
+    max-height: 120px;
+  }
+}
+
+.content {
+  @include flexbox(center, center);
+}
+
+.tooltip_container {
+  @include flexbox(center, center);
+  position: relative;
+
+  &:hover i[class~="ai"] {
+    color: var(--hint-icon-dark-pressed);
+  }
+
+  i[class~="ai"] {
+    cursor: pointer;
+  }
+}
+
+.tooltip_icon {
+  color: var(--hint-icon-dark);
+  position: relative;
+  font-size: 12px;
+  margin-left: 6px;
+}
+
+.tooltip_content_wrapper {
+  max-width: 175px;
+  left: initial;
+  right: 0;
+  text-align: left;
+  bottom: calc(100% + 8px);
+}

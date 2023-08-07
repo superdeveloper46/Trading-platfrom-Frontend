@@ -1,0 +1,15 @@
+@import "src/assets/styles/common/mixins";
+
+.container {
+	position: relative;
+	margin: 0 auto 0 0;
+	min-height: calc(100vh - 80px);
+	flex: 1 0 calc(100% - 220px);
+	max-width: calc(100% - 220px);
+
+	@include max-w(xxl) {
+		min-height: 100vh;
+		flex: 1 0 100%;
+		max-width: 100%;
+	}
+}

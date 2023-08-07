@@ -1,0 +1,27 @@
+.react-select-custom__menu-list {
+  &::-webkit-scrollbar {
+    width: 5px;
+    margin-left: 3px;
+    height: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #b1b1b1 !important;
+    border-radius: 12px;
+  }
+
+  scrollbar-color: #787878 transparent;
+  scrollbar-width: thin;
+
+  @media screen and (max-width: 600px) {
+    &::-webkit-scrollbar {
+      width: 3px;
+      margin-left: 2px;
+      height: 3px;
+    }
+  }
+}

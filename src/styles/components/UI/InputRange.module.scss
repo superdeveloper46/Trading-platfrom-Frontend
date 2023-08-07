@@ -1,0 +1,51 @@
+@import "src/assets/styles/common/mixins";
+
+.container {
+  @include flexbox(stretch, flex-start, column);
+  position: relative;
+  width: 100%;
+}
+
+.input_container {
+  position: relative;
+  width: 100%;
+  height: 8px;
+
+  &:before {
+    content: "";
+    height: 100%;
+    //width: var(--width);
+    width: calc(var(--width) + (50% - var(--width))/50); //TODO: to remove empty space between slider and scale when percentage is near zero, needs adjustment
+    background: var(--color-blue);
+    border-radius: 10px;
+    position: absolute;
+    left: 0;
+    top: 6px;
+    pointer-events: none;
+  }
+
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 24px;
+    width: 24px;
+    border-radius: 50%;
+    background: var(--color-blue);
+    cursor: pointer;
+  }
+}
+
+.input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 100%;
+  outline: none;
+  border-radius: 10px;
+  background: var(--divider-border);
+
+  &:focus {
+    outline: none;
+    border: none;
+  }
+}

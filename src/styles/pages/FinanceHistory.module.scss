@@ -1,0 +1,30 @@
+@import "src/assets/styles/common/mixins";
+
+.history_tabs {
+	display: block;
+	margin: 40px 0;
+}
+
+.history_page_header {
+	font-size: 36px;
+	font-weight: 800;
+	margin: 35px auto 20px 40px;
+}
+
+.history_tab {
+	padding: 0 50px;
+
+	@include max-w(md) {
+		padding: 0 5px;
+	}
+}
+
+.profile_card {
+	@include card();
+	margin: 10px 10px 10px 0;
+	width: 100%;
+
+	@include max-w(xl) {
+		margin: 0;
+	}
+}

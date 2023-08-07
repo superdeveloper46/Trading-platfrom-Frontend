@@ -1,0 +1,19 @@
+@import "src/assets/styles/common/mixins";
+
+.container {
+	margin: 0 auto;
+	@include flexbox(flex-start, center, column);
+	gap: 20px;
+	width: 100%;
+	max-width: get-breakpoint-value(xxl);
+	padding: 20px;
+
+	> div:first-child > div > div {
+		padding: 10px 20px;
+	}
+
+	@include max-w(md) {
+		padding: 10px;
+		gap: 10px;
+	}
+}

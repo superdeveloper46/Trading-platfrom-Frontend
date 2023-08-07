@@ -1,0 +1,151 @@
+@import "assets/styles/common/mixins";
+
+.container {
+	@include card(true);
+
+	width: 100%;
+	padding: 4px;
+	margin-bottom: 15px;
+}
+
+.form_container {
+	display: flex;
+	gap: 30px;
+	width: 100%;
+
+	@include max-w(lg) {
+		@include flexbox(stretch, center, column);
+
+		gap: 0;
+	}
+}
+
+.form_wrapper {
+	@include flexbox(stretch, stretch, column);
+
+	padding: 15px 35px 20px;
+
+	@include max-w(xs) {
+		padding: 5px;
+	}
+}
+
+.form_container {
+	display: flex;
+	gap: 30px;
+	width: 100%;
+
+	@include max-w(lg) {
+		@include flexbox(stretch, center, column);
+	}
+
+	@include max-w(md) {
+		gap: 0;
+	}
+}
+
+.transfer_form_container {
+	@include card();
+
+	--side-padding: 70px;
+
+	@include max-w(md) {
+		--side-padding: 40px;
+	}
+
+	padding: 40px var(--side-padding) 25px;
+	width: 50%;
+	max-width: 550px;
+	overflow: visible;
+
+	.table {
+		width: calc(100% + var(--side-padding) * 2);
+		margin-left: calc(0px - var(--side-padding));
+	}
+
+	@include max-w(lg) {
+		width: 100%;
+	}
+
+	@include max-w(get-breakpoint-value(lg) + 1) {
+		:last-child {
+			max-width: unset;
+		}
+	}
+
+	@include max-w(xs) {
+		padding: 0;
+	}
+}
+
+.input_container {
+	display: flex;
+	flex-direction: column;
+
+	gap: 15px;
+}
+
+.button_wrapper {
+	width: 262px;
+	margin-left: auto;
+
+	@include max-w(lg) {
+		margin: auto;
+	}
+}
+
+.swap_icon {
+	cursor: pointer;
+	color: var(--color-blue);
+	font-size: 26px;
+	transform: rotate(90deg);
+	margin: 7px 0 7px 100%;
+
+	@include max-w(xs) {
+		font-size: 30px;
+		margin: 20px 0 20px 90%;
+	}
+}
+
+.form_title {
+	display: flex;
+	margin: 0 0 30px 0;
+	font-size: 16px;
+	color: var(--color-secondary);
+}
+
+.accounts_table {
+	--side-margin: 70px;
+
+	display: flex;
+	flex-direction: column;
+	width: calc(100% + var(--side-margin) * 2);
+	margin: 0 calc(0px - var(--side-margin)) 0;
+	overflow: auto;
+	max-height: 340px;
+
+	@include tiny-scrollbar();
+}
+
+.account_table_row {
+	padding: 10px 70px 10px 75px;
+	width: 100%;
+	display: flex;
+	border-bottom: 1px solid var(--card-border-color);
+}
+
+.account_table_cell {
+	display: block;
+	width: 100%;
+	color: var(--color-primary);
+	font-size: 14px;
+	padding: 0 5px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+
+	&.isHeader {
+		font-size: 12px;
+		color: var(--color-primary);
+	}
+}

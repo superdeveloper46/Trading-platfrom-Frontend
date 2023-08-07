@@ -1,0 +1,81 @@
+@import "src/assets/styles/common/mixins";
+
+.rates {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background: var(--stripped-normal);
+  padding: 18px 80px;
+  margin: 16px 0;
+
+  @include max-w(xs) {
+    padding: 20px 15px;
+  }
+}
+
+.rate {
+  @include flexbox(center, flex-start, column);
+  width: 50%;
+  padding: 0 14px;
+  color: var(--color-secondary);
+  font-size: 16px;
+  line-height: 23px;
+
+  &:nth-child(2) {
+    border-left: 1px solid var(--divider-border);
+  }
+}
+
+//span
+.rate_value {
+  color: var(--color-primary);
+  font-size: 24px;
+  line-height: 28px;
+  margin-top: 5px;
+}
+
+.rate_setup_range {
+  @include flexbox(flex-start, flex-start, column);
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+//span
+.rate_setup_range_label {
+  margin-bottom: 20px;
+  font-size: 16px;
+  line-height: 19px;
+  color: var(--color-secondary);
+}
+
+.rate_setup_range_boundary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 22px;
+  width: 100%;
+
+  span {
+    font-size: 16px;
+    line-height: 19px;
+    color: var(--color-secondary);
+  }
+}
+
+.checkbox_container {
+  margin-top: 10px;
+  width: 100%;
+}
+
+//span
+.invite_code {
+  display: block;
+  color: var(--color-coral);
+  margin-bottom: 24px;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 28px;
+  width: 100%;
+  text-align: center;
+}

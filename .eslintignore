@@ -1,0 +1,6 @@
+build
+eslint
+public
+cypress
+node_modules
+src/charting_library/

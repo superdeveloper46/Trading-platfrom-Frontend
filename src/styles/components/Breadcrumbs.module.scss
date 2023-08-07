@@ -1,0 +1,42 @@
+@import "assets/styles/common/mixins";
+
+.container {
+	@include flexbox(flex-start, center);
+	flex-wrap: wrap;
+	width: 100%;
+	font-style: normal;
+	font-weight: normal;
+	padding: 5px 0;
+	font-size: 14px;
+	line-height: 14px;
+	margin-bottom: 10px;
+
+	&.noMargin {
+		margin-bottom: 0;
+	}
+
+	> i {
+		font-size: 26px;
+		color: var(--icon-primary);
+	}
+
+	> a {
+		@include flexbox(center, center);
+		padding-right: 5px;
+		color: var(--color-disabled);
+		text-decoration: underline;
+
+		&:hover {
+			color: var(--color-primary);
+		}
+	}
+
+	> span {
+		padding-left: 5px;
+		color: var(--color-secondary);
+	}
+
+	@include max-w(md) {
+		display: none;
+	}
+}

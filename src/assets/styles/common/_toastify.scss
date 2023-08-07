@@ -1,0 +1,65 @@
+.Toastify__toast-body {
+	margin: 0;
+
+	> div {
+		display: flex;
+		justify-content: flex-start;
+		align-items: flex-start;
+	}
+}
+
+.Toastify__toast {
+	line-height: 1.3;
+	font-size: 14px;
+	font-family: "Roboto", sans-serif;
+	word-break: break-word;
+	animation-duration: 0.2s;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+
+	i {
+		font-size: 18px;
+		margin-right: 10px;
+	}
+}
+
+.Toastify__toast-theme--dark {
+	color: #0a0a0a;
+	background: #d6d6d6;
+	box-shadow: 0 15px 17px -16px #000;
+
+	.Toastify__toast-icon svg {
+		fill: #0a0a0a;
+	}
+
+	i {
+		color: #0a0a0a;
+	}
+}
+.Toastify__toast-theme--light {
+	color: #fff;
+	background: #3e3e3e;
+	box-shadow: 0px 0px 9px rgba(0, 0, 0, 0.22);
+
+	.Toastify__toast-icon svg {
+		fill: #fff;
+	}
+
+	i {
+		color: #fff;
+	}
+}
+
+/** Classes for the close button. Better use your own closeButton **/
+.Toastify__close-button {
+}
+.Toastify__close-button--default {
+}
+.Toastify__close-button > svg {
+	fill: var(--toast-close-icon-color);
+}
+.Toastify__close-button:hover,
+.Toastify__close-button:focus {
+	fill: var(--toast-close-icon-color-hover);
+}

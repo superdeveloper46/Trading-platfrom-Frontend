@@ -1,0 +1,58 @@
+@import "src/assets/styles/common/mixins";
+
+.button_micro {
+	width: 24px;
+	height: 24px;
+	line-height: 24px;
+	background-color: transparent;
+	border-radius: 50%;
+	min-width: 0;
+	color: #9ca9b5;
+	padding: 0;
+	margin: 0;
+	position: relative;
+	cursor: pointer;
+	border: none;
+	display: inline-block;
+	transition: 0.2s ease-out;
+	outline: none;
+	user-select: none;
+	text-decoration: none;
+
+	&:hover {
+		background: unset;
+	}
+
+	&:active,
+	&:focus {
+		background: unset;
+	}
+
+	> i {
+		line-height: 1;
+		font-size: 18px;
+	}
+
+	&.small {
+		> i {
+			line-height: 1;
+			font-size: 14px !important;
+		}
+	}
+
+	&.primary {
+		i {
+			color: var(--icon-primary);
+		}
+
+		&:hover > i {
+			color: var(--color-blue);
+		}
+
+		&.colored {
+			i {
+				color: var(--color-blue);
+			}
+		}
+	}
+}

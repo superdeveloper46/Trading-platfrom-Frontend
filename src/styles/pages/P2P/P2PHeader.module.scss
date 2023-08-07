@@ -1,0 +1,51 @@
+@import "assets/styles/common/mixins";
+
+.container {
+	@include flexbox(stretch, stretch, column);
+	@include card();
+
+	overflow: unset;
+	border-radius: 12px;
+	margin-bottom: 20px;
+}
+
+.image {
+	background-size: contain;
+	background-position: top center;
+	height: 240px;
+}
+
+.control_panel {
+	@include flexbox(stretch, center);
+
+	position: relative;
+	border-top: 1px solid var(--card-border-color);
+	padding: 0 20px;
+	z-index: 20;
+}
+
+.dropdown {
+	z-index: 99;
+}
+
+.user_center_dropdown_content {
+	@include flexbox(stretch, stretch, column);
+
+	border-bottom-left-radius: 12px;
+	border-bottom-right-radius: 12px;
+	background-color: var(--card-background-color);
+	border: 1px solid var(--card-border-color);
+	box-shadow: var(--navmenu-box-shadow);
+
+	.item {
+		padding: 12px;
+		border-bottom: 1px solid var(--card-border-color);
+		font-size: 14px;
+		line-height: 16px;
+		color: var(--color-text-primary);
+
+		&:last-of-type {
+			border-bottom: none;
+		}
+	}
+}

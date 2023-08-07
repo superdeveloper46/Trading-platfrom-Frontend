@@ -1,0 +1,99 @@
+@import "assets/styles/common/mixins";
+
+.container {
+	@include flexbox(center, center);
+	width: 100%;
+	border-bottom: 1px solid var(--divider-border);
+}
+
+.tabs_content {
+	@include flexbox(flex-start, center);
+	width: 100%;
+	max-width: 1240px;
+
+	&.page {
+		@include max-w(xxl) {
+			max-width: 1200px;
+		}
+	}
+}
+
+.tabs {
+	@include flexbox(flex-start, center);
+	@include tiny-scrollbar();
+
+	height: 32px;
+	min-height: 32px;
+	width: 100%;
+	margin: 0 auto;
+	border-bottom: 1px solid var(--divider-border);
+	white-space: nowrap;
+	z-index: 8;
+	border-bottom: 0;
+
+	&:first-child a {
+		border-top-left-radius: 5px;
+	}
+
+	&:last-child a {
+		border-top-right-radius: 5px;
+	}
+
+	a {
+		z-index: 2;
+	}
+
+	@include max-w(lg) {
+		a {
+			flex: 1;
+		}
+	}
+
+	@include max-w(xs) {
+		height: 45px;
+		min-height: 45px;
+		padding-bottom: 5px;
+	}
+}
+
+.tab {
+	display: inline-block;
+	text-align: center;
+	line-height: 32px;
+	min-height: 32px;
+	cursor: pointer;
+	margin: 0;
+	text-transform: uppercase;
+	font-weight: bold;
+	height: 100%;
+	padding: 0 5px;
+	flex: 1;
+	font-size: 12px;
+	user-select: none;
+	z-index: 2;
+	max-width: 180px;
+	color: var(--color-secondary);
+	width: max-content;
+
+	&.active {
+		color: var(--color-blue);
+		border-bottom: 2px solid var(--color-blue);
+	}
+
+	&:hover {
+		border-bottom: 2px solid;
+	}
+
+	> div {
+		margin-right: -30px;
+	}
+
+	@include max-w(lg) {
+		flex: 1;
+	}
+
+	@include max-w(xs) {
+		line-height: 40px;
+		min-height: 40px;
+	}
+}

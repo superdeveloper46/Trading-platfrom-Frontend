@@ -1,0 +1,511 @@
+@import "src/assets/styles/common/mixins";
+
+.header {
+	height: 117px;
+	padding: 0 12%;
+	position: relative;
+	overflow: hidden;
+
+	.coins {
+		@include transition-long(transform);
+		position: absolute;
+		margin: auto;
+
+		&.bitcoin {
+			@include transition-long(filter);
+			right: 10%;
+			bottom: -20%;
+			animation: bitcoin-float 7s ease-in-out infinite;
+
+			&:hover {
+				filter: drop-shadow(0 0 0.75rem #ffb75e);
+			}
+		}
+
+		&.tron {
+			@include transition-long(filter);
+			top: 0;
+			right: 40%;
+			animation: tron-float 6s ease-in-out infinite;
+
+			&:hover {
+				filter: drop-shadow(0 0 0.75rem #71bea8);
+			}
+		}
+
+		&.ethereum {
+			@include transition-long(filter);
+			right: 30%;
+			bottom: 10%;
+			animation: ethereum-float 8s ease-in-out infinite;
+
+			&:hover {
+				filter: drop-shadow(0 0 0.75rem #7f98fe);
+			}
+		}
+	}
+
+	@include max-w(xl) {
+		padding: 0 20px;
+		height: unset;
+
+		.coins {
+			position: absolute;
+			margin: auto;
+
+			&.bitcoin {
+				right: -5%;
+				bottom: -20%;
+			}
+
+			&.ethereum {
+				left: 34%;
+				bottom: 10%;
+			}
+
+			&.tron {
+				top: 0;
+				right: 29%;
+			}
+		}
+	}
+
+	@include max-w(lg) {
+		padding: 0 10px;
+
+		.coins {
+			&.bitcoin {
+				width: 300px;
+			}
+
+			&.ethereum {
+				left: 55%;
+			}
+
+			&.tron {
+				right: 24%;
+			}
+		}
+	}
+
+	@include max-w(md) {
+		overflow: visible;
+
+		.coins {
+			display: none;
+		}
+	}
+}
+
+.title {
+	font-size: 36px;
+	font-weight: 700;
+	text-align: left;
+	line-height: 47px;
+	z-index: 1;
+	color: var(--color-primary);
+	padding-top: 22px;
+}
+
+.subtitle {
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 19px;
+	color: var(--color-secondary);
+	padding-top: 10px;
+}
+
+.container {
+	@include flexbox(center, center);
+	width: 100%;
+}
+
+.tabs_content {
+	@include flexbox(flex-start, center);
+	width: 100%;
+	margin: 0 auto;
+	max-width: get-breakpoint-value(xxl);
+
+	@include max-w(xl) {
+		padding: 0 10px;
+	}
+
+	@include max-w(xs) {
+		@include flexbox(center, center);
+		padding: 0;
+	}
+}
+
+.page {
+	width: 100%;
+	max-width: get-breakpoint-value(xxl);
+	margin: 0 auto;
+
+	@include max-w(xl) {
+		padding: 0 20px;
+	}
+
+	@include max-w(lg) {
+		padding: 0 10px;
+	}
+}
+
+.tabs {
+	width: 100%;
+	margin: 0 auto;
+	white-space: nowrap;
+	z-index: 8;
+	border-bottom: 0;
+	padding: 0 10px;
+
+	&:first-child a {
+		border-top-left-radius: 5px;
+	}
+
+	&:last-child a {
+		border-top-right-radius: 5px;
+	}
+
+	a {
+		z-index: 2;
+	}
+
+	@include max-w(lg) {
+		@include tiny-scrollbar(0, true);
+		padding: 0 10px;
+		overflow-x: auto;
+
+		a {
+			flex: 1;
+			padding: 0 10px;
+		}
+	}
+}
+
+.table_header {
+	background: transparent !important;
+
+	@include max-w(xxl) {
+		padding: 0;
+	}
+
+	&.leaders {
+		border-radius: 0;
+
+		@include max-w(xxl) {
+			padding: 0 10px;
+		}
+	}
+}
+
+.filter_container {
+	@include flexbox(flex-start, center);
+	width: 100%;
+	padding: 10px;
+
+	> div:not(:last-child) {
+		margin-right: 20px;
+	}
+
+	.search {
+		@include flexbox();
+
+		@include max-w(md) {
+			width: 210px;
+		}
+
+		@include max-w(xs) {
+			order: 1;
+			width: 100%;
+		}
+	}
+
+	.buttons_container {
+		display: grid;
+		grid-template: auto / 1fr 1fr;
+		grid-gap: 10px;
+
+		@include max-w(md) {
+			width: 100%;
+			order: 3;
+			justify-content: flex-end;
+		}
+
+		@include max-w(xs) {
+			width: unset;
+		}
+	}
+
+	@include max-w(xxl) {
+		padding: 10px 5px;
+	}
+
+	@include max-w(md) {
+		@include flexbox(stretch, center);
+
+		flex-wrap: wrap;
+		gap: 12px;
+
+		button {
+			order: 3;
+		}
+	}
+}
+
+.favourite {
+	@include flexbox(flex-start, center);
+	@include transition(color);
+	margin-top: auto;
+	margin-bottom: auto;
+	height: 28px;
+	cursor: pointer;
+	font-size: 14px;
+	line-height: 19px;
+	font-weight: 400;
+	color: var(--color-secondary);
+
+	@include max-w(xs) {
+		margin-right: auto;
+		order: 2;
+	}
+
+	i {
+		margin-right: 10px;
+		font-size: 20px;
+		transition: 0.12s ease;
+		color: var(--color-secondary);
+	}
+
+	&.active,
+	&.favorite {
+		color: var(--color-yellow);
+		i {
+			color: var(--color-yellow);
+		}
+
+		&:hover i,
+		&:hover span {
+			color: var(--icon-active);
+		}
+	}
+}
+
+@keyframes bitcoin-float {
+	0% {
+		transform: translateY(0px);
+	}
+	50% {
+		transform: translateY(3px) rotate(7deg);
+	}
+	100% {
+		transform: translateY(0px);
+	}
+}
+
+@keyframes tron-float {
+	0% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(5px) rotate(4deg);
+	}
+	100% {
+		transform: translateY(0);
+	}
+}
+
+@keyframes ethereum-float {
+	0% {
+		transform: translateY(0px) translateY(0) rotate(0deg);
+	}
+	50% {
+		transform: translateY(2px) translateY(5px) rotate(-6deg);
+	}
+	100% {
+		transform: translateY(0px) translateY(0);
+	}
+}
+
+.highlights_container {
+	@include flexbox();
+	gap: 10px;
+	max-width: get-breakpoint-value(xxl);
+	margin: 0 auto 20px;
+	padding: 10px;
+
+	@include max-w(xl) {
+		padding: 10px;
+	}
+
+	@include max-w(lg) {
+		flex-wrap: wrap;
+		padding: 10px;
+	}
+}
+
+.highlight_card {
+	@include card();
+	@include transition-long(box-shadow);
+
+	width: 100%;
+	min-height: 203px;
+	box-shadow: 4px 6px 30px rgba(0, 0, 0, 0.05);
+
+	&:hover {
+		box-shadow: 4px 6px 30px rgba(0, 0, 0, 0.15);
+	}
+}
+
+.highlight_card_header {
+	@include flexbox(space-between, center);
+
+	padding: 19px 19px 12px 15px;
+}
+
+.highlight_card_title {
+	@include flexbox(baseline, center);
+
+	img {
+		width: 18px;
+		height: 18px;
+	}
+
+	span {
+		padding-left: 8px;
+		font-size: 18px;
+		font-weight: bold;
+		color: var(--color-primary);
+	}
+}
+
+.highlight_card_link {
+	color: var(--color-light-blue);
+	font-size: 12px;
+	font-weight: normal;
+	cursor: pointer;
+
+	i {
+		@include transition-long(transform);
+		font-size: 8px;
+		margin-left: 5px;
+		color: var(--color-light-blue);
+	}
+	&:hover {
+		i {
+			transform: translate(1px);
+		}
+	}
+}
+
+.highlight_row {
+	@include flexbox(space-between, center);
+	min-height: 44px;
+
+	&:hover {
+		background-color: var(--stripped-normal);
+	}
+}
+
+.currency_data {
+	@include flexbox(normal, center);
+
+	> span:nth-child(1) {
+		margin-left: 22px;
+		font-size: 12px;
+		font-weight: normal;
+		color: var(--color-secondary);
+	}
+
+	> img:nth-child(2) {
+		margin-left: 13px;
+		width: 20px;
+		height: 20px;
+	}
+
+	> span:nth-child(3) {
+		margin-left: 17px;
+		min-width: 55px;
+		text-align: left;
+		font-size: 14px;
+		font-weight: bold;
+		color: var(--color-primary);
+	}
+
+	> span:nth-child(4) {
+		font-size: 14px;
+		font-weight: normal;
+		color: var(--color-secondary);
+	}
+}
+
+.value {
+	margin-right: 28px;
+	font-size: 14px;
+	font-weight: normal;
+	color: var(--color-green);
+
+	&.descend {
+		color: var(--color-red);
+	}
+}
+
+.leaders_container {
+	@include flexbox();
+
+	width: 100%;
+	padding-top: 20px;
+	gap: 20px;
+
+	@include max-w(xxl) {
+		flex-direction: column;
+	}
+
+	@include max-w(xl) {
+		flex-wrap: wrap;
+	}
+
+	@include max-w(md) {
+		padding-top: 0;
+	}
+}
+
+.leader {
+	@include card();
+	@include transition-long(box-shadow);
+	width: 100%;
+
+	.title {
+		margin-left: 20px;
+		display: block;
+		font-size: 25px;
+		padding-top: 10px;
+
+		@include max-w(xxl) {
+			margin-left: 10px;
+		}
+	}
+
+	&:hover {
+		box-shadow: 4px 6px 30px rgba(0, 0, 0, 0.15);
+	}
+
+	@include max-w(xl) {
+		@include card(true);
+		background: transparent;
+	}
+}
+
+.coin_row {
+	border-bottom: 1px solid var(--table-header-border-color);
+
+	@include max-w(xxl) {
+		padding: 0;
+	}
+}
+
+.leaders_coin_row {
+}
+
+.pagination_container {
+	padding: 20px 34px;
+}

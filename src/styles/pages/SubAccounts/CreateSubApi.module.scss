@@ -1,0 +1,159 @@
+@import "assets/styles/common/mixins";
+
+.form_input_group {
+	width: 100%;
+	display: grid;
+	grid-template: auto / 1fr;
+	margin: 15px 0 30px;
+	grid-gap: 20px;
+}
+
+.permitted_actions {
+	display: flex;
+	width: 100%;
+	flex-wrap: wrap;
+	margin-bottom: 30px;
+
+	span {
+		margin-bottom: 25px;
+	}
+}
+
+.checkbox_item {
+	width: 50%;
+	min-width: 130px;
+
+	span {
+		margin-bottom: 25px;
+	}
+}
+
+.trade_coins {
+	@include flexbox(flex-start, flex-start, column);
+
+	width: 100%;
+	margin-bottom: 30px;
+}
+
+.trade_coin_list {
+	display: grid;
+	grid-gap: 30px 60px;
+	grid-template: auto / repeat(auto-fill, 160px);
+	width: 100%;
+
+	@include max-w(xs) {
+		grid-template: auto / 1fr;
+		grid-gap: 30px;
+	}
+}
+
+.disclaimer {
+	margin-top: 20px;
+	font-size: 12px;
+	line-height: 1.3;
+	color: var(--color-secondary);
+}
+
+.permitted_ips_textarea {
+	position: relative;
+	width: 100%;
+}
+
+.add_ip_button {
+	position: absolute !important;
+	right: 10px;
+	top: 45px;
+
+	i {
+		color: var(--color-white) !important;
+	}
+}
+
+.error {
+	margin-top: 5px;
+	font-size: 14px;
+	line-height: 16px;
+	color: var(--color-red);
+}
+
+.secondary_title {
+	@include flexbox(stretch, center);
+
+	width: 100%;
+	font-size: 14px;
+	line-height: 19px;
+	color: var(--color-secondary);
+	margin-bottom: 10px;
+}
+
+.card_separator {
+	@include card-separator();
+}
+
+.keys_container {
+	display: grid;
+	grid-template: auto / 1fr;
+	width: 100%;
+}
+
+.key_container {
+	display: grid;
+	grid-template: auto / 1fr;
+	grid-gap: 16px;
+	padding: 30px 70px;
+
+	&:nth-child(2) {
+		background: var(--stripped-normal);
+	}
+
+	> span {
+		font-weight: bold;
+		font-size: 16px;
+		line-height: 22px;
+		text-align: center;
+		color: var(--color-secondary);
+	}
+
+	@include max-w(xs) {
+		padding: 16px;
+	}
+}
+
+.key_value {
+	@include flexbox(center, center);
+
+	margin-right: -32px;
+
+	span {
+		font-size: 18px;
+		line-height: 21px;
+		text-align: center;
+		color: var(--color-primary);
+		word-break: break-all;
+	}
+
+	button {
+		margin-left: 8px;
+	}
+
+	@include max-w(xs) {
+		margin-right: 0;
+
+		span {
+			font-size: 16px;
+		}
+	}
+}
+
+.snack_container {
+	width: 100%;
+	padding: 24px 20px;
+
+	@include max-w(xs) {
+		padding: 16px;
+	}
+}
+
+.snack_icon {
+	color: var(--info-snack-color-red) !important;
+}

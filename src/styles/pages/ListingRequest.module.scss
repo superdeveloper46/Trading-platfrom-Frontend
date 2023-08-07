@@ -1,0 +1,164 @@
+@import "src/assets/styles/common/mixins";
+
+.container {
+	@include flexbox(stretch, stretch, column);
+	max-width: get-breakpoint-value(lg);
+	margin: 20px auto 40px;
+	padding: 0 10px;
+
+	@include max-w(xs) {
+		padding: 0;
+	}
+}
+
+.form {
+	@include flexbox(stretch, center, column);
+	padding: 30px 0 40px;
+
+	@include max-w(xs) {
+		padding-top: 0;
+	}
+
+	.buttons_container {
+		margin: 20px 0 0;
+		grid-row-gap: 20px;
+
+		.back {
+			@include max-w(md) {
+				order: 2;
+			}
+		}
+	}
+}
+
+.form_inner {
+	@include flexbox(stretch, stretch, column);
+
+	max-width: 700px;
+	width: 100%;
+	padding: 0 10px;
+
+	&.isSuccess {
+		padding: 50px 10px;
+
+		.step_heading {
+			margin-bottom: 0;
+		}
+	}
+}
+
+.step_heading {
+	@include flexbox(stretch, center, column);
+	margin-bottom: 40px;
+
+	> span:not(:last-child) {
+		margin-bottom: 10px;
+	}
+}
+
+.step_title {
+	font-size: 30px;
+	font-weight: 700;
+	line-height: 1.3;
+	letter-spacing: 0;
+	color: var(--color-primary);
+}
+
+.step_desc {
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 1.3;
+	letter-spacing: 0;
+	color: var(--color-secondary);
+}
+
+.form_input_group {
+	display: grid;
+	align-items: flex-start;
+	grid-template-columns: 1fr 1fr;
+	width: 100%;
+	margin-bottom: 20px;
+	grid-column-gap: 25px;
+
+	@include max-w(md) {
+		grid-template-columns: 1fr;
+		grid-row-gap: 25px;
+	}
+
+	&.stretch {
+		align-items: stretch;
+	}
+}
+
+.checkbox {
+	margin-bottom: 30px;
+}
+
+.radio_group {
+	margin-top: 30px;
+}
+
+.radio_group_title {
+	font-size: 14px;
+	line-height: 1.3;
+	font-weight: 600;
+	color: var(--color-secondary);
+	max-width: 450px;
+}
+
+.radio_group_desc {
+	font-size: 14px;
+	line-height: 1.3;
+	font-weight: 400;
+	color: #c4c4c4;
+}
+
+.listed_textarea {
+	margin-bottom: 40px;
+}
+
+.stepper {
+	margin-bottom: 20px;
+	width: 100%;
+	align-self: center;
+
+	@include max-w(lg) {
+		width: calc(100% - 100px);
+	}
+
+	@include max-w(md) {
+		width: 100%;
+	}
+
+	@include max-w(xs) {
+		margin-top: 0;
+	}
+}
+
+.modal_form {
+	padding: 18px 75px;
+}
+
+.modal_text {
+	font-weight: normal;
+}
+
+.file {
+	@include flexbox(stretch, center);
+
+	.icon {
+		font-size: 16px;
+		margin-right: 10px;
+	}
+
+	span {
+		font-size: 14px;
+		line-height: 1.3;
+	}
+
+	&.error {
+		.icon {
+			color: var(--input-error);
+		}
+	}
+}

@@ -1,0 +1,86 @@
+@import "src/assets/styles/common/mixins";
+
+.card_header {
+	@include card-header();
+	padding: 24px;
+	border-bottom: none;
+}
+
+.api_keys_count {
+	@include flexbox(center, center);
+	margin-left: 8px;
+	width: 32px;
+	height: 32px;
+	border-radius: 50%;
+	background-color: var(--color-orange);
+	color: var(--tooltip-color);
+	font-size: 14px;
+}
+
+.table_container {
+	@include tiny-scrollbar();
+	padding: 8px;
+	max-height: 465px;
+	overflow-y: auto;
+}
+
+.badge_list {
+	@include flexbox(flex-start, center);
+	flex-wrap: wrap;
+
+	span {
+		margin: 0 4px 4px 0;
+	}
+
+	@include max-w(xl) {
+		@include flexbox(flex-end, center);
+	}
+}
+
+.list_mobile_container {
+	@include flexbox(flex-start, flex-start, column);
+	width: 100%;
+	padding: 16px;
+}
+
+.card_mobile {
+	@include cardMobile();
+
+	&.expanded {
+		@include cardMobile(true);
+	}
+}
+
+.card_mobile_header {
+	@include cardMobileHeader();
+
+	&.expanded {
+		@include cardMobileHeader(true);
+	}
+}
+
+.card_mobile_action {
+	@include cardMobileAction();
+
+	&.expanded {
+		@include cardMobileAction(true);
+	}
+}
+
+.card_mobile_content {
+	@include cardMobileContent();
+}
+
+.card_mobile_content_group {
+	@include cardMobileContentGroup();
+}
+
+.card_mobile_content_hidden {
+	@include cardMobileContentHidden();
+	padding: 20px;
+}
+
+.api_key_value {
+	color: var(--color-blue);
+	cursor: pointer;
+}

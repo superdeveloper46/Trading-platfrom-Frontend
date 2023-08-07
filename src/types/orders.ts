@@ -1,0 +1,22 @@
+export enum OrderStatusEnum {
+	OPEN = "OPEN",
+	PARTIAL_CANCELED = "PARTIAL_CANCELED",
+	PARTIAL_CANCELLED = "PARTIAL_CANCELLED",
+	PARTIAL_FILLED = "PARTIAL_FILLED",
+	PENDING = "PENDING",
+	CANCELLED = "CANCELLED",
+	EXPIRED = "EXPIRED",
+	FAILED = "FAILED",
+	FILLED = "FILLED",
+}
+
+export enum OrderSideEnum {
+	BUY = "BUY",
+	SELL = "SELL",
+}
+
+export enum OrderTypeEnum {
+	LIMIT = "LIMIT",
+	MARKET = "MARKET",
+	STOP_LIMIT = "STOP_LIMIT",
+}

@@ -1,0 +1,97 @@
+@keyframes spinner {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes currency-select-down {
+	0% {
+		opacity: 0;
+		transform: scale(1, 0);
+	}
+
+	75% {
+		opacity: 1 !important;
+	}
+
+	100% {
+		transform: scale(1) !important;
+	}
+}
+
+@keyframes fadeIn {
+	0% {
+		opacity: 0.1;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
+@keyframes fadeOut {
+	0% {
+		opacity: 1;
+	}
+
+	100% {
+		opacity: 0;
+	}
+}
+
+@keyframes candle {
+	0% {
+		transform: scale(1);
+	}
+
+	50% {
+		transform: scale(1.2);
+	}
+
+	100% {
+		transform: scale(1);
+	}
+}
+
+@keyframes moveInUp {
+	0% {
+		transform: translateY(100%);
+	}
+
+	100% {
+		transform: translateY(0);
+	}
+}
+
+@keyframes moveInDown {
+	0% {
+		transform: translateY(0);
+	}
+
+	100% {
+		transform: translateY(100%);
+	}
+}
+
+.aa-fade-in {
+	animation: fadeIn 0.16s ease-out both;
+}
+
+@keyframes moveInUpFadeIn {
+	0% {
+		transform: translateY(50%);
+		opacity: 0.5;
+	}
+
+	100% {
+		transform: translateY(0%);
+		opacity: 1;
+	}
+}
+
+.aa_move_in_fade_in {
+	animation: moveInUpFadeIn 0.16s ease-in-out;
+}

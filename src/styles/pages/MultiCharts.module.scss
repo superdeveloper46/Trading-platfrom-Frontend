@@ -1,0 +1,13 @@
+@import "src/assets/styles/common/mixins";
+
+.container {
+	display: grid;
+	width: 100%;
+	grid-template-columns: 1fr 1fr;
+	grid-auto-rows: 400px;
+	background-color: var(--card-background-color);
+
+	> div {
+		border: 1px solid var(--card-border-color);
+	}
+}

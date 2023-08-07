@@ -1,0 +1,42 @@
+@import "src/assets/styles/common/mixins";
+
+.container {
+  min-height: calc(100vh - 800px);
+  padding: 40px;
+  @include flexbox(center, center);
+
+  @include max-w(xs) {
+    padding: 20px;
+  }
+}
+
+.content {
+  @include flexbox(flex-start, center, column);
+  max-width: 840px;
+
+  a,
+  button {
+    width: 100%;
+    max-width: 340px;
+  }
+}
+
+.title {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 6px;
+  color: var(--color-primary);
+}
+
+.description {
+  font-size: 24px;
+  font-weight: normal;
+  color: var(--color-secondary);
+}
+
+.image {
+  width: 100%;
+  display: block;
+  margin: 40px auto;
+  min-height: 250px;
+}

@@ -1,0 +1,215 @@
+@import "src/assets/styles/common/mixins";
+
+.container {
+  width: 100%;
+  background-color: var(--card-background-color);
+}
+
+.section {
+  @include flexbox(flex-start, flex-start, column);
+  width: 520px;
+  padding: 15px 0;
+
+  @include max-w(md) {
+    width: 100%;
+    padding: 15px 20px;
+  }
+}
+
+.title {
+  font-weight: bold;
+  font-size: 36px;
+  line-height: 1.2;
+  color: var(--color-primary);
+  margin: 10px 0 20px 0;
+}
+
+.current_referral_bonus {
+  @include flexbox(flex-start, flex-start, column);
+
+  > span {
+    &:nth-child(1) {
+      font-style: normal;
+      font-weight: bold;
+      font-size: 46px;
+      line-height: 130%;
+      color: var(--color-coral);
+    }
+
+    &:nth-child(2) {
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 23px;
+      color: var(--color-secondary);
+    }
+  }
+}
+
+.code_default_title {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 23px;
+  color: var(--color-secondary);
+  margin-bottom: 12px;
+}
+
+.code_default_row {
+  @include flexbox(space-between, center);
+  width: 100%;
+  margin-bottom: 20px;
+
+  @include max-w(md) {
+    @include flexbox(flex-start, flex-start, column);
+  }
+}
+
+.code_default_value {
+  @include flexbox(flex-start, center);
+
+  > span {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+    margin-right: 8px;
+    color: var(--color-primary);
+  }
+
+  > button {
+    margin-right: 8px;
+  }
+
+  @include max-w(md) {
+    margin-bottom: 5px;
+  }
+}
+
+.code_default_stats {
+  @include card();
+  @include flexbox(center, center);
+  height: 77px;
+  width: 100%;
+  padding: 10px 0;
+  margin: 0 0 16px 0;
+
+  @include max-w(md) {
+    border: 1px solid var(--card-outlined-border-color);
+  }
+}
+
+.code_default_stat {
+  @include flexbox(space-between, flex-start, column);
+  height: 100%;
+  width: 50%;
+  padding: 0 30px;
+
+  &:first-child {
+    border-right: 1px solid var(--divider-border);
+  }
+
+  span {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 23px;
+    color: var(--color-secondary);
+
+    &:nth-child(2) {
+      font-size: 18px;
+      line-height: 21px;
+    }
+  }
+
+  @include max-w(md) {
+    padding: 4px 16px;
+
+    span {
+      font-size: 14px;
+      line-height: 16px;
+    }
+  }
+}
+
+.code_default_note {
+  @include flexbox(flex-start, flex-start);
+
+  button:not(:last-child) {
+    margin-right: 5px;
+  }
+
+  span {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 23px;
+    color: var(--color-secondary);
+    word-break: break-all;
+    max-width: 260px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    &:first-child {
+      margin-right: 14px;
+    }
+  }
+
+  @include max-w(xs) {
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+
+  span {
+    max-width: unset;
+    white-space: unset;
+    overflow: unset;
+    text-overflow: unset;
+  }
+
+    span:last-child {
+      font-size: 14px;
+    }
+  }
+}
+
+
+.social {
+  @include flexbox(flex-start, center);
+
+  span {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    color: var(--color-secondary);
+    max-width: 220px;
+    margin: 0 20px 0 0;
+  }
+
+  @include max-w(md) {
+    @include flexbox(flex-start, flex-start, column);
+    padding-bottom: 20px;
+
+    span {
+      max-width: 100%;
+      margin: 0 0 20px 0;
+    }
+  }
+}
+
+.note_social {
+  @include flexbox(space-between, center);
+  width: 100%;
+
+  @include max-w(xs) {
+    @include flexbox(flex-start, flex-end, column);
+  }
+}
+
+.divider {
+  height: 1px;
+  overflow: hidden;
+  background: var(--divider-border);
+  flex: 0 1 auto;
+}

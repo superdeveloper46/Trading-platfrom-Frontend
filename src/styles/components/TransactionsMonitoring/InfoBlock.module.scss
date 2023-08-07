@@ -1,0 +1,21 @@
+.key {
+	font-size: 14px;
+	font-weight: 500;
+	color: var(--color-secondary);
+	text-transform: uppercase;
+	margin-bottom: 2px;
+	font-variant: all-small-caps;
+}
+
+.value {
+	font-weight: 500;
+	color: var(--color-primary);
+	display: flex;
+	align-items: center;
+	font-size: 16px;
+	word-break: break-word;
+}
+
+.sidebar_history_copy {
+	top: -4px;
+}

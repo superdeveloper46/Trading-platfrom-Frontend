@@ -1,0 +1,808 @@
+@import "src/assets/styles/common/mixins";
+
+.container {
+	@include flexbox(center);
+
+	max-width: 1500px;
+	margin: 0 auto;
+	padding: 0 20px;
+
+	.back_button {
+		@include flexbox(stretch, center);
+
+		color: var(--color-coral);
+		height: 50px;
+		font-size: 12px;
+
+		i {
+			font-size: 10px;
+			line-height: 10px;
+			color: var(--color-coral);
+			margin-right: 10px;
+			padding: 0;
+		}
+
+		&:hover {
+			i {
+				color: var(--color-coral);
+			}
+		}
+	}
+
+	.card {
+		@include card();
+	}
+}
+
+.image_info {
+	position: absolute;
+	padding: 30px;
+	bottom: 0;
+	width: 100%;
+	background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #161515 100%);
+	display: flex;
+	flex-direction: column;
+	color: #ffffff;
+	z-index: 3;
+}
+
+.image_info_header {
+	font-size: 36px;
+	font-weight: bold;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.thumb_img {
+	width: 40px;
+	height: 40px;
+	margin: 0 15px 5px 0;
+	filter: grayscale(1);
+}
+
+.image_info_desc {
+	font-size: 16px;
+}
+
+.mobile_project_form {
+	margin-bottom: 10px;
+}
+
+.img_card {
+	//.ProjectImgCard = styled(Card)`
+	@include card();
+	@include flexbox(stretch, stretch, column);
+
+	margin-bottom: 10px;
+	padding: 0;
+}
+
+.img_container {
+	position: relative;
+	max-width: 950px;
+	z-index: 0;
+
+	@include max-w(xs) {
+		height: 500px;
+
+		.background_img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+	}
+
+	.background_img {
+		width: 100%;
+	}
+}
+
+.status_image {
+	position: absolute;
+	font-size: 20px;
+	line-height: 20px;
+	left: 20px;
+	top: 20px;
+	color: rgba(0, 200, 83, 1);
+	z-index: 5;
+
+	&.high {
+		color: rgba(0, 200, 83, 0.7);
+	}
+
+	&.low {
+		color: rgba(255, 95, 102, 1);
+	}
+}
+
+.project {
+	@include flexbox(stretch, stretch, column);
+}
+
+.project_content {
+	@include flexbox();
+
+	padding-bottom: 10px;
+}
+
+.project_info {
+	flex: 1 1 auto;
+	width: 100%;
+	max-width: 950px;
+}
+
+.sticky_block {
+	position: relative;
+	margin-left: 10px;
+	max-width: 380px;
+	width: 380px;
+}
+
+.sticky_content {
+	position: sticky;
+	top: 10px;
+}
+
+.tab_content {
+	width: 100%;
+	padding: 23px 13px;
+	max-width: 750px;
+}
+
+.project_card_content {
+	//.project_card_content = styled(CardContent)`
+	padding: 12px;
+}
+
+.card_panel_comment {
+	//.CardPanelComment = styled(CardPanel)`
+	padding: 12px;
+
+	i {
+		font-size: 21px;
+		line-height: 21px;
+		margin-right: 15px;
+	}
+}
+
+//.user_operation_panel = styled(CardPanel)`
+.user_operation_panel {
+	padding: 8px;
+}
+
+.operations_table {
+	max-height: 320px;
+	overflow-y: scroll;
+}
+
+.operation_panel {
+	//.OperationPanel = styled(CardPanel)`
+	@include flexbox(stretch, stretch, column);
+
+	padding: 10px;
+}
+
+.project_operation {
+	display: block;
+	flex: 1 0 100%;
+	position: relative;
+}
+
+.project_operation_action {
+	margin: 8px;
+}
+
+.project_operation_number {
+	margin: 8px;
+	text-align: center;
+}
+
+.project_operation_count_down {
+	text-align: center;
+	display: inline-block;
+	border: 3px solid grey;
+	border-radius: 50%;
+	width: 40px;
+	height: 40px;
+	line-height: 36px;
+	font-size: 24px;
+}
+
+.operation_center {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 100%;
+}
+
+.operation_bottom {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+}
+
+.role_badge {
+	//.RoleBadge = styled(Badge)`
+	margin: 0.6rem 0 0.5rem 0.5rem;
+	line-height: 24px;
+}
+
+.qr_container {
+	border: 1px solid var(--card-outlined-disabled);
+	border-radius: 5px;
+}
+
+.qr_header {
+	@include flexbox(space-between);
+
+	cursor: pointer;
+	padding: 10px;
+	border-bottom: 1px solid var(--card-outlined-disabled);
+
+	&.hidden {
+		border: none;
+	}
+}
+
+.qr_desc {
+	color: var(--color-secondary);
+	width: 100%;
+
+	i {
+		font-size: 14px;
+		line-height: 14px;
+		margin-right: 10px;
+	}
+}
+
+.qr_block {
+	@include flexbox(stretch, center, column);
+
+	overflow: hidden;
+	max-height: 1000px;
+	transition: 0.5s cubic-bezier(0, 1.05, 0, 1);
+	transition-timing-function: cubic-bezier(0.15, 0.01, 1, 0.88);
+
+	&.hidden {
+		max-height: 0;
+		transition: 0.5s cubic-bezier(0, 1.05, 0, 1);
+	}
+
+	&.modal_version {
+		padding: 30px 10px;
+
+		.qr_block_background {
+			margin: 0;
+		}
+	}
+
+	canvas {
+		height: 100% !important;
+		width: 100% !important;
+	}
+}
+
+.qr_block_background {
+	@include flexbox(center, center);
+
+	width: 192px;
+	height: 190px;
+	background: #ffffff;
+	border-radius: 5px;
+	padding: 15px;
+	margin-top: 20px;
+	position: relative;
+
+	&.disabled {
+		background: rgba(29, 29, 29, 0.9);
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		z-index: 5;
+		margin: 0;
+	}
+}
+
+.qr_copy_address {
+	@include flexbox(center, center);
+
+	margin: 20px 0 10px;
+	width: 100%;
+	padding: 0 20px;
+	position: relative;
+
+	i {
+		margin-left: 10px;
+		cursor: pointer;
+
+		&:hover {
+			color: var(--color-blue);
+		}
+	}
+
+	&.modal_version {
+		margin: 0;
+		padding: 0;
+	}
+}
+
+.link_body {
+	@include flexbox(flex-end, center);
+
+	color: var(--color-primary);
+
+	i {
+		font-size: 12px;
+		line-height: 12px;
+		margin-left: 10px;
+	}
+
+	&:hover {
+		color: var(--color-blue);
+
+		i {
+			color: var(--color-blue);
+		}
+	}
+}
+
+.tx_link_body {
+	max-width: 70px;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.tx_link {
+	text-overflow: ellipsis;
+	overflow: inherit;
+}
+
+.state_background {
+	@include flexbox(center, center);
+
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	z-index: 2;
+	background: rgba(21, 21, 21, 0.8);
+
+	@media (max-width: 1200px) {
+		align-items: baseline;
+
+		span {
+			margin: 30px auto;
+		}
+	}
+}
+
+.cancelled_state_badge {
+	@include flexbox(center, center);
+
+	background: rgba(229, 229, 229, 0.1);
+	border: none;
+	padding: 5px 20px;
+	color: #6d7177;
+	margin: 0 auto;
+	font-weight: bold;
+	font-size: 36px;
+	height: 100px;
+	width: 40%;
+	text-transform: uppercase;
+
+	&.listing {
+		color: #00c853;
+		background: rgba(151, 255, 203, 0.1);
+
+		img {
+			height: 36px;
+			width: 36px;
+			margin-right: 20px;
+		}
+	}
+}
+
+.social_network_container {
+	@include flexbox();
+
+	flex-wrap: wrap;
+	padding: 30px 25px;
+}
+
+.tabs {
+	@include flexbox(flex-start, center);
+	@include tiny-scrollbar();
+
+	height: 32px;
+	min-height: 32px;
+	width: 100%;
+	margin: 0 auto;
+	border-bottom: 1px solid var(--divider-border);
+	white-space: nowrap;
+	z-index: 8;
+	overflow: auto hidden;
+}
+
+.project_form {
+	@include card();
+
+	padding: 10px;
+	display: flex;
+	flex-direction: column;
+
+	.qr_convert_value {
+		color: var(--color-primary);
+
+		i {
+			font-size: 10px;
+			line-height: 10px;
+			margin-left: 5px;
+			cursor: pointer;
+		}
+	}
+
+	.progress_container {
+		@include flexbox(stretch, stretch, column);
+
+		margin: 15px 0 0;
+	}
+
+	.progress_data {
+		@include flexbox(stretch, stretch, column);
+
+		flex: 1;
+	}
+
+	.progress_info {
+		@include flexbox(stretch, center);
+
+		color: var(--color-secondary);
+		font-size: 24px;
+
+		i {
+			font-size: 20px;
+			line-height: 20px;
+		}
+
+		.current_amount {
+			@include flexbox(stretch, center);
+
+			color: var(--color-primary);
+			margin-left: 10px;
+			font-size: 24px;
+			font-weight: bold;
+		}
+
+		.target_amount {
+			margin-left: auto;
+			font-size: 16px;
+		}
+	}
+
+	.progress_indicator {
+		position: relative;
+		height: 10px;
+		border-radius: 10px;
+		width: 100%;
+		background: var(--divider-border);
+
+		.fill {
+			position: absolute;
+			height: 100%;
+			left: 0;
+			background: var(--progress-fill-color);
+			border-radius: 10px;
+
+			&.isCancelled {
+				background-color: var(--progress-canceled-fill-color);
+			}
+		}
+	}
+
+	.tech_text {
+		margin-top: 10px;
+		color: var(--color-secondary);
+	}
+
+	.button_block {
+		@include flexbox(stretch, center);
+
+		margin: 20px 0;
+
+		button {
+			width: 100%;
+			max-width: 340px;
+			margin: 0 auto;
+		}
+	}
+
+	.table_header {
+		@include flexbox(stretch, center);
+		background: var(--table-hover-background);
+		padding: 10px 16px;
+		margin: 0 -10px;
+
+		i {
+			font-size: 19px;
+			line-height: 19px;
+			margin-right: 20px;
+			margin-left: 3px;
+		}
+	}
+
+	.counter_badge {
+		@include badge();
+
+		background: rgba(255, 84, 46, 0.1);
+		margin-left: 20px;
+		border: none;
+		line-height: 19px;
+		padding: 0 10px;
+		height: 19px;
+		min-width: 35px;
+		color: #ff8289;
+	}
+
+	.empty_donation_message {
+		padding: 10px;
+		text-align: center;
+	}
+
+	.history_link {
+		@include flexbox(flex-end, center);
+
+		padding: 20px 10px;
+
+		a {
+			color: #ff542e;
+		}
+
+		i {
+			margin-left: 10px;
+			font-size: 10px;
+			line-height: 10px;
+			color: #ff542e;
+		}
+	}
+}
+
+.social_listing_donate_row {
+	@include flexbox(stretch, center);
+
+	padding: 15px;
+	border-bottom: 1px solid var(--divider-border);
+
+	i {
+		font-size: 12px;
+		line-height: 12px;
+		margin-right: 20px;
+	}
+
+	.transaction_user {
+		margin-right: 20px;
+	}
+
+	.donate_amount {
+		margin-left: auto;
+		font-weight: bold;
+		font-size: 16px;
+
+		i {
+			font-size: 13px;
+			line-height: 13px;
+			margin-right: 5px;
+		}
+	}
+}
+
+.modal {
+	@include flexbox(stretch, center, column);
+
+	.methods_container {
+		@include flexbox(center, center);
+		width: 100%;
+		margin-bottom: 40px;
+
+		> div:not(:last-child) {
+			margin-right: 30px;
+		}
+	}
+
+	.method {
+		@include flexbox(stretch, center, column);
+
+		cursor: pointer;
+		color: var(--color-secondary);
+		position: relative;
+
+		&.active {
+			color: #ff542e;
+
+			.method_image {
+				border-color: #ff542e;
+
+				i {
+					color: #ff542e;
+				}
+			}
+		}
+	}
+
+	.help_container {
+		position: absolute;
+		top: -20px;
+		right: -10px;
+
+		i {
+			font-size: 16px;
+			cursor: pointer;
+		}
+	}
+
+	.help_content {
+		@include flexbox(stretch, stretch, column);
+
+		max-width: 280px;
+		padding: 5px;
+	}
+
+	.alp_help_link {
+		@include flexbox(flex-end, flex-end, column);
+
+		margin-top: 20px;
+	}
+
+	.method_image {
+		margin-bottom: 10px;
+		padding: 20px;
+		border-radius: 5px;
+		width: 100%;
+		@include flexbox(center, center);
+
+		i {
+			font-size: 50px;
+			line-height: 50px;
+			color: #787878;
+		}
+
+		@include max-w(xs) {
+			i {
+				font-size: 35px;
+				line-height: 35px;
+			}
+		}
+	}
+
+	.modal_qr_container {
+		@include flexbox(stretch, stretch, column);
+		width: 100%;
+		margin-bottom: 40px;
+	}
+
+	.modal_tech_text {
+		text-align: center;
+		color: var(--color-secondary);
+		margin-bottom: 35px;
+		max-width: 100%;
+	}
+
+	.alc_rate {
+		@include flexbox(flex-end);
+		color: var(--color-primary);
+		width: 100%;
+		margin-top: 10px;
+	}
+
+	.balance_container {
+		cursor: pointer;
+		display: flex;
+		flex-direction: row;
+		color: var(--color-secondary);
+		align-items: center;
+		background: var(--card-header-background);
+		justify-content: flex-start;
+		padding: 10px 17px;
+		margin-bottom: 20px;
+		border-radius: 5px;
+		position: relative;
+		width: 100%;
+
+		[class~="ai-wallet-03"] {
+			font-size: 16px;
+			line-height: 16px;
+			margin-right: 10px;
+			margin-bottom: 5px;
+		}
+
+		&:hover [class~="ai-withdraw_down"] {
+			color: #ff542e;
+		}
+
+		[class~="ai-withdraw_down"] {
+			font-size: 12px;
+			line-height: 12px;
+			margin-right: 15px;
+			color: var(--hint-icon-normal);
+			cursor: pointer;
+		}
+
+		[class~="ai-hint_down"] {
+			position: absolute;
+			font-size: 14px;
+			bottom: -11px;
+			left: 180px;
+			color: var(--card-header-background);
+		}
+	}
+
+	.balance_value {
+		margin: 0 10px;
+		font-weight: bold;
+		color: #ff542e;
+	}
+
+	.balance_currency {
+		color: #ff542e;
+	}
+
+	.input_container {
+		margin-bottom: 30px;
+		width: 100%;
+	}
+
+	.modal_btn_group {
+		@include flexbox(stretch, stretch, column);
+
+		width: 100%;
+		margin-bottom: 40px;
+
+		button {
+			width: 100%;
+		}
+
+		a {
+			width: 100%;
+		}
+
+		> div:not(:last-child),
+		> button:not(:last-child) {
+			margin-bottom: 25px;
+		}
+	}
+
+	.auth_message {
+		@include flexbox(stretch, stretch, column);
+
+		margin: 0 auto 40px;
+		color: var(--color-secondary);
+		text-align: center;
+	}
+
+	.auth_btn_group {
+		@include flexbox(stretch, stretch, column);
+
+		width: 100%;
+		margin: 15px 0;
+
+		button {
+			width: 100%;
+		}
+	}
+
+	.alc_link_container {
+		@include flexbox(center);
+		margin-top: 10px;
+	}
+
+	.operation_success_attributes {
+		@include flexbox(stretch, center, column);
+		width: 100%;
+		color: var(--color-secondary);
+		margin-bottom: 30px;
+	}
+
+	.sent_info_item {
+		@include flexbox(stretch, center);
+		margin-bottom: 14px;
+	}
+}

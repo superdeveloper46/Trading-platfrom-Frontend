@@ -1,0 +1,43 @@
+@import "src/assets/styles/common/mixins";
+
+.Container {
+	@include transition(background-color);
+	position: fixed;
+	inset: auto 5% 5% auto;
+	margin: auto;
+	height: 42px;
+	width: 42px;
+	background-color: var(--background-blue-alt);
+	z-index: 1;
+	border-radius: 50%;
+	cursor: pointer;
+	@include flexbox(center, center);
+
+	i {
+		@include transition(opacity);
+		font-size: 42px;
+		color: var(--color-white);
+		margin: auto;
+		opacity: 0.5;
+	}
+
+	&:hover {
+		background-color: var(--color-blue);
+		i {
+			opacity: 1;
+			animation: moveup 600ms infinite ease-in-out;
+		}
+	}
+}
+
+@keyframes moveup {
+	0% {
+		transform: translateY(0);
+	}
+	75% {
+		transform: translateY(-5px);
+	}
+	100% {
+		transform: translateY(0);
+	}
+}

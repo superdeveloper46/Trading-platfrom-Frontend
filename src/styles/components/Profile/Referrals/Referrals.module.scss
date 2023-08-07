@@ -1,0 +1,354 @@
+@import "src/assets/styles/common/mixins";
+
+.table_container {
+	@include card();
+	@include flexbox(flex-start, flex-start, column);
+	padding: 30px 0 20px;
+	width: 100%;
+	min-height: 420px;
+	overflow: auto;
+	margin: 0;
+
+	@include max-w(xs) {
+		padding: 0 0 20px;
+	}
+}
+
+.card_container {
+	@include flexbox(flex-start, flex-start, column);
+	margin: 5px 0;
+	width: 100%;
+
+	@include max-w(xs) {
+		margin: 0;
+	}
+}
+
+.content {
+	@include flexbox(space-between, flex-start);
+	width: 100%;
+	margin: 0 auto;
+	max-width: 1260px;
+	padding: 10px;
+
+	@include max-w(xl) {
+		padding: 20px;
+	}
+
+	@include max-w(md) {
+		@include flexbox(flex-start, stretch, column);
+		padding: 0;
+	}
+}
+
+.card_header {
+	@include flexbox(space-between, flex-start);
+	padding: 0 27px;
+	width: 100%;
+
+	@include max-w(md) {
+		@include flexbox(flex-start, center, column);
+		padding: 27px;
+	}
+}
+
+.card_filters {
+	@include flexbox(flex-start, center);
+	padding: 12px 27px;
+	display: flex;
+	width: 100%;
+
+	@include max-w(xs) {
+		@include flexbox(stretch, flex-start, column);
+		padding: 0 27px 27px;
+	}
+}
+
+.search_container {
+	max-width: 250px;
+	width: 100%;
+
+	@include max-w(xs) {
+		margin: 10px auto 0;
+		max-width: 100%;
+	}
+}
+
+.date_picker_container {
+	margin-right: 20px;
+
+	@include max-w(xs) {
+		margin: 10px 0;
+	}
+}
+
+.card_title_container {
+	@include flexbox(flex-start, flex-start, column);
+
+	@include max-w(md) {
+		align-items: center;
+	}
+}
+
+//span
+.card_subtitle {
+	font-style: normal;
+	font-weight: normal;
+	font-size: 16px;
+	line-height: 23px;
+	color: var(--color-secondary);
+	margin-bottom: 8px;
+
+	span {
+		color: var(--color-coral);
+	}
+
+	@include max-w(xs) {
+		text-align: center;
+		margin-bottom: 16px;
+	}
+}
+
+.card_footer {
+	@include flexbox(space-between, center);
+	width: 100%;
+	padding: 20px 27px 0;
+
+	> a {
+		margin-left: auto;
+		white-space: nowrap;
+
+		i.ai {
+			font-size: 12px;
+			margin-left: 3px;
+			margin-top: 1px;
+			color: var(--color-blue);
+		}
+	}
+
+	@include max-w(xs) {
+		@include flexbox(flex-start, center, column);
+	}
+}
+
+.card_mobiles_list {
+	@include flexbox(flex-start, center, column);
+	width: 100%;
+	padding: 0 27px;
+}
+
+.page_tabs {
+	@include flexbox(flex-start, center);
+	@include tiny-scrollbar();
+
+	height: 32px;
+	min-height: 32px;
+	width: 100%;
+	margin: 0 auto;
+	border-bottom: 0;
+	white-space: nowrap;
+	z-index: 8;
+	border-bottom: 0;
+	overflow: auto hidden;
+
+	&:first-child a {
+		border-top-left-radius: 5px;
+	}
+
+	&:last-child a {
+		border-top-right-radius: 5px;
+	}
+
+	a {
+		z-index: 2;
+	}
+
+	@include max-w(lg) {
+		a {
+			flex: 1;
+		}
+	}
+
+	@include max-w(xs) {
+		height: 45px;
+		min-height: 45px;
+		padding-bottom: 5px;
+	}
+}
+
+.stripped_table {
+	.row:nth-child(odd) {
+		background-color: var(--table-stripped-row-background);
+
+		&:hover {
+			background-color: var(--table-hover-background);
+		}
+	}
+}
+
+.referrals_list_table {
+	width: 100%;
+	height: 620px;
+	overflow: auto;
+	padding: 0 32px;
+}
+
+.search_container {
+	max-width: 250px;
+	width: 100%;
+
+	@include max-w(xs) {
+		margin: 10px auto 0;
+		max-width: 100%;
+	}
+}
+
+.active_sign {
+	margin-right: 8px;
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	background: var(--color-green);
+	display: inline-block;
+}
+
+.card_title {
+	@include card-title();
+}
+
+.create_referral_invite_button {
+	@include flexbox(flex-start, center);
+	outline: none;
+	border: none;
+	background: transparent;
+	color: var(--color-blue);
+	font-size: 14px;
+	line-height: 19px;
+
+	i {
+		font-size: 14px;
+		color: var(--color-blue);
+		margin-right: 6px;
+	}
+
+	&:hover,
+	&:active,
+	&:focus {
+		outline: none;
+		border: none;
+		background: transparent;
+	}
+}
+
+.make_default_button {
+	outline: none;
+	border: none;
+	background: transparent;
+	color: var(--color-blue);
+	text-align: left;
+	font-size: 14px;
+	padding: 0;
+	margin: 0;
+	cursor: pointer;
+
+	&:hover,
+	&:active,
+	&:focus {
+		outline: none;
+		border: none;
+		background: transparent;
+	}
+
+	@include max-w(xs) {
+		font-size: 12px;
+	}
+}
+
+.social {
+	padding: 20px 0;
+}
+
+.referrals_invites_table {
+	width: 100%;
+	height: 300px;
+	padding: 0 32px;
+	//overflow: visible;
+}
+
+.social_list {
+	@include flexbox(flex-start, center);
+
+	a {
+		margin: 0 12px;
+
+		i {
+			color: var(--icon-primary);
+			font-size: 22px;
+			transition: 0.1s ease;
+			margin: 0;
+		}
+
+		i:hover {
+			color: var(--color-blue);
+		}
+	}
+}
+
+.referrals_accruals_table {
+	width: 100%;
+	height: 620px;
+	overflow: auto;
+	padding: 0 32px;
+}
+
+.refback_table {
+	width: 100%;
+	height: 620px;
+	overflow: auto;
+	padding: 0 32px;
+}
+
+.page_tab {
+	width: 180px;
+
+	@include max-w(lg) {
+		flex: 1;
+	}
+}
+
+.tabs_content {
+	@include flexbox(flex-start, center);
+	width: 100%;
+	max-width: 1240px;
+
+	@include max-w(xxl) {
+		max-width: 1200px;
+	}
+}
+
+.tabs_container {
+	@include flexbox(center, center);
+	margin-bottom: 8px;
+	width: 100%;
+	border-bottom: 1px solid var(--divider-border);
+}
+
+.expand_button {
+	> i {
+		font-size: 12px;
+	}
+}
+
+.rows {
+	overflow: scroll;
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+}
+
+.header {
+	background-color: var(--background-color);
+}

@@ -1,0 +1,14 @@
+.container {
+	position: relative;
+	height: 8px;
+	border-radius: 10px;
+	width: 100%;
+	background: var(--divider-border);
+
+	div {
+		position: absolute;
+		height: 100%;
+		left: 0px;
+		border-radius: 10px;
+	}
+}

@@ -1,0 +1,109 @@
+@import "src/assets/styles/common/mixins";
+
+.wrapper {
+	position: relative;
+	width: 100%;
+}
+
+.error_and_help_text {
+	margin-top: 1px;
+}
+
+.textarea {
+	border: 1px solid;
+	border-color: var(--input-normal);
+	background-color: unset;
+	min-width: 100px;
+	min-height: 85px;
+	box-sizing: border-box;
+	padding: 14px 22px 4px;
+	overflow-y: hidden;
+	outline: none;
+	font-size: 14px;
+	border-radius: 12px;
+	width: 100%;
+	max-width: 100%;
+	transition: border-color 200ms ease-in-out;
+	resize: unset;
+	pointer-events: all;
+	color: var(--color-primary);
+
+	&.disabled {
+		color: var(--color-disabled);
+		pointer-events: none;
+		border-color: var(--input-disabled);
+
+		&::placeholder {
+			color: var(--input-label-disabled);
+		}
+	}
+
+	&.expand {
+		resize: vertical;
+	}
+
+	&.error {
+		border-color: var(--input-error);
+		&:hover {
+			border-color: unset;
+		}
+	}
+
+	&.active {
+		border-color: var(--input-focused) !important;
+		&:hover {
+			border-color: var(--input-focused) !important;
+		}
+	}
+
+	&:-webkit-autofill,
+	&:-webkit-autofill:hover,
+	&:-webkit-autofill:focus,
+	&:-webkit-autofill:active,
+	&:-internal-autofill-selected {
+		-webkit-box-shadow: inset 0 0 0 50px var(--card-background-color);
+		-webkit-text-fill-color: var(--color-primary);
+	}
+
+	&:hover {
+		border-color: var(--input-hover);
+	}
+
+	&::placeholder {
+		color: var(--input-label-normal);
+	}
+}
+
+.placeholder {
+	position: absolute;
+	top: 12px;
+	left: 17px;
+	z-index: 1;
+	font-size: 14px;
+	background: transparent;
+	color: var(--input-label-normal);
+	transition: 200ms ease-in-out;
+	padding: 0;
+	cursor: text;
+	user-select: none;
+
+	&.active_filled {
+		top: -10px;
+		font-size: 12px;
+		background: var(--card-background-color);
+		padding: 0 3px;
+	}
+
+	&.disabled {
+		color: var(--input-label-disabled);
+	}
+
+	&.error {
+		color: var(--input-error);
+	}
+
+	&.active {
+		color: var(--input-label-active);
+		cursor: default;
+	}
+}

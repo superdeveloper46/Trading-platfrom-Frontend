@@ -1,0 +1,15 @@
+@import "src/assets/styles/common/mixins";
+
+.container {
+	width: 100%;
+}
+
+.coin_details_layout {
+	margin: 25px auto;
+	padding: 0 15px;
+	max-width: 1500px;
+}
+
+.page_content {
+	padding: 10px 0;
+}

@@ -1,0 +1,12 @@
+@import "src/assets/styles/common/mixins";
+
+.page_content_container {
+	@include page-content-outer();
+	background: transparent;
+	padding: 20px;
+	gap: 10px;
+
+	@include max-w(xl) {
+		padding: 16px;
+	}
+}

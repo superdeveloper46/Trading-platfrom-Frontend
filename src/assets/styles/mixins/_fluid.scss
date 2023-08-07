@@ -1,0 +1,121 @@
+@import "helpers";
+
+// helper function, that calculates fluid size
+// $f-min - min font size
+// $f-max - max font size
+// $w-min - min window width
+// $w-max - max window width
+// $units - measure units (e.x. px, em, rem, vw)
+@function calcFluidSize($f-min, $f-max, $w-min, $w-max, $units: px) {
+	@if is-string($w-max) {
+		$w-max: unquote($w-max);
+	}
+
+	@if is-string($w-min) {
+		$w-min: unquote($w-min);
+	}
+
+	$f-min: strip-unit($f-min);
+	$f-max: strip-unit($f-max);
+	$w-min: strip-unit($w-min);
+	$w-max: strip-unit($w-max);
+
+	$k: ($f-max - $f-min)/ ($w-max - $w-min);
+	$b: $f-min - $k * $w-min;
+
+	$b: $b + $units;
+
+	@return calc(#{$k} * 100vw + #{$b});
+}
+
+@mixin make-fluid($property, $f-min, $f-max, $w-min, $w-max, $fallback: false, $units: px) {
+	@if (is-string($property)) {
+		#{$property}: $f-min;
+
+		@include min-w($w-min) {
+			@if ($fallback) {
+				#{$property}: $fallback;
+			}
+			#{$property}: calcFluidSize($f-min, $f-max, $w-min, $w-max, $units);
+		}
+		@include min-w($w-max) {
+			#{$property}: $f-max;
+		}
+	} @else {
+		position: relative;
+
+		&:before {
+			content: "Wrong property name!";
+			position: absolute;
+			display: block;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			padding: 5px;
+			border-radius: 6px;
+			background: #f00;
+			color: #fff;
+			font-size: 10px;
+			z-index: 1000;
+		}
+	}
+}
+
+@mixin make-responsive($property, $values, $fallback: false, $units: px) {
+	@if (length($values) > 0 and is-string($property)) {
+		#{$property}: nth(nth($values, 1), 2); // default value
+
+		// minimal breakpoint from the list (xs) and start for us
+		$lower-bpoint: prepareCorrectPixelValue(nth(nth($values, 1), 1));
+		// minimal value for this ^ breakpoint
+		$lower-value: nth(nth($values, 1), 2);
+
+		$index: 0; // iteration step number
+
+		@each $bpoint, $value in $values {
+			$index: $index + 1;
+			$upper-bpoint: prepareCorrectPixelValue($bpoint);
+
+			@include min-max-w($lower-bpoint, $upper-bpoint) {
+				@if ($fallback) {
+					#{$property}: $fallback;
+				}
+
+				// preventing of error on first step when bpoints are equal and it causes dividing on 0 in calcFluidSize func
+				@if ($lower-bpoint != $upper-bpoint) {
+					#{$property}: calcFluidSize($lower-value, $value, $lower-bpoint, $upper-bpoint, $units);
+				} @else {
+					#{$property}: $value; // so from 0px to lower breakpoint (xs) it will be static for it value
+				}
+
+				//setting our next minimal breakpoint and value for it to use it on next step
+				$lower-bpoint: $upper-bpoint;
+				$lower-value: $value;
+			}
+
+			@if ($index == length($values)) {
+				// if we are on last (largest) breakpoint we want to set static value for it.
+				@include min-w($upper-bpoint + 1) {
+					#{$property}: $value;
+				}
+			}
+		}
+	} @else {
+		position: relative;
+
+		&:before {
+			content: "Wrong property name or values are empty!";
+			position: absolute;
+			display: block;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			padding: 5px;
+			border-radius: 6px;
+			background: #f00;
+			color: #fff;
+			font-size: 10px;
+			z-index: 1000;
+		}
+	}
+}

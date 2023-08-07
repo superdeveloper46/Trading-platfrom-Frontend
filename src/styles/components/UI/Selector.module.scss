@@ -1,0 +1,29 @@
+@import "src/assets/styles/common/mixins";
+
+.error {
+  & > div {
+    border-color: var(--input-error);
+  }
+}
+
+.error_and_help_text {
+  margin-top: 1px;
+}
+
+.help_text {
+  padding: 2px 5px 0 2px;
+  font-size: 12px;
+  margin-top: 7px;
+  color: var(--color-disabled);
+  line-height: 14px;
+  margin-right: auto;
+
+  @include max-w(xs) {
+    font-size: 11px;
+    padding: 2px 5px;
+  }
+
+  &.error_text {
+    color: var(--input-error);
+  }
+}

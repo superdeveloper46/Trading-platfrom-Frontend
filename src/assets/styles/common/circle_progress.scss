@@ -1,0 +1,63 @@
+.circle-background,
+.circle-progress {
+  fill: none;
+}
+
+.circle-background {
+  stroke: rgba(158, 158, 158, 0.3);
+}
+
+.banner-circle-background {
+  stroke: rgba(158, 158, 158, 0.3);
+}
+
+.circle-progress {
+  stroke: red;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+
+  &.red {
+    stroke: red;
+  }
+
+  &.yellow {
+    stroke: #a1a100;
+  }
+
+  &.blue {
+    stroke: #4d8ff1;
+  }
+
+  &.green {
+    stroke: green;
+  }
+
+  &.white {
+    stroke: #ffffff;
+  }
+}
+
+.circle-text {
+  font-size: 11px;
+  font-weight: bold;
+
+  &.red {
+    fill: red;
+  }
+
+  &.yellow {
+    fill: #a1a100;
+  }
+
+  &.blue {
+    fill: #4d8ff1;
+  }
+
+  &.green {
+    fill: green;
+  }
+}
+
+.loading-spinner {
+  margin-top: 25%;
+}

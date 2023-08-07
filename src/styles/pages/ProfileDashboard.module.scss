@@ -1,0 +1,88 @@
+@import "src/assets/styles/common/mixins";
+
+.container {
+	display: grid;
+	grid-gap: 10px;
+	grid-template: auto / 1fr 1fr;
+	width: 100%;
+	padding: 10px 10px 30px;
+	> div {
+		&:nth-child(1) {
+			grid-column: 1 / 3;
+		}
+		&:nth-child(2) {
+			grid-row: 2 / 3;
+			grid-column: 1;
+		}
+		&:nth-child(4) {
+			grid-row: 4 / 5;
+		}
+		&:nth-child(9) {
+			grid-row: 7 / 9;
+			grid-column: 1;
+		}
+	}
+
+	@include max-w(xxl) {
+		grid-template: auto / 1fr;
+
+		> div {
+			&:nth-child(1) {
+				grid-column: 1;
+			}
+		}
+
+		> div {
+			&:nth-child(9) {
+				grid-row: unset;
+			}
+		}
+	}
+}
+
+.friends_container {
+	grid-row: 5 / 9;
+	grid-column: 2;
+	display: grid;
+	grid-template: 238px / 1fr;
+	grid-gap: 10px;
+
+	> div {
+		&:nth-child(1) {
+			grid-row: 1;
+		}
+		&:nth-child(2) {
+			grid-row: 2 / 10;
+		}
+	}
+
+	@include max-w(xxl) {
+		grid-column: 1;
+	}
+
+	@include max-w(xl) {
+		grid-template: auto / 1fr;
+		grid-row: unset;
+	}
+}
+
+.fee_level_container {
+	grid-row: 2 / 5;
+	display: grid;
+	grid-template: auto / 1fr;
+	grid-gap: 10px;
+	grid-auto-rows: 106px 1fr;
+
+	> div {
+		&:nth-child(1) {
+			grid-row: 1;
+		}
+		&:nth-child(2) {
+			grid-row: 2 / 4;
+		}
+	}
+
+	@include max-w(xxl) {
+		grid-row: auto;
+	}
+}

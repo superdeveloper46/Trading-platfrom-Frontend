@@ -1,0 +1,8 @@
+{
+  "trailingComma": "all",
+  "useTabs": true,
+  "singleQuote": false,
+  "tabWidth": 2,
+  "printWidth": 100,
+  "endOfLine": "auto"
+}

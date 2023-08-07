@@ -1,0 +1,260 @@
+@import "assets/styles/common/mixins";
+
+.container {
+	@include flexbox(center, center, column);
+	position: relative;
+	margin: 0 auto;
+}
+
+.custom_text_button {
+	@include flexbox(center, center);
+	background-color: transparent;
+	background: unset;
+	height: unset;
+	font-size: 12px;
+	font-weight: 400;
+	text-transform: none;
+	background: none;
+	border-radius: 5px;
+	color: var(--color-blue);
+	border: unset;
+	outline: none;
+	width: unset;
+
+	i {
+		color: var(--color-blue);
+		padding: 0 5px;
+		font-size: 17px;
+		margin-right: 10px;
+		padding: 0;
+	}
+
+	&:hover,
+	&:active,
+	&:focus {
+		background: unset;
+
+		i {
+			color: var(--color-blue);
+		}
+	}
+
+	&.fullwidth {
+		width: 100%;
+	}
+}
+
+.input_container {
+	@include flexbox(stretch, center);
+
+	div[class~="otp-container"] {
+		display: flex;
+		flex-direction: row;
+		flex: 1;
+		gap: 10px;
+
+		div {
+			flex: 1;
+		}
+	}
+
+	input {
+		height: 48px;
+		max-width: 48px;
+		border-radius: 8px;
+		border: 1px solid;
+		border-color: var(--input-normal);
+		background: none;
+		box-sizing: border-box;
+		padding: 3px 5px;
+		outline: none;
+		text-align: center;
+		font-size: 24px;
+		font-weight: bold;
+		margin: 0;
+		transition: border-color 200ms ease-in-out;
+		color: var(--color-primary);
+
+		&:focus {
+			border-color: var(--input-focused);
+		}
+
+		&:hover:not(:focus) {
+			border-color: var(--input-hover);
+		}
+
+		&[class~="otp-error"] {
+			border-color: var(--input-error);
+
+			&:focus {
+				border-color: var(--input-focused);
+			}
+		}
+	}
+
+	&.disabled {
+		color: var(--input-label-disabled);
+
+		input[class~="otp-error"] {
+			border-color: var(--input-label-disabled);
+			pointer-events: none;
+		}
+	}
+
+	&.active {
+		input {
+			border-color: var(--input-normal) !important;
+		}
+	}
+}
+
+.tooltip {
+	max-width: 250px;
+	padding: 5px;
+}
+
+.label_input {
+	@include flexbox(flex-start, flex-start, column);
+	width: 100%;
+	margin: 0 auto;
+	min-width: 338px;
+
+	&.maxWidth {
+		max-width: 338px;
+	}
+}
+
+.label {
+	@include flexbox(flex-start, center);
+	font-size: 14px;
+	line-height: 14px;
+	color: var(--color-secondary);
+	margin-bottom: 10px;
+	width: 100%;
+	position: relative;
+
+	> span {
+		@include flexbox(flex-start, center);
+	}
+
+	i {
+		font-size: 16px;
+		margin-left: 8px;
+		cursor: pointer;
+	}
+
+	@include max-w(md) {
+		justify-content: space-between;
+		font-size: 12px;
+		line-height: 14px;
+		width: 100%;
+	}
+}
+
+.token_type_img {
+	margin-right: 10px;
+	width: 30px;
+	min-width: 30px;
+	height: 30px;
+	max-width: 30px;
+	max-height: 30px;
+}
+
+.error_text {
+	line-height: 14px;
+	font-size: 12px;
+	width: 100%;
+	border: 1px solid var(--input-error);
+	box-sizing: border-box;
+	border-radius: 5px;
+	padding: 10px;
+	display: flex;
+	justify-content: flex-start;
+	align-items: flex-start;
+	margin-bottom: 15px;
+	color: var(--input-error);
+
+	&.maxWidth {
+		max-width: 338px;
+	}
+
+	i {
+		font-size: 12px;
+		color: var(--input-error);
+		margin: 1px 7px 0 0;
+	}
+
+	@include max-w(md) {
+		font-size: 11px;
+	}
+}
+
+.help_text {
+	line-height: 14px;
+	padding: 2px 4px;
+	font-size: 12px;
+	color: var(--color-primary);
+	@include flexbox(flex-start, center);
+	width: 100%;
+	margin-top: 12px;
+	max-width: 338px;
+	word-break: break-word;
+
+	@include max-w(md) {
+		font-size: 11px;
+	}
+
+	i {
+		font-size: 17px;
+		margin-right: 10px;
+	}
+
+	&.resend {
+		padding: 0;
+	}
+}
+
+.full_size_text {
+	font-style: normal;
+	font-weight: normal;
+	font-size: 16px;
+	line-height: 23px;
+	text-align: center;
+	color: var(--color-secondary);
+	max-width: 384px;
+	width: 100%;
+	margin: 0 auto 30px;
+}
+
+.additional_text {
+	font-style: normal;
+	font-weight: bold;
+	font-size: 16px;
+	line-height: 23px;
+	text-align: center;
+	color: var(--color-secondary);
+	max-width: 384px;
+	width: 100%;
+	margin: -10px auto 20px;
+}
+
+.full_size_image {
+	width: 140px;
+	height: auto;
+	max-width: 140px;
+	max-height: 140px;
+	margin: 0 auto 30px;
+}
+
+.spinner_container {
+	@include flexbox(center, center);
+	height: 40px;
+	width: 100%;
+	margin: 20px 0;
+}
+
+.button_container {
+	@include flexbox(center, center);
+	width: 100%;
+	margin: 30px 0 15px;
+}

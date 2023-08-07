@@ -1,0 +1,123 @@
+@import "src/assets/styles/common/mixins";
+
+.container {
+	@include flexbox(flex-start, center);
+	position: relative;
+}
+
+.date_button {
+	@include flexbox(flex-start, center);
+	width: max-content;
+	height: auto;
+	border-radius: 0;
+
+	i {
+		font-size: 24px;
+		min-width: 24px;
+		min-height: 24px;
+		margin: 0 6px 2px 0;
+		color: var(--icon-primary);
+	}
+
+	span {
+		font-size: 14px;
+		line-height: 19px;
+		color: var(--color-text-secondary);
+		font-weight: normal;
+	}
+
+	&.active {
+		i {
+			color: var(--color-blue);
+		}
+
+		span {
+			color: var(--color-blue);
+		}
+	}
+}
+
+.close_button {
+	margin-left: 5px;
+}
+
+.range_picker_container {
+	position: absolute;
+	top: calc(100% + 5px);
+	left: 0;
+	z-index: 9;
+
+	& > [class="rdrDateRangePickerWrapper"] {
+		& > .rdrDefinedRangesWrapper {
+			width: unset;
+		}
+
+		& > [class="rdrCalendarWrapper rdrDateRangeWrapper"] {
+			background: var(--card-background-color);
+			border-radius: 5px;
+			border: 1px solid var(--card-border-color);
+			box-shadow: var(--navmenu-box-shadow);
+
+			& > div > [class="rdrDateDisplayItem"] {
+				background: var(--background-color);
+				box-shadow: none;
+
+				input {
+					color: var(--color-primary);
+				}
+			}
+		}
+	}
+
+	.rdrMonthPicker,
+	.rdrYearPicker {
+		background: var(--background-color);
+		border-radius: 5px;
+
+		select {
+			color: var(--color-primary);
+			background: var(--background-color);
+			font-weight: normal;
+
+			@include tiny-scrollbar();
+		}
+	}
+
+	.rdrNextPrevButton {
+		background: var(--background-color);
+
+		&.rdrPprevButton {
+			i {
+				border-color: transparent var(--color-secondary) transparent transparent;
+			}
+
+			&:hover {
+				i {
+					border-color: transparent var(--color-primary) transparent transparent;
+				}
+			}
+		}
+
+		&.rdrNextButton {
+			i {
+				border-color: transparent transparent transparent var(--color-secondary);
+			}
+
+			&:hover {
+				i {
+					border-color: transparent transparent transparent var(--color-primary);
+				}
+			}
+		}
+	}
+
+	.rdrDayNumber {
+		span {
+			color: var(--color-primary);
+		}
+	}
+
+	.rdrWeekDay {
+		color: var(--color-secondary);
+	}
+}

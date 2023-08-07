@@ -1,0 +1,18 @@
+@import "assets/styles/common/mixins";
+
+.table_data_custom {
+	@include flexbox(stretch, center);
+}
+
+.account_div {
+	max-width: 200px;
+	text-overflow: ellipsis;
+	overflow-x: hidden;
+	padding-right: 5px;
+	margin-right: auto;
+}
+
+.secondary_text {
+	font-size: 14px;
+	color: var(--color-secondary);
+}

@@ -1,0 +1,176 @@
+@import "src/assets/styles/common/mixins";
+
+.container {
+	@include flexbox(center, flex-start, column);
+	position: relative;
+	width: 100%;
+}
+
+.search_appender {
+	font-size: 14px;
+	position: absolute;
+	top: 0;
+	height: 100%;
+	color: var(--input-label-normal);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	padding: 7px 10px;
+	right: 2px;
+	cursor: pointer;
+
+	i {
+		font-size: 14px;
+		line-height: 14px;
+	}
+
+	i:hover {
+		color: var(--color-primary);
+	}
+}
+
+.input_container {
+	position: relative;
+	width: 100%;
+	display: flex;
+	align-items: center;
+
+	> i:first-child {
+		position: absolute;
+		left: 14px;
+		font-size: 16px;
+		color: var(--icon-primary);
+	}
+
+	&.with_margin {
+		margin: 1rem 0 0 0;
+	}
+}
+
+.wrapper {
+	position: relative;
+	width: 100%;
+	margin: 25px 0;
+
+	&.no_margin {
+		margin: 0;
+	}
+}
+
+.placeholder {
+	position: absolute;
+	z-index: 1;
+	left: 17px;
+	top: 13px;
+	font-size: 14px;
+	background: transparent;
+	color: var(--color-secondary);
+	transition: 200ms ease-in-out;
+	pointer-events: none;
+
+	&.error {
+		color: var(--input-error);
+	}
+
+	&.small {
+		top: 7px;
+		left: 7px;
+
+		&.filled,
+		&.active {
+			top: -7px;
+			font-size: 10px;
+		}
+	}
+
+	&.active {
+		background: var(--card-background-color);
+		padding: 0 7px;
+		top: -10px;
+		font-size: 12px;
+		color: var(--input-label-active);
+	}
+
+	&.filled {
+		background: var(--card-background-color);
+		padding: 0 7px;
+		top: -10px;
+		font-size: 12px;
+	}
+}
+
+.input {
+	width: 100%;
+	font-size: 14px;
+	box-sizing: border-box;
+	padding: 5px 42px;
+	overflow-y: hidden;
+	outline: none;
+	height: 46px;
+	transition: border-color 200ms ease-in-out;
+	border-radius: 12px;
+	box-shadow: none;
+	caret-color: var(--color-caret);
+	color: var(--color-primary);
+	border: 1px solid;
+	border-color: var(--input-normal);
+	background-color: transparent;
+
+	&:-webkit-autofill {
+		caret-color: var(--color-caret);
+	}
+
+	&.small {
+		height: 36px;
+		border-radius: 8px;
+	}
+
+	&.filled {
+		background: var(--card-background-color);
+		border-color: var(--input-disabled);
+
+		&:hover {
+			border-color: var(--input-disabled);
+		}
+	}
+
+	&.active {
+		background: var(--card-background-color);
+		border-color: var(--color-blue);
+
+		&:hover {
+			border-color: var(--color-blue);
+		}
+	}
+
+	&.error {
+		color: var(--input-error);
+		border-color: var(--input-error);
+		&:hover {
+			border-color: var(--input-error);
+		}
+	}
+
+	&.disabled {
+		color: var(--input-label-disabled) !important;
+	}
+}
+
+.help_text {
+	padding: 2px 5px 0 2px;
+	font-size: 12px;
+	margin-top: 7px;
+	color: var(--color-secondary);
+	line-height: 14px;
+	margin-right: auto;
+
+	@include max-w(xs) {
+		font-size: 11px;
+		padding: 2px 5px;
+	}
+
+	&.error_text {
+		color: var(--input-error);
+	}
+}

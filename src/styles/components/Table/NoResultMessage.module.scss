@@ -1,0 +1,51 @@
+@import "src/assets/styles/common/mixins";
+// TODO: duplicated in pages/Table and EmptyTableData
+.no_rows_message_container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 80px 0;
+
+	width: 100%;
+	font-size: 14px;
+	line-height: 19px;
+	text-align: center;
+	font-weight: normal;
+	color: var(--color-secondary);
+
+	i {
+		font-size: 41px;
+		margin: 0 0 16px;
+		color: var(--table-no-data-icon-color);
+	}
+
+	span {
+		max-width: 220px;
+	}
+
+	@include max-w(xs) {
+		padding: 20px 0;
+
+		i {
+			font-size: 32px;
+			margin: 0 0 10px;
+		}
+	}
+
+	&.small {
+		padding: 40px 0;
+	}
+
+	&.row {
+		flex-direction: row;
+
+		i {
+			margin: 0 16px 0 0;
+		}
+
+		@include max-w(xs) {
+			margin: 0 10px 0 0;
+		}
+	}
+}

@@ -1,0 +1,178 @@
+@import "src/assets/styles/common/mixins";
+
+.container {
+	@include flexbox(flex-start, flex-start, column);
+	margin-bottom: 25px;
+	width: 100%;
+}
+
+.title {
+	@include flexbox(flex-start, center);
+	margin-bottom: 14px;
+	font-size: 14px;
+	line-height: 20px;
+	color: var(--color-secondary);
+}
+
+.method_list {
+	width: 100%;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-gap: 20px;
+	align-items: stretch;
+
+	@include max-w(xs) {
+		grid-gap: 10px;
+	}
+}
+
+//span
+.method_label {
+	font-size: 14px;
+	line-height: 16px;
+	color: var(--color-primary);
+}
+
+//span
+.method_fee {
+	font-size: 12px;
+	line-height: 14px;
+	color: var(--input-label-normal);
+
+	@include max-w(xs) {
+		font-size: 11px;
+	}
+
+	&.active {
+		color: var(--color-blue);
+	}
+}
+
+.method_network {
+	margin: 4px 0;
+}
+
+.convert_provider {
+	@include flexbox(center, center);
+	position: absolute;
+	right: 18px;
+	width: 24px;
+	height: 28px;
+
+	img {
+		height: 100%;
+		width: auto;
+		max-width: 24px;
+	}
+}
+
+.method {
+	@include flexbox(flex-start, flex-start, column);
+	border-radius: 5px;
+	border: 1px solid var(--finance-method-border-color);
+	background: var(--finance-method-background-color);
+	padding: 8px 45px 8px 36px;
+	min-height: 48px;
+	width: 100%;
+	height: auto;
+	position: relative;
+	color: var(--color-secondary);
+	transition: 0.12s ease;
+	cursor: pointer;
+	overflow: hidden;
+	word-break: break-word;
+
+	> img {
+		width: auto;
+		height: auto;
+		max-height: 20px;
+		max-width: 20px;
+		position: absolute;
+		left: 10px;
+		top: 9px;
+	}
+
+	i[class~="ai"] {
+		&:first-child {
+			font-size: 18px;
+			max-width: 18px;
+			position: absolute;
+			left: 10px;
+			top: 9px;
+			color: var(--icon-primary);
+		}
+
+		&:last-child {
+			transform: scale(0);
+			position: absolute;
+			z-index: 3;
+			top: 7px;
+			right: 5px;
+			font-size: 11px;
+			color: #fff;
+			transition: 0.12s ease;
+		}
+	}
+
+	&:before {
+		content: "";
+		position: absolute;
+		width: 52px;
+		z-index: 2;
+		height: 52px;
+		top: -26px;
+		right: -26px;
+		background: var(--color-blue);
+		transform: scale(0) rotate(45deg);
+		transition: 0.12s ease;
+	}
+
+	&:hover {
+		border-color: var(--finance-method-border-color-hover);
+	}
+
+	&.disabled {
+		pointer-events: none;
+		border-color: var(--finance-method-border-color-disabled);
+		color: var(--color-disabled);
+
+		i[class~="ai"]:first-child {
+			color: var(--icon-disabled);
+		}
+
+		span.method_fee,
+		span.method_label {
+			color: var(--color-disabled);
+		}
+
+		> img {
+			filter: var(--finance-method-img-filter);
+		}
+
+		div.convert_provider {
+			img {
+				filter: grayscale(1) opacity(0.4);
+			}
+		}
+	}
+
+	&.active {
+		border-color: var(--color-blue);
+
+		&:hover {
+			border-color: var(--color-blue);
+		}
+
+		i[class~="ai"]:last-child {
+			transform: scale(1);
+		}
+
+		span.method_fee {
+			color: var(--color-blue);
+		}
+
+		&:before {
+			transform: scale(1) rotate(45deg);
+		}
+	}
+}

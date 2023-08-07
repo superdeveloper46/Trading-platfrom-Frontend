@@ -1,0 +1,29 @@
+@import "assets/styles/common/mixins";
+
+.container {
+	a {
+		color: var(--color-blue);
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+
+	img {
+		max-width: 100%;
+		width: auto;
+		height: auto;
+		max-height: 50vh;
+		border-radius: 8px;
+	}
+
+	ol,
+	ul {
+		padding: 0 10px;
+	}
+}
+
+.story_photo {
+	@include flexbox(center, center);
+	margin: 25px auto 15px;
+}

@@ -1,0 +1,18 @@
+@import "assets/styles/common/mixins";
+
+.email_label {
+	color: var(--color-secondary);
+	margin-left: 5px;
+	font-size: 12px;
+}
+
+.row {
+	@include flexbox(space-between, center);
+
+	position: relative;
+	width: auto;
+
+	&.fullWidth {
+		width: 100%;
+	}
+}

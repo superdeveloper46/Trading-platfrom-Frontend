@@ -1,0 +1,29 @@
+// Fluid Size Function
+// helper function, that strips units (12px => 12)
+@function strip-unit($number) {
+	@if type-of($number) == "number" and not unitless($number) {
+		@return $number / ($number * 0 + 1);
+	}
+
+	@return $number;
+}
+
+@function is-string($variable) {
+	@if type-of($variable) != "string" {
+		@return false;
+	}
+
+	@return true;
+}
+
+// Function that takes just breakpoint name like: xxl or "xxl"
+// and return's value of this breakpoint in pixels
+@function get-breakpoint-value($bp-value) {
+	@return map-get($breakpoints, $bp-value);
+}
+
+// Taking pixel value or breakpoint name
+// and returning pixel value
+@function prepareCorrectPixelValue($value) {
+	@return if(is-string($value), get-breakpoint-value($value), $value);
+}

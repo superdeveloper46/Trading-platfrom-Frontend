@@ -1,0 +1,221 @@
+@import "src/assets/styles/common/mixins";
+
+.row {
+	@include flexbox(space-between, center);
+	position: relative;
+	width: auto;
+
+	&.full_width {
+		width: 100%;
+	}
+}
+
+.dropdown_indicator_icon {
+	font-size: 8px !important;
+	color: var(--color-grey-secondary);
+
+	&.disabled {
+		color: var(--input-disabled);
+	}
+}
+
+.currency_code {
+	display: flex;
+	align-items: center;
+	font-weight: normal;
+	font-size: 14px;
+	color: var(--color-secondary);
+	white-space: nowrap;
+
+	i {
+		font-size: 18px;
+		line-height: 18px;
+		margin: 0 15px 1px 0;
+		width: 16px;
+	}
+
+	img {
+		width: 24px;
+		height: 24px;
+		margin-right: 10px;
+	}
+}
+
+.currency_available {
+	margin-left: auto;
+	color: var(--color-primary);
+
+	&.secondary {
+		color: var(--color-secondary);
+	}
+}
+
+.currency_name {
+	color: var(--color-secondary);
+	margin-left: 5px;
+	font-size: 12px;
+	width: auto;
+	word-break: break-all;
+}
+
+.label {
+	font-weight: normal;
+	z-index: 2;
+	color: var(--color-secondary);
+	transition: 0.12s ease;
+	position: absolute;
+	top: -6px;
+	left: 10px;
+	font-size: 12px;
+	line-height: 14px;
+	padding: 0 4px;
+	width: max-content !important;
+	background: var(--card-background-color);
+	z-index: 2;
+}
+
+.currency_dropdown_indicator {
+	position: absolute;
+	right: 0;
+	padding: 10px;
+	width: 46px;
+	height: 46px;
+	@include flexbox(center, center);
+	pointer-events: none;
+
+	i {
+		font-size: 12px;
+		color: var(--icon-primary);
+	}
+
+	&.mini {
+		width: 32px;
+		height: 32px;
+
+		i {
+			font-size: 9px;
+		}
+	}
+}
+
+.currency_dropdown {
+	display: flex;
+	position: relative;
+	width: 100%;
+	align-items: center;
+	border-radius: 12px;
+	margin: 0;
+	cursor: pointer;
+	padding: 0 20px 0 0;
+	transition: 0.12s ease;
+	border: 1px solid;
+	height: 47px;
+	border-color: var(--input-normal);
+	box-shadow: none;
+
+	&.mini {
+		height: 36px;
+	}
+
+	&.error {
+		border-color: var(--input-error);
+	}
+
+	&.active {
+		box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.12);
+	}
+
+	&:hover {
+		border-color: var(--color-blue);
+	}
+}
+
+.currency_placeholder {
+	width: 100%;
+	@include flexbox(flex-start, center);
+	padding: 0 12px;
+	color: var(--input-label-normal);
+}
+
+.currency_value_container {
+	padding: 13px 10px;
+	@include flexbox(stretch, center);
+	width: 100%;
+	position: relative;
+	background-color: var(--background-color);
+	border: none;
+
+	input {
+		width: 100%;
+	}
+
+	i {
+		position: absolute;
+		font-size: 13px;
+		left: 19px;
+		transform: translateY(1px);
+	}
+}
+
+.selected_mark {
+	height: 100%;
+	@include flexbox(center, center);
+	margin-left: 8px;
+
+	i {
+		font-size: 14px;
+		color: var(--color-green);
+	}
+}
+
+.error_text {
+	padding: 2px 5px 0 2px;
+	font-size: 12px;
+	margin-top: 7px;
+	color: var(--input-error);
+	line-height: 14px;
+	text-align: left;
+
+	@include max-w(xs) {
+		font-size: 11px;
+		padding: 2px 5px;
+	}
+}
+
+.container {
+	width: 100%;
+	position: relative;
+	z-index: 10;
+	background: var(--card-background-color);
+
+	&.disabled {
+		* {
+			pointer-events: none;
+			filter: grayscale(100%);
+			user-select: none;
+			color: var(--input-label-disabled);
+		}
+
+		& > .currency_dropdown {
+			border-color: var(--input-disabled);
+		}
+
+		& > .currency_placeholder {
+			color: var(--input-label-disabled);
+		}
+
+		& > .currency_dropdown_indicator {
+			i {
+				color: var(--input-label-disabled);
+			}
+		}
+	}
+
+	&.focused {
+		& > .currency_dropdown {
+			border-color: var(--input-label-active);
+			border-bottom: 1px solid var(--input-normal);
+			border-radius: 12px 12px 0 0;
+		}
+	}
+}

@@ -1,0 +1,622 @@
+@import "src/assets/styles/common/mixins";
+
+@keyframes modalIn {
+	0% {
+		opacity: 0;
+		transform: scale(0.95);
+	}
+
+	100% {
+		transform: scale(1);
+		opacity: 1;
+	}
+}
+
+.html {
+	overflow: hidden !important;
+}
+
+.overlay {
+	left: 0;
+	bottom: 0;
+	right: 0;
+	z-index: 1003;
+	width: 100%;
+	position: fixed;
+	top: 0;
+	background: var(--modal-overlay-color);
+	// backdrop-filter: blur(4px);
+	display: block;
+
+	@include max-w(xs) {
+		@include flexbox(flex-start, flex-start, column);
+		width: 100vw;
+		height: 100vh;
+		max-height: unset;
+		top: 0;
+		border-radius: 0;
+	}
+}
+
+.header {
+	position: relative;
+	min-height: 50px;
+	width: 100%;
+	@include flexbox(flex-start, center);
+	padding: 10px 50px 10px 20px;
+
+	> i {
+		font-size: 18px;
+		margin-right: 10px;
+	}
+
+	&.bordered {
+		border-bottom: 1px solid var(--divider-border);
+	}
+}
+
+.header_content {
+}
+
+.header_icon_stake {
+	color: var(--color-gold);
+
+	&.additional_funding {
+		color: var(--color-blue);
+	}
+}
+
+.title {
+	font-size: 24px;
+	font-weight: bold;
+	text-align: left;
+	line-height: 1.2;
+	margin: 0;
+	color: var(--color-primary);
+
+	@include max-w(xs) {
+		font-size: 20px;
+	}
+}
+
+.container {
+	width: 500px;
+	display: block;
+	position: fixed;
+	outline: none;
+	top: 5%;
+	left: 0;
+	right: 0;
+	background-color: var(--card-background-color);
+	max-height: 80%;
+	margin: auto;
+	overflow-y: auto;
+	border-radius: 12px;
+	will-change: top, opacity;
+	box-shadow: var(--modal-content-shadow);
+	animation: modalIn 0.16s ease;
+
+	&.fullWidth {
+		width: calc(100% - 40px);
+	}
+
+	@include max-w(xs) {
+		@include flexbox(flex-start, flex-start, column);
+		width: 100%;
+		height: 100%;
+		max-height: unset;
+		top: 0;
+		border-radius: 0;
+	}
+}
+
+.content {
+	@include flexbox(flex-start, flex-start, column);
+	width: 100%;
+	padding: 20px;
+
+	@include max-w(xs) {
+		padding: 20px;
+		max-height: calc(100vh - 80px);
+		height: 100%;
+		// FIXME: apply not deprecated value to overflow
+		// https://stackoverflow.com/questions/37525636/css-overflow-overlay-is-it-deprecated-how-can-i-replace-it
+		overflow: overlay;
+	}
+
+	&.centered {
+		@include flexbox(flex-start, center, column);
+	}
+}
+
+.close_btn {
+	position: absolute;
+	padding: 15px;
+	top: 2px;
+	right: 5px;
+	cursor: pointer;
+	z-index: 1;
+
+	i {
+		@include transition(color);
+		font-size: 14px;
+		color: var(--icon-primary);
+	}
+
+	&:hover {
+		i {
+			color: var(--color-secondary);
+		}
+	}
+
+	@include max-w(xs) {
+		top: 5px;
+		right: 0;
+	}
+}
+
+.footer {
+	width: 100%;
+	padding: 5px 20px 20px;
+	@include flexbox(flex-start, center, column);
+
+	> span {
+		font-style: normal;
+		font-weight: normal;
+		font-size: 14px;
+		line-height: 19px;
+		color: var(--color-secondary);
+		margin-bottom: 10px;
+	}
+
+	@include max-w(xs) {
+		padding: 20px;
+		margin: auto 0 0;
+	}
+}
+
+.action_group {
+	display: grid;
+	grid-template: auto / repeat(auto-fit, minmax(100px, 1fr));
+	width: 100%;
+	margin: 15px 0 0;
+	grid-gap: 20px;
+
+	a {
+		width: 100%;
+	}
+
+	&.no_margin {
+		margin: 0;
+	}
+
+	@include max-w(xs) {
+		margin: auto 0 0;
+		grid-template: auto / 1fr;
+		grid-gap: 15px;
+	}
+}
+
+.footnote {
+	background: var(--stripped-normal);
+	padding: 16px 32px;
+	@include flexbox(flex-start, flex-start);
+	font-size: 12px;
+	line-height: 120%;
+	color: var(--color-secondary);
+
+	i {
+		color: var(--icon-primary);
+		font-size: 12px;
+		margin-top: 1px;
+		margin-right: 9px;
+	}
+
+	a {
+		text-decoration: underline;
+	}
+}
+
+.currency_icon {
+	@include flexbox(center, center);
+
+	align-self: center;
+	margin-bottom: 12px;
+
+	i {
+		font-size: 38px;
+		color: var(--icon-primary);
+	}
+}
+
+.description {
+	@include flexbox(flex-start, flex-start, column);
+	color: var(--color-secondary);
+	text-align: left;
+	font-size: 14px;
+	margin: 0 auto 40px;
+	width: 100%;
+
+	&.color_primary {
+		color: var(--color-primary);
+	}
+
+	&.no_margin {
+		margin-bottom: 0;
+	}
+
+	@include max-w(xs) {
+		margin-bottom: 30px;
+	}
+}
+
+.info_snack {
+	background: rgba(255, 224, 67, 0.1);
+	border: 1px solid rgba(255, 230, 157, 0.12);
+	color: var(--color-secondary);
+	font-style: normal;
+	font-weight: normal;
+	font-size: 14px;
+	line-height: 19px;
+	width: 100%;
+	text-align: center;
+	padding: 14px;
+
+	span {
+		color: var(--color-gold-dark);
+	}
+}
+
+.body1 {
+	font-weight: bold;
+	font-size: 16px;
+	line-height: 135.19%;
+	margin-bottom: 12px;
+	text-align: unset;
+	color: var(--color-secondary);
+
+	&.center {
+		text-align: center;
+	}
+
+	&.color_primary {
+		color: var(--color-primary);
+	}
+}
+
+.body_container {
+	width: 100%;
+	@include flexbox(flex-start, stretch, column);
+
+	@include max-w(xs) {
+		max-height: calc(100vh - 80px);
+		height: 100%;
+		// FIXME: apply not deprecated value to overflow
+		// https://stackoverflow.com/questions/37525636/css-overflow-overlay-is-it-deprecated-how-can-i-replace-it
+		overflow: overlay;
+	}
+}
+
+.modal_img {
+	@include flexbox(center, center);
+	align-self: center;
+	margin-bottom: 26px;
+
+	img {
+		width: 160px;
+		height: auto;
+	}
+
+	svg {
+		width: 160px;
+		height: auto;
+	}
+}
+
+.modal_icon {
+	@include flexbox(center, center);
+	margin-bottom: 26px;
+
+	align-self: center;
+
+	i {
+		font-size: 64px;
+	}
+
+	img {
+		width: 52px;
+		height: auto;
+	}
+
+	svg {
+		width: 52px;
+		height: auto;
+	}
+
+	&.small {
+		i {
+			font-size: 52px;
+		}
+	}
+}
+
+.info_container {
+	@include flexbox(space-between, center, column);
+
+	width: 100%;
+}
+
+.content_form {
+	width: 100%;
+	padding: 20px;
+	display: grid;
+	grid-template: auto / 1fr;
+	grid-gap: 18px;
+
+	@include max-w(md) {
+		padding: 18px 30px;
+	}
+}
+
+.info_group {
+	width: 100%;
+	@include flexbox(center, center, column);
+	padding: 20px;
+	background: var(--modal-info-group-background);
+}
+
+.info_group_item {
+	width: 100%;
+	display: grid;
+	grid-template: auto / 1fr 1fr;
+	justify-content: flex-start;
+	align-items: flex-start;
+
+	&:not(:last-child) {
+		margin-bottom: 8px;
+	}
+}
+
+.info_group_item_value {
+	margin: 5px;
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	width: auto;
+
+	&:nth-child(1) {
+		font-size: 14px;
+		text-align: left;
+		justify-content: flex-start;
+		color: var(--color-secondary);
+	}
+
+	&:nth-child(2) {
+		justify-content: flex-end;
+		text-align: right;
+		color: var(--color-primary);
+	}
+
+	> div {
+		margin-right: 5px;
+	}
+}
+
+.info_group_item_attribute_name {
+	font-style: normal;
+	font-weight: bold;
+	font-size: 15px;
+	color: var(--color-primary);
+
+	&:not(:last-child) {
+		margin-right: 4px;
+	}
+}
+
+.info_grid {
+	width: 100%;
+	display: grid;
+	grid-gap: 16px;
+	grid-template: auto / 1fr 1fr;
+
+	> span {
+		font-weight: normal;
+		font-size: 12px;
+		line-height: 14px;
+		color: var(--color-secondary);
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+
+		&:nth-child(2n) {
+			font-size: 16px;
+			line-height: 19px;
+			color: var(--color-primary);
+			justify-content: flex-end;
+		}
+	}
+
+	i {
+		font-size: 12px;
+		margin-left: 4px;
+		cursor: pointer;
+	}
+}
+
+.success_container {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	padding: 40px 0 60px;
+	width: 100%;
+	color: var(--color-secondary);
+	font-size: 16px;
+	line-height: 23px;
+	text-align: center;
+
+	i {
+		font-size: 64px;
+		color: var(--color-green);
+		margin-bottom: 20px;
+	}
+
+	> b {
+		margin-bottom: 10px;
+		font-size: 16px;
+		color: var(--color-primary);
+	}
+
+	> svg {
+		margin-bottom: 20px;
+	}
+
+	> span {
+		font-weight: normal;
+		font-size: 16px;
+		line-height: 23px;
+		text-align: center;
+		color: var(--color-secondary);
+		max-width: 400px;
+	}
+}
+
+.result_container {
+	@include flexbox(flex-start, center, column);
+
+	min-height: 360px;
+	padding: 60px 0;
+}
+
+.result_icon {
+	@include flexbox(center, center);
+
+	margin-bottom: 25px;
+
+	i {
+		font-size: 64px;
+		color: var(--color-green) !important;
+	}
+}
+
+.result_info {
+	@include flexbox(center, center, column);
+
+	text-align: center;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 16px;
+	line-height: 23px;
+	color: var(--color-secondary);
+	max-width: 320px;
+	margin: 0 auto;
+
+	b {
+		color: var(--color-primary);
+		margin-top: 10px;
+	}
+}
+
+.money_container {
+	@include flexbox(stretch, center, column);
+
+	width: 100%;
+	margin-bottom: 10px;
+}
+
+.income_text {
+	text-align: center;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 14px;
+	color: var(--color-primary);
+}
+
+.sum_text {
+	text-align: center;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 14px;
+	text-decoration-line: line-through;
+	color: var(--color-primary);
+}
+
+.penalty_sum_text {
+	text-align: center;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 14px;
+	color: var(--color-red);
+}
+
+.warning_area {
+	@include flexbox(center, center);
+
+	width: 100%;
+	padding: 10px 80px;
+	background-color: rgba(255, 224, 67, 0.1);
+	color: var(--color-gold-dark);
+	margin-bottom: 30px;
+
+	span {
+		text-align: center;
+	}
+
+	i {
+		color: var(--color-gold-dark);
+		margin-right: 15px;
+	}
+
+	@include max-w(xs) {
+		padding: 10px 30px;
+		margin-bottom: 10px;
+	}
+}
+
+.toggle_item {
+	@include flexbox(space-between);
+
+	width: 100%;
+	font-size: 14px;
+	line-height: 2;
+	color: var(--color-secondary);
+}
+
+.form_attribute {
+	display: flex;
+	flex-direction: row;
+	margin: 10px 0;
+	font-size: 16px;
+	line-height: 23px;
+}
+
+.form_body_left_aligned {
+	margin-bottom: 45px;
+	padding-left: 80px;
+}
+
+.content2 {
+	padding: 85px 89px 50px;
+
+	@include max-w(xs) {
+		padding: 55px 30px 30px;
+	}
+}
+
+.btn_group {
+	display: flex;
+	flex-direction: column;
+
+	button {
+		width: 100%;
+	}
+
+	a {
+		width: 100%;
+	}
+
+	> div:not(:last-child),
+	> button:not(:last-child) {
+		margin-bottom: 25px;
+	}
+}

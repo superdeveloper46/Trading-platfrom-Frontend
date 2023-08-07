@@ -1,0 +1,148 @@
+@import "src/assets/styles/common/mixins";
+
+.container {
+	flex: 1;
+
+	@include max-w(lg) {
+		width: 100%;
+	}
+}
+
+.report_block_header {
+	align-items: center;
+	display: flex;
+	font-size: 24px;
+	border-bottom: 1px solid var(--divider-border);
+	margin-bottom: 22px;
+	padding-bottom: 12px;
+	font-weight: 600;
+}
+
+.wallet_address_wrap {
+	@include flexbox();
+	margin-bottom: 20px;
+
+	@include max-w(md) {
+		flex-direction: column;
+	}
+}
+
+.wrapper {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-column-gap: 10px;
+
+	@include max-w(md) {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	@include max-w(xs) {
+		grid-template-columns: repeat(1, 1fr);
+	}
+}
+
+.report_main_container {
+	display: flex;
+	flex-direction: row;
+	gap: 48px;
+	padding-top: 20px;
+
+	@include max-w(lg) {
+		flex-direction: column;
+		align-items: center;
+		gap: 25px;
+	}
+}
+
+.report_risk_score {
+	width: 350px;
+
+	@include max-w(lg) {
+		width: 100%;
+	}
+}
+
+.risk_chart {
+	width: 100%;
+	height: 200px;
+	position: relative;
+}
+
+.total_funds_report {
+	position: absolute;
+	bottom: 14px;
+	left: 50%;
+	transform: translate(-50%);
+}
+
+.risk_score_value {
+	text-align: center;
+	font-size: 40px;
+	font-weight: bold;
+}
+
+.info_block {
+	margin-bottom: 20px !important;
+
+	&.m_r {
+		margin-right: 16px !important;
+	}
+}
+
+.info_block_wrap {
+	padding: 0 5px;
+	margin-bottom: 8px !important;
+
+	i[class~="ai-warning"] {
+		color: var(--color-yellow);
+	}
+}
+
+.report {
+	border-radius: 3px;
+	padding-bottom: 20px;
+}
+
+.tag {
+	margin-bottom: 4px !important;
+	margin-right: 4px !important;
+}
+
+.icon {
+	margin-left: 8px;
+	font-size: 20px;
+}
+
+.pie_data_list_container {
+	margin-bottom: 20px !important;
+	display: grid;
+	grid-template: auto / 1fr 1fr;
+	grid-gap: 20px;
+
+	@include max-w(xxl) {
+		grid-template: auto / 1fr;
+	}
+}
+
+.risky_sources_label {
+	text-align: center;
+	margin-top: 16px;
+	font-size: 16px;
+}
+
+.sidebar_analytics_label {
+	font-size: 14px;
+	font-weight: 500;
+	color: var(--color-secondary);
+	text-transform: uppercase;
+	margin-bottom: 6px;
+	font-variant: all-small-caps;
+}
+
+.table {
+	margin-bottom: 48px;
+
+	@include max-w(md) {
+		margin-bottom: 20px;
+	}
+}

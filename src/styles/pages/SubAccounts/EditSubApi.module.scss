@@ -1,0 +1,199 @@
+@import "assets/styles/common/mixins";
+
+.forms {
+	@include card(true);
+	@include flexbox();
+
+	margin: 0;
+	padding: 30px;
+	width: 100%;
+	gap: 40px;
+	align-self: center;
+
+	&.token {
+		width: unset;
+	}
+
+	@include max-w(lg) {
+		align-items: center;
+		flex-direction: column;
+	}
+
+	@include max-w(md) {
+		gap: 0;
+	}
+
+	@include max-w(xs) {
+		padding: 10px 30px;
+		gap: 10px;
+		border: none;
+	}
+}
+
+.form_container {
+	@include card();
+	@include flexbox(stretch, stretch, column);
+
+	width: 50%;
+	max-width: 550px;
+	padding: 40px 30px 60px 60px;
+	background: var(--card-background-color);
+
+	@include max-w(xxl) {
+		width: 100%;
+		margin: 0;
+	}
+
+	@include max-w(md) {
+		padding: 20px 30px 30px 60px;
+	}
+
+	@include max-w(xs) {
+		padding: 0;
+	}
+}
+
+.page_header {
+	@include card();
+	@include flexbox(stretch, stretch, column);
+
+	width: 100%;
+	padding: 15px 30px;
+	background: var(--card-background-color);
+	margin: 10px 0;
+
+	@include max-w(xs) {
+		padding: 10px;
+	}
+}
+
+.api_key_info {
+	@include flexbox(stretch, stretch, column);
+
+	margin-right: 60px;
+}
+
+.api_key_info_title {
+	@include flexbox(stretch, center);
+
+	font-size: 12px;
+	line-height: 1.3;
+	color: var(--color-secondary);
+	margin-bottom: 10px;
+}
+
+.api_key_info_value {
+	@include flexbox(stretch, center);
+
+	font-size: 16px;
+	line-height: 1.3;
+	color: var(--color-primary);
+
+	span {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		max-width: 200px;
+	}
+}
+
+.action_btn_container {
+	margin-left: auto;
+}
+
+.copy_btn {
+	margin-left: 8px;
+	cursor: pointer;
+	color: var(--color-blue) !important;
+	font-size: 20px;
+}
+
+.section {
+	@include flexbox(stretch, stretch, column);
+
+	margin-bottom: 40px;
+}
+
+.secondary_title {
+	@include flexbox(stretch, center);
+
+	font-size: 16px;
+	line-height: 1.3;
+	color: var(--color-secondary);
+	margin-bottom: 25px;
+}
+
+.ip_radio_list {
+	display: flex;
+	width: 100%;
+
+	@include max-w(xs) {
+		flex-direction: column;
+		gap: 20px;
+	}
+}
+
+.radio_list {
+	display: grid;
+	grid-gap: 30px;
+	grid-template: auto / repeat(auto-fill, 150px);
+	width: 100%;
+
+	@include max-w(xs) {
+		grid-template: auto / 1fr;
+		grid-gap: 20px;
+	}
+}
+
+.radio_item {
+	@include flexbox(flex-start, flex-start);
+	width: 100%;
+}
+
+.switch_list {
+	display: grid;
+	grid-gap: 30px 60px;
+	grid-template: auto / repeat(auto-fill, 160px);
+	width: 100%;
+
+	@include max-w(xs) {
+		padding-right: 10px;
+		grid-template: auto / 1fr;
+		grid-gap: 20px;
+	}
+}
+
+.ip_textarea_container {
+	margin-top: 20px;
+}
+
+.add_api_btn {
+	margin-left: auto;
+	max-width: fit-content;
+}
+
+.add_pairs_icon {
+	i {
+		color: var(--color-white);
+	}
+}
+
+.controls {
+	@include flexbox();
+
+	margin-top: auto;
+	width: 100%;
+
+	@include max-w(xs) {
+		@include flexbox(stretch, center, column);
+
+		margin-top: 10px;
+		gap: 20px;
+	}
+}
+
+.secure_container {
+	@include flexbox(stretch, stretch, column);
+
+	margin: 0 auto;
+	max-width: 550px;
+}

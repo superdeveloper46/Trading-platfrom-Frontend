@@ -1,0 +1,139 @@
+@import "assets/styles/common/mixins";
+
+.wrapper {
+	position: relative;
+
+	@include max-w(xs) {
+		display: flex;
+		margin-left: auto;
+	}
+}
+
+.container {
+	@include flexbox(center, center);
+	height: 100%;
+	cursor: pointer;
+	position: relative;
+	font-size: 14px;
+	padding: 0 10px;
+	color: var(--color-primary);
+	margin: 0 5px 0 0;
+	font-weight: normal;
+	text-transform: uppercase;
+	transition: none !important;
+
+	i {
+		pointer-events: none;
+		font-size: 10px;
+		margin: 0 0 0 5px;
+		height: 36px;
+		line-height: 36px;
+		@include transition(transform);
+
+		&.menuOpen {
+			transform: rotate(180deg);
+		}
+	}
+
+	&:hover {
+		color: var(--color-blue);
+
+		i {
+			color: var(--color-blue);
+		}
+	}
+
+	@include max-w(xl) {
+		margin: 0 5px;
+	}
+
+	&.landing {
+		color: #fff;
+
+		&:hover {
+			color: var(--color-blue);
+		}
+	}
+}
+
+.menu {
+	position: absolute !important;
+	transition: none !important;
+	box-shadow: var(--navmenu-box-shadow) !important;
+	max-width: unset !important;
+	left: initial !important;
+	margin-top: 0 !important;
+	right: -5px !important;
+	padding: 0 !important;
+	top: 100% !important;
+	border-radius: 12px !important;
+	height: auto !important;
+	background-color: transparent !important;
+
+	.tooltip_content {
+		background-color: var(--navmenu-background) !important;
+		border-radius: 10px !important;
+	}
+}
+
+.locale_menu_content {
+	@include flexbox(flex-start, center, column);
+	border-radius: 12px;
+	background-color: var(--navmenu-background);
+	width: 380px;
+}
+
+.locale_list {
+	width: 100%;
+	display: grid;
+	grid-template: auto / 1fr 1fr 1fr;
+	padding: 8px 0;
+}
+
+.locale_list_item {
+	@include flexbox(flex-start, center);
+	height: 46px;
+	color: var(--color-primary);
+	text-transform: capitalize;
+	background-color: unset;
+	font-size: 14px;
+	padding: 0 20px;
+	cursor: pointer;
+
+	&.active {
+		color: var(--color-blue);
+	}
+
+	&:hover {
+		color: var(--color-blue);
+	}
+}
+
+.locale_settings {
+	@include flexbox(space-between, center);
+
+	padding: 0 20px;
+	border-top: 1px solid;
+	border-color: var(--divider-border);
+	cursor: pointer;
+	position: relative;
+	border-radius: 0 0 5px 5px;
+	min-height: 46px;
+	width: 100%;
+
+	svg {
+		width: 24px;
+		height: auto;
+
+		> path {
+			stroke: var(--color-blue) !important;
+		}
+	}
+
+	span {
+		font-size: 12px;
+		line-height: 12px;
+		color: var(--color-blue);
+		text-transform: initial;
+	}
+}

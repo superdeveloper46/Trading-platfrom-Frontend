@@ -1,0 +1,6 @@
+@import "assets/styles/common/mixins";
+
+.qa_container {
+	@include flexbox(center, center);
+	width: 100%;
+}

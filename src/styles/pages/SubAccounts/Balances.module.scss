@@ -1,0 +1,199 @@
+@import "assets/styles/common/mixins";
+
+.approximate {
+	display: grid;
+	align-items: center;
+	grid-template: auto / 1fr 1fr;
+	grid-gap: 50px;
+
+	@include max-w(xl) {
+		grid-template: auto / 1fr;
+		grid-gap: 15px;
+	}
+}
+
+.approximate_item {
+	@include flexbox(flex-start, flex-start, column);
+
+	> span {
+		font-weight: normal;
+		font-size: 12px;
+		line-height: 14px;
+		color: var(--color-secondary);
+		margin-bottom: 5px;
+	}
+}
+
+.approximate_item_value {
+	@include flexbox(flex-start, center);
+
+	> i {
+		font-size: 24px;
+		margin-right: 8px;
+	}
+
+	> b {
+		font-weight: bold;
+		font-size: 24px;
+		line-height: 28px;
+		color: var(--color-primary);
+	}
+
+	> span {
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+		font-size: 16px;
+		line-height: 23px;
+		text-align: right;
+		color: var(--color-primary);
+
+		> i {
+			font-size: 14px;
+			margin-right: 4px;
+		}
+	}
+
+	@include max-w(xs) {
+		flex-wrap: wrap;
+	}
+}
+
+.table_data_note {
+	@include flexbox(flex-start, flex-start);
+
+	cursor: pointer;
+
+	span {
+		overflow-x: hidden;
+		text-overflow: ellipsis;
+	}
+
+	> i {
+		color: var(--color-blue);
+		font-size: 14px;
+		margin-right: 8px;
+		margin-top: 2px;
+	}
+}
+
+.table_data_transfer {
+	@include flexbox(flex-start, center);
+
+	a {
+		@include flexbox(flex-start, center);
+
+		flex: 1;
+		color: var(--color-blue);
+
+		&:not(:last-child) {
+			margin-right: 30px;
+		}
+
+		i {
+			font-size: 24px;
+		}
+	}
+}
+
+.details_header {
+	@include max-w(xl) {
+		flex-wrap: wrap;
+	}
+
+	.header_margin_info {
+		width: unset;
+		align-self: center;
+		margin: 0;
+
+		@include max-w(xl) {
+			order: 3;
+			margin-top: 30px;
+			padding: 0;
+		}
+
+		@include max-w(lg) {
+			order: 2;
+			margin-bottom: 30px;
+			justify-content: space-between;
+			width: 100%;
+
+			> div {
+				&:first-child {
+					order: 2;
+					margin-right: 0;
+				}
+
+				&:last-child {
+					order: 1;
+					justify-items: flex-start;
+
+					> span {
+						align-items: flex-start;
+					}
+				}
+			}
+		}
+	}
+}
+
+.header_title_container {
+	@include flexbox(flex-start, flex-end);
+
+	margin-bottom: 24px;
+
+	@include max-w(lg) {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+}
+
+.page_header_title_info {
+	@include flexbox(flex-start, center);
+
+	span {
+		font-size: 16px;
+		line-height: 23px;
+		color: var(--color-secondary);
+	}
+
+	&:not(:last-child) {
+		margin-right: 24px;
+	}
+
+	button {
+		margin-left: 8px;
+	}
+}
+
+.details_header_controls {
+	display: grid;
+	grid-template: auto / 1fr;
+	grid-gap: 20px;
+	justify-items: flex-end;
+
+	> span {
+		font-size: 12px;
+		line-height: 14px;
+		text-align: right;
+		color: var(--color-secondary);
+	}
+
+	> a {
+		color: var(--color-blue);
+		text-decoration: underline;
+	}
+
+	@include max-w(xl) {
+		margin-top: 20px;
+	}
+
+	@include max-w(lg) {
+		justify-items: flex-start;
+		order: 3;
+	}
+}
+
+.table {
+	border-radius: 15px;
+}

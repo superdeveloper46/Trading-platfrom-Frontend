@@ -1,0 +1,274 @@
+@import "assets/styles/common/mixins";
+
+.header_container {
+	min-height: 116px;
+
+	.content {
+		display: grid;
+		grid-template: auto / 1fr 260px;
+		grid-gap: 30px;
+		max-width: 1200px;
+
+		@include max-w(xs) {
+			grid-template: auto / 1fr;
+		}
+	}
+
+	.focus_container {
+		@include flexbox(flex-start, flex-start, column);
+	}
+}
+
+.content_wrapper {
+	width: 100%;
+	background-image: url("../../assets/images/competitions/page-mask.png");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	display: flex;
+	flex-direction: column;
+	margin-top: 5px;
+}
+
+.description_container {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	margin: 30px 0 0;
+
+	@include max-w(md) {
+		padding-bottom: 0;
+	}
+
+	.title {
+		font-weight: bold;
+		font-size: 24px;
+		line-height: 28px;
+		margin-bottom: 24px;
+		color: var(--color-primary);
+		width: 100%;
+		text-align: left;
+
+		&.centered {
+			text-align: center;
+		}
+	}
+
+	.page_steps {
+		@include flexbox(flex-start, center);
+
+		margin-bottom: 35px;
+		width: 100%;
+
+		@include max-w(lg) {
+			flex-direction: column;
+			margin-bottom: 0;
+		}
+	}
+
+	.page_step {
+		@include flexbox(flex-start, center, column);
+
+		max-width: 290px;
+		margin: 0 20px;
+		position: relative;
+		z-index: 9;
+		flex: 1;
+
+		&:nth-of-type(1):after,
+		&:nth-of-type(2):after {
+			content: "";
+			position: absolute;
+			width: 80%;
+			height: 1px;
+			left: calc(50% + 40px);
+			top: 30px;
+			background: linear-gradient(to right, transparent 0%, #f79319 31%);
+		}
+
+		@include max-w(lg) {
+			&:nth-of-type(1):after,
+			&:nth-of-type(2):after {
+				width: 1px;
+				height: 33px;
+				position: relative;
+				left: 0;
+				top: 18px;
+				background: linear-gradient(to bottom, transparent 0%, #f79319 31%);
+			}
+		}
+	}
+
+	.page_step_image {
+		width: auto;
+		height: 50px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background: transparent;
+		margin-bottom: 14px;
+	}
+
+	.page_step_title {
+		font-weight: bold;
+		font-size: 18px;
+		line-height: 24px;
+		text-align: center;
+		color: var(--color-primary);
+		margin-bottom: 5px;
+	}
+
+	.page_step_description {
+		font-size: 16px;
+		line-height: 23px;
+		text-align: center;
+		color: var(--color-secondary);
+
+		a {
+			text-decoration: underline;
+		}
+	}
+}
+
+.competitions_grid {
+	margin: 10px auto 0;
+	width: 100%;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+	grid-gap: 28px;
+
+	.competition {
+		@include flexbox(flex-start, center, column);
+
+		width: auto;
+		position: relative;
+
+		&.disabled {
+			.status_badge {
+				background: rgba(60, 60, 60, 0.1);
+			}
+
+			.image {
+				filter: grayscale(1);
+				background: #d0d0d0;
+			}
+		}
+	}
+
+	.image {
+		height: 168px;
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		//background: `url(${props.$imgSrc}) center center / cover`
+		border-radius: 8px 8px 0 0;
+		border: 1px solid var(--card-border-color);
+		border-bottom: none;
+		position: relative;
+
+		i.ai {
+			color: var(--icon-primary);
+			font-size: 90px;
+		}
+
+		a {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			left: 0;
+			top: 0;
+		}
+	}
+
+	.status_badge_container {
+		position: absolute;
+		top: 13px;
+		left: 13px;
+		display: grid;
+		grid-gap: 10px;
+	}
+
+	.status_badge {
+		color: #fff;
+		background: rgba(255, 255, 255, 0.1);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding: 4px 16px;
+		border-radius: 5px;
+		font-size: 12px;
+		line-height: 120%;
+	}
+
+	.competition_content {
+		@include flexbox(flex-start, flex-start, column);
+		width: 100%;
+
+		border: 1px solid var(--card-border-color);
+		background-color: var(--card-background-color);
+		border-top: none;
+		border-radius: 0 0 8px 8px;
+	}
+
+	.prize_fund {
+		@include flexbox(flex-start, flex-start, column);
+
+		width: 100%;
+		padding: 16px;
+		border-bottom: 1px solid var(--divider-border);
+	}
+
+	.prize_fund_label {
+		font-weight: normal;
+		font-size: 14px;
+		line-height: 19px;
+		color: var(--color-secondary);
+		margin-bottom: 4px;
+	}
+
+	.prize_fund_value {
+		font-weight: bold;
+		font-size: 24px;
+		line-height: 28px;
+		color: var(--color-primary);
+	}
+
+	.about {
+		@include flexbox(flex-start, flex-start, column);
+
+		padding: 16px 16px 28px;
+		width: 100%;
+
+		a {
+			width: 100%;
+		}
+	}
+
+	.about_label {
+		font-weight: bold;
+		font-size: 18px;
+		line-height: 21px;
+		margin-bottom: 8px;
+		color: var(--color-primary);
+
+		@include min-w(get-breakpoint-value(xs) + 1) {
+			min-height: 42px;
+		}
+	}
+
+	.about_date {
+		@include flexbox(space-between, center);
+
+		width: 100%;
+		color: var(--color-secondary);
+		font-size: 14px;
+		line-height: 16px;
+		margin-bottom: 14px;
+
+		span {
+			font-size: 16px;
+			line-height: 18px;
+			color: var(--color-primary);
+		}
+	}
+}

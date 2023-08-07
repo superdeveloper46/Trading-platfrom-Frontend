@@ -1,0 +1,80 @@
+@import "assets/styles/common/mixins";
+
+.container {
+	@include flexbox(flex-start, flex-start, column);
+	position: relative;
+	padding: 20px;
+	max-width: get-breakpoint-value(md);
+	width: 100%;
+	margin: 0 auto;
+
+	> h1 {
+		margin: 0 0 10px;
+		font-size: 42px;
+	}
+
+	> picture {
+		margin-bottom: 10px;
+
+		img {
+			overflow: hidden;
+			height: auto;
+			max-width: 100%;
+			border-radius: 10px;
+		}
+	}
+
+	@include max-w(md) {
+		padding: 10px;
+	}
+}
+
+.content {
+	width: 100%;
+	font-size: 16px;
+}
+
+.loader {
+	margin: 0 auto;
+}
+
+.meta {
+	@include flexbox(flex-start, center);
+	width: 100%;
+	margin-bottom: 15px;
+}
+
+.date {
+	font-size: 12px;
+	float: right;
+	color: var(--color-secondary);
+}
+
+.count {
+	padding: 0 15px;
+	font-size: 12px;
+	float: right;
+	color: var(--color-secondary);
+	@include flexbox(flex-start, center);
+
+	i {
+		font-size: 16px;
+		margin-right: 5px;
+	}
+
+	@include max-w(md) {
+		padding: 0 15px 0;
+	}
+}
+
+.suggestions {
+	display: grid;
+	grid-template: auto / 1fr 1fr;
+	grid-gap: 20px;
+	width: 100%;
+	margin: 20px 0 40px;
+
+	@include max-w(md) {
+		grid-template: auto / 1fr;
+	}
+}

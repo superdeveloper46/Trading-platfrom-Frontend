@@ -1,0 +1,40 @@
+@import "src/assets/styles/common/mixins";
+
+.message_container {
+	@include flexbox(center, center);
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	z-index: 99;
+	padding: 20px 10px;
+	background-color: #333;
+
+	> i {
+		color: var(--color-yellow);
+		font-size: 16px;
+		margin-right: 8px;
+	}
+
+	> span {
+		color: #fff;
+		font-size: 14px;
+	}
+
+	> button {
+		margin-left: 14px;
+	}
+
+	@include max-w(md) {
+		flex-direction: column;
+
+		> i,
+		> span {
+			margin-bottom: 8px;
+		}
+
+		> button {
+			margin: 0;
+		}
+	}
+}

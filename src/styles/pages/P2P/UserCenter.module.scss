@@ -1,0 +1,358 @@
+@import "assets/styles/common/mixins";
+
+.container {
+	@include flexbox(stretch, stretch, column);
+}
+
+.section_title {
+	font-size: 24px;
+	line-height: 36px;
+	font-weight: 500;
+	color: var(--color-text-primary);
+	margin-bottom: 10px;
+}
+
+.user_stats_container {
+	@include flexbox(stretch, stretch, column);
+
+	margin-bottom: 20px;
+}
+
+.positive {
+	color: var(--color-green);
+}
+
+.negative {
+	color: var(--color-red);
+}
+
+.payment_container {
+	@include flexbox(stretch, stretch, column);
+
+	margin-bottom: 40px;
+}
+
+.section_desc {
+	font-size: 16px;
+	line-height: 24px;
+	color: var(--color-text-tertiary);
+	margin-bottom: 20px;
+}
+
+.payment_info {
+	@include flexbox(stretch, stretch, column);
+	@include card();
+
+	border-radius: 12px;
+	padding: 20px;
+	margin-bottom: 20px;
+
+	> span {
+		max-width: 840px;
+	}
+}
+
+.payment_methods_list {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-gap: 20px;
+
+	@include max-w(lg) {
+		grid-template-columns: 1fr;
+	}
+
+	.add_method {
+		@include flexbox(center, center);
+
+		cursor: pointer;
+		user-select: none;
+		flex-shrink: 0;
+		border-radius: 12px;
+		border: 2px dashed var(--color-blue);
+		gap: 15px;
+		color: var(--color-blue);
+		font-size: 16px;
+		min-height: 145px;
+
+		@include max-w(xs) {
+			min-height: 75px;
+		}
+
+		> i {
+			font-size: 15px;
+			color: var(--color-blue);
+		}
+	}
+}
+
+.user_header {
+	@include flexbox(stretch, center);
+	@include card();
+
+	overflow: unset;
+	border-radius: 12px;
+	padding: 20px;
+	gap: 10px;
+	margin-bottom: 20px;
+
+	@include max-w(md) {
+		@include flexbox(stretch, flex-start, column);
+
+		padding: 10px;
+	}
+
+	.username {
+		@include flexbox(stretch, center);
+
+		gap: 10px;
+	}
+
+	.user_title {
+		max-width: 350px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		font-size: 16px;
+		line-height: 24px;
+	}
+
+	.user_edit_icon {
+		fill: var(--color-text-tertiary);
+		cursor: pointer;
+	}
+
+	.action_buttons {
+		@include flexbox();
+
+		margin-left: auto;
+	}
+
+	.become_merchant_btn {
+		margin-left: auto;
+	}
+}
+
+.slider {
+	width: calc(100% + 20px);
+	margin-left: -10px;
+	margin-bottom: 20px;
+
+	ul[class~="slick-dots"] {
+		li {
+			transition: 0.2s ease;
+			margin: 0 3px;
+			height: 5px;
+			width: 5px;
+			overflow: hidden;
+			border-radius: 6px;
+			background-color: var(--color-fill-secondary);
+		}
+
+		li[class~="slick-active"] {
+			width: 26px;
+			background-color: var(--color-blue);
+		}
+	}
+}
+
+.user_stats_bar {
+	display: grid;
+	grid-template-columns: repeat(6, 1fr);
+	grid-gap: 20px;
+
+	&.userPage {
+		grid-template-columns: repeat(3, 1fr);
+	}
+
+	@include max-w(xxl) {
+		grid-template-columns: repeat(4, 1fr);
+	}
+
+	@include max-w(md) {
+		display: block;
+	}
+
+	.mobile_slick_item {
+		display: grid !important;
+		grid-template-columns: repeat(2, 1fr);
+		grid-gap: 10px;
+		padding: 0 10px;
+	}
+
+	.stats_card {
+		@include flexbox(stretch, stretch, column);
+		@include card();
+
+		border-radius: 12px;
+
+		.header {
+			@include flexbox(stretch, center);
+
+			border-bottom: 1px solid var(--card-border-color);
+			padding: 10px 20px;
+
+			@include max-w(lg) {
+				padding: 10px;
+			}
+
+			> span {
+				margin-bottom: 0;
+			}
+		}
+
+		.value {
+			overflow: hidden;
+			text-overflow: ellipsis;
+			padding: 20px;
+			font-weight: 500;
+			line-height: 1.3;
+			color: var(--color-text-primary);
+
+			@include make-responsive(
+				"font-size",
+				(
+					md: 16px,
+					lg: 20px,
+					xxl: 24px,
+				),
+				24px
+			);
+
+			@include max-w(lg) {
+				padding: 10px;
+			}
+		}
+	}
+}
+
+.ads_container {
+	@include flexbox(stretch, stretch, column);
+
+	.ads_title {
+		font-size: 16px;
+		line-height: 24px;
+		margin-bottom: 10px;
+		margin-left: 20px;
+
+		color: var(--color-text-tertiary);
+	}
+
+	.ads_list {
+		@include flexbox(stretch, stretch, column);
+
+		gap: 20px;
+		margin-bottom: 10px;
+
+		@include max-w(md) {
+			margin-bottom: 0;
+		}
+	}
+}
+
+.method {
+	@include flexbox(stretch, stretch, column);
+	@include card();
+
+	flex-shrink: 0;
+	border-radius: 12px;
+	border: 1px solid var(--card-border-color);
+
+	.method_info {
+		@include flexbox(stretch, center);
+
+		width: calc(100% + 3px);
+		margin: -1px 0 0 -1px;
+		padding: 20px;
+		border-bottom: 1px solid var(--card-border-color);
+
+		.method_label {
+			@include flexbox(stretch, center);
+
+			font-size: 14px;
+			line-height: 22px;
+			gap: 6px;
+			overflow: hidden;
+
+			img {
+				height: 24px;
+				width: 24px;
+			}
+		}
+
+		.card_number {
+			@include flexbox(space-between);
+
+			margin-top: 2px;
+			font-size: 36px;
+			line-height: 42px;
+			color: var(--color-text-primary);
+		}
+	}
+
+	.attributes {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		padding: 20px;
+		grid-gap: 20px;
+
+		@include min-max-w(get-breakpoint-value(lg) + 1, xl) {
+			grid-template-columns: repeat(2, 1fr);
+		}
+
+		@include max-w(md) {
+			grid-template-columns: repeat(2, 1fr);
+			grid-gap: 10px;
+		}
+
+		@include max-w(xs) {
+			grid-template-columns: 1fr;
+		}
+
+		.attribute {
+			@include flexbox(stretch, stretch, column);
+
+			overflow: hidden;
+
+			span {
+				overflow: hidden;
+				text-overflow: ellipsis;
+			}
+		}
+	}
+
+	.actions {
+		@include flexbox(stretch, center);
+
+		margin-left: auto;
+
+		@include max-w(xs) {
+			button > div {
+				padding: 4px 10px;
+				padding: 4px 10px;
+			}
+		}
+	}
+
+	.sum_to_pay {
+		@include flexbox(stretch, stretch, column);
+
+		padding: 5px 20px;
+		gap: 2px;
+		margin-top: auto;
+
+		.price {
+			font-weight: 500;
+			font-size: 24px;
+			line-height: 1;
+			color: var(--color-text-primary);
+		}
+	}
+}
+
+.tabs {
+	margin-bottom: 20px;
+
+	@include min-w(get-breakpoint-value(xs) + 1) {
+		width: calc(100% + 40px);
+		margin-left: -20px;
+	}
+}

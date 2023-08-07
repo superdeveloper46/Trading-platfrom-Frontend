@@ -1,0 +1,89 @@
+@import "src/assets/styles/common/mixins";
+
+.graggable_popup {
+	@include flexbox();
+	position: absolute;
+	background-color: var(--card-header-background);
+	border: 1px solid var(--card-border-color);
+	padding: 5px 30px;
+	top: 0;
+	right: 0;
+	border-radius: 8px;
+	overflow: hidden;
+}
+
+.zone {
+	@include flexbox(center, center);
+	position: absolute;
+	top: 0;
+	width: 30px;
+	height: 100%;
+	background-color: var(--card-header-background);
+
+	&:hover {
+		background-color: var(--card-background-color);
+	}
+
+	> i {
+		font-size: 20px;
+		color: var(--color-primary);
+	}
+
+	&.pick {
+		left: 0;
+		cursor: move;
+	}
+
+	&.close {
+		right: 0;
+		cursor: pointer;
+	}
+}
+
+.input_container {
+	width: 120px;
+	margin: 0 10px;
+	height: 100%;
+
+	input + div {
+		background-color: var(--card-header-background);
+	}
+}
+
+.button {
+	height: unset;
+	min-height: unset;
+
+	&.close_button {
+		> div {
+			padding: 4px 10px;
+
+			> i {
+				margin: 0;
+			}
+		}
+	}
+}
+
+.custom_button {
+	pointer-events: auto;
+	width: max-content;
+	border: none;
+	border-radius: 12px;
+	font-family: "Roboto", sans-serif;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	user-select: none;
+	cursor: pointer;
+	outline: none;
+	padding: 0;
+	text-decoration: none;
+	color: var(--button-filled-color);
+}
+
+.custom_button_content {
+	@include flexbox(center, center, column);
+	font-size: 13px;
+}

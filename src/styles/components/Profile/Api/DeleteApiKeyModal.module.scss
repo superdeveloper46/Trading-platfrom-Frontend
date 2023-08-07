@@ -1,0 +1,32 @@
+@import "src/assets/styles/common/mixins";
+
+.modal_title {
+	margin-bottom: 10px;
+}
+
+.success_container {
+	@include flexbox(center, center, column);
+	padding: 60px 0 80px;
+	width: 100%;
+
+	i {
+		font-size: 64px;
+		color: var(--color-green);
+		margin-bottom: 40px;
+	}
+
+	span {
+		font-weight: normal;
+		font-size: 16px;
+		line-height: 23px;
+		text-align: center;
+		color: var(--color-secondary);
+		max-width: 400px;
+	}
+}
+
+.trash_icon {
+	i {
+		color: var(--color-red);
+	}
+}

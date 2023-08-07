@@ -1,0 +1,25 @@
+@import "src/assets/styles/common/mixins";
+
+.card_panel {
+	@include card(false);
+	padding: 0;
+	width: 100%;
+}
+
+.header {
+	font-size: 18px;
+	padding: 10px 20px;
+	margin: 0;
+}
+
+.group_title {
+	font-weight: bold;
+	font-size: 16px;
+	color: var(--color-primary);
+}
+
+.table_row {
+	&:not(:last-child) {
+		border-bottom: 1px solid var(--table-header-border-color);
+	}
+}
